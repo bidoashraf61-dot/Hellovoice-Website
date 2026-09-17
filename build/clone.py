@@ -2285,13 +2285,12 @@ FILM = {
 
 
 def film_feature(where: str = "") -> str:
-    """The film, presented as a film: poster first, then the billing.
+    """Split screen: the vertical reel at full height on one side, the billing on
+    the other, and the wide cut as a band beneath them.
 
-    Structure, top to bottom: the festival lockup, the film's own poster at a
-    size you can read it at, the title and synopsis under it, and the two cuts
-    running silently side by side. The ground is that same poster, blurred and
-    darkened — ambience rather than a second copy of the title behind the type,
-    which is what made the first version read as doubled.
+    The client's structure, 18 Sep 2026. The poster is used only as the ground —
+    blurred, and cropped past its printed title so nothing on it competes with
+    the heading beside it.
     """
     return (
         f'<section class="film_feature{where}" id="the-four-coats" '
@@ -2307,19 +2306,16 @@ def film_feature(where: str = "") -> str:
         '<img src="/assets/film/higgsfield-mark.webp" width="128" height="128" '
         'alt="" loading="lazy" decoding="async"/>Our entry · 2026</p>'
         '</div>'
-        '<figure class="film_feature_poster">'
-        '<img src="/assets/film/four-coats-cover-1600.webp" '
-        'srcset="/assets/film/four-coats-cover-800.webp 800w, '
-        '/assets/film/four-coats-cover-1600.webp 1600w" '
-        'sizes="(max-width: 991px) 92vw, 1040px" width="1000" height="421" '
-        f'alt="{HC.esc(FILM["title"])} — poster" loading="lazy" decoding="async"/>'
+        '<figure class="film_feature_reel">'
+        '<video class="film_feature_video" muted loop playsinline preload="none" '
+        'poster="/assets/film/four-coats-reel-poster.webp" aria-hidden="true" tabindex="-1">'
+        '<source src="/assets/film/four-coats-reel.mp4" type="video/mp4"/>'
+        '</video>'
+        '<figcaption class="film_feature_cap">Every asset, every prompt</figcaption>'
         '</figure>'
         '<div class="film_feature_body">'
-        '<div class="film_feature_billing">'
         f'<h2 class="film_feature_title" id="four-coats-title">{HC.esc(FILM["title"])}</h2>'
         f'<p class="film_feature_tagline">{HC.esc(FILM["tagline"])}</p>'
-        '</div>'
-        '<div class="film_feature_detail">'
         f'<p class="film_feature_synopsis">{HC.esc(FILM["synopsis"])}</p>'
         '<ul class="film_feature_meta">'
         '<li>AI short film</li>'
@@ -2333,19 +2329,15 @@ def film_feature(where: str = "") -> str:
         '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">'
         '<path d="M8 5v14l11-7z"/></svg></span>Watch the film</a>'
         '<span class="film_feature_note">Plays on Higgsfield</span>'
-        '</div></div></div>'
-        '<div class="film_feature_art">'
-        '<div class="film_feature_clip is-wide">'
+        '</div></div>'
+        '<figure class="film_feature_band">'
         '<video class="film_feature_video" muted loop playsinline preload="none" '
-        'poster="/assets/film/four-coats-cover-1600.webp" aria-hidden="true" tabindex="-1">'
+        'poster="/assets/film/four-coats-art-1600.webp" aria-hidden="true" tabindex="-1">'
         '<source src="/assets/film/four-coats-loop.mp4" type="video/mp4"/>'
-        '</video><figcaption class="film_feature_cap">From the film</figcaption></div>'
-        '<div class="film_feature_clip is-tall">'
-        '<video class="film_feature_video" muted loop playsinline preload="none" '
-        'poster="/assets/film/four-coats-reel-poster.webp" aria-hidden="true" tabindex="-1">'
-        '<source src="/assets/film/four-coats-reel.mp4" type="video/mp4"/>'
-        '</video><figcaption class="film_feature_cap">Every asset, every prompt</figcaption></div>'
-        '</div></div></div></div></section>')
+        '</video>'
+        '<figcaption class="film_feature_cap">From the film</figcaption>'
+        '</figure>'
+        '</div></div></div></section>')
 
 
 def film_on_home(html: str) -> str:
