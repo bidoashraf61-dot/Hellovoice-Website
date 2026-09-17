@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>HelloVoice — Website Upgrade Roadmap</title>
+<style>
+  @page { size: A4; margin: 16mm 15mm 18mm; }
+
+  :root {
+    --ink:        #10182C;
+    --ink-2:      #414D66;
+    --ink-3:      #6E7A94;
+    --hairline:   #C9D2E0;
+    --hairline-2: #E4E9F1;
+    --wash:       #F2F5F9;
+    --accent:     #8F1D10;
+    --accent-2:   #C4552E;
+    --ok:         #2F6B4F;
+
+    --font-display: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --font-body:    "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --font-mono:    ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 9.6pt;
+    line-height: 1.5;
+    color: var(--ink);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  p { margin: 0 0 0.55em; max-width: 62em; }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0;
+    line-height: 1.12;
+  }
+
+  h1 { font-size: 27pt; letter-spacing: -0.035em; }
+  h2 { font-size: 14pt; }
+  h3 { font-size: 10.5pt; letter-spacing: -0.012em; }
+  h4 { font-size: 9.4pt; letter-spacing: 0; }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 6.6pt;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+
+  .mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.86em;
+    background: var(--wash);
+    padding: 0.08em 0.3em;
+    border-radius: 2px;
+  }
+
+  /* ---------- cover ---------- */
+
+  .cover { padding-bottom: 6mm; border-bottom: 2.5pt solid var(--ink); margin-bottom: 7mm; }
+  .cover h1 { margin: 2mm 0 3mm; }
+  .cover .sub { font-size: 11pt; color: var(--ink-2); max-width: 42em; margin-bottom: 5mm; }
+
+  .cover-meta {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 0.75pt solid var(--hairline);
+  }
+  .cover-meta div { padding: 2mm 2.5mm; border-right: 0.75pt solid var(--hairline); }
+  .cover-meta div:last-child { border-right: none; }
+  .cover-meta dt {
+    font-family: var(--font-mono); font-size: 6pt; letter-spacing: 0.13em;
+    text-transform: uppercase; color: var(--ink-3); margin-bottom: 1mm;
+  }
+  .cover-meta dd { margin: 0; font-family: var(--font-mono); font-size: 8pt; }
+
+  /* ---------- sections ---------- */
+
+  section { margin-bottom: 7mm; }
+  .sec-head {
+    border-bottom: 1.5pt solid var(--ink);
+    padding-bottom: 1.5mm;
+    margin-bottom: 3.5mm;
+  }
+  .sec-head h2 { margin-top: 1mm; }
+
+  .break { break-before: page; }
+  .keep { break-inside: avoid; }
+
+  /* ---------- callout ---------- */
+
+  .callout {
+    border: 0.75pt solid var(--hairline);
+    border-left: 2.5pt solid var(--accent);
+    background: var(--wash);
+    padding: 3mm 3.5mm;
+    margin: 3mm 0;
+  }
+  .callout.good { border-left-color: var(--ok); }
+  .callout h4 { margin-bottom: 1.6mm; }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* ---------- tables ---------- */
+
+  table { border-collapse: collapse; width: 100%; margin: 2.5mm 0; font-size: 8.6pt; }
+  th, td { text-align: left; padding: 1.8mm 2.2mm; border-bottom: 0.5pt solid var(--hairline-2); vertical-align: top; }
+  th {
+    font-family: var(--font-mono); font-size: 6.2pt; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--ink-3);
+    border-bottom: 0.75pt solid var(--hairline); white-space: nowrap;
+  }
+  td { color: var(--ink-2); }
+  td strong { color: var(--ink); font-weight: 600; }
+  .num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+  tbody tr:last-child td { border-bottom: none; }
+  thead { display: table-header-group; }
+
+  /* ---------- gates ---------- */
+
+  .gate {
+    border: 0.75pt solid var(--hairline);
+    padding: 3mm 3.5mm;
+    margin-bottom: 2.5mm;
+    break-inside: avoid;
+  }
+  .gate-top { display: flex; align-items: baseline; gap: 2.5mm; margin-bottom: 1.5mm; }
+  .gate-id {
+    font-family: var(--font-mono); font-size: 7pt; font-weight: 700;
+    letter-spacing: 0.08em; color: #fff; background: var(--accent);
+    padding: 0.6mm 1.6mm; border-radius: 2px; white-space: nowrap;
+  }
+  .gate p { font-size: 8.8pt; margin-bottom: 1.2mm; }
+  .rec {
+    font-family: var(--font-mono); font-size: 7.4pt;
+    color: var(--ink); background: var(--wash);
+    padding: 1.5mm 2mm; border-left: 1.5pt solid var(--accent-2); margin-top: 1.5mm;
+  }
+
+  /* ---------- phases ---------- */
+
+  .phase {
+    display: grid;
+    grid-template-columns: 11mm 1fr;
+    gap: 3.5mm;
+    border-top: 0.75pt solid var(--hairline);
+    padding: 3mm 0;
+    break-inside: avoid;
+  }
+  .phase:last-child { border-bottom: 0.75pt solid var(--hairline); }
+  .phase-num {
+    font-family: var(--font-display); font-size: 17pt; font-weight: 700;
+    letter-spacing: -0.04em; color: var(--ink-3); line-height: 1;
+  }
+  .phase-when {
+    font-family: var(--font-mono); font-size: 6.6pt; letter-spacing: 0.11em;
+    text-transform: uppercase; color: var(--ink-3); margin: 1mm 0 1.5mm;
+  }
+  .phase ul { margin: 0 0 1.5mm; padding-left: 4mm; }
+  .phase li { margin-bottom: 0.7mm; color: var(--ink-2); }
+  .out {
+    font-family: var(--font-mono); font-size: 7.2pt; color: var(--ink);
+    border-top: 0.5pt dotted var(--hairline); padding-top: 1.5mm;
+  }
+  .out b { font-weight: 700; }
+
+  ul { margin: 0 0 0.6em; padding-left: 4.5mm; }
+  li { margin-bottom: 0.5mm; }
+
+  .status-ok   { color: var(--ok); font-weight: 700; }
+  .status-miss { color: var(--accent); font-weight: 700; }
+
+  footer {
+    border-top: 1.5pt solid var(--ink);
+    padding-top: 2mm;
+    margin-top: 6mm;
+    font-family: var(--font-mono);
+    font-size: 6.8pt;
+    color: var(--ink-3);
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="eyebrow">Roadmap · Blue Holding · HELV</div>
+  <h1>HelloVoice<br>Website Upgrade</h1>
+  <p class="sub">
+    Rebuilding hellovoice.co.uk as a scroll-scrubbed cinematic site — and fixing
+    every fault found in the 2&nbsp;August audit along the way.
+  </p>
+  <dl class="cover-meta">
+    <div><dt>Prepared</dt><dd>2 Aug 2026</dd></div>
+    <div><dt>Phases</dt><dd>0 – 7</dd></div>
+    <div><dt>Est. duration</dt><dd>8–9 weeks</dd></div>
+    <div><dt>Decisions needed</dt><dd>7</dd></div>
+  </dl>
+</div>
+
+<section>
+  <div class="sec-head">
+    <div class="eyebrow">Section 1</div>
+    <h2>Where we start</h2>
+  </div>
+
+  <p>
+    The audit of the live site found three faults that cost money every day, and a
+    longer list underneath them. The rebuild has to clear all of it — a beautiful
+    new front end on the same broken foundations would be a waste.
+  </p>
+
+  <table>
+    <thead>
+      <tr><th>Fault</th><th>Evidence</th><th>Cleared in</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Primary CTA is dead</strong></td><td>Free Consultation → <code>#hellovoice.co.uk/contact</code></td><td class="mono">Phase 0</td></tr>
+      <tr><td><strong>31.6 MB of GIFs</strong></td><td>5 files; <code>cgi-2.gif</code> alone 12.9 MB</td><td class="mono">Phase 0</td></tr>
+      <tr><td><strong>No analytics at all</strong></td><td>No GA4, Meta, LinkedIn or heatmap tag</td><td class="mono">Phase 0</td></tr>
+      <tr><td>No Open Graph tags</td><td>Shared links preview blank on WhatsApp</td><td class="mono">Phase 0</td></tr>
+      <tr><td>No alt text anywhere</td><td>0 of 93 images across 4 pages</td><td class="mono">Phase 2 + 5</td></tr>
+      <tr><td>No H1 on 3 of 4 pages</td><td>Portfolio carries 52 H2s and no H1</td><td class="mono">Phase 5</td></tr>
+      <tr><td>No meta descriptions, no sitemap</td><td>Both sitemap URLs return 404</td><td class="mono">Phase 0 + 5</td></tr>
+      <tr><td>Sections render as empty space</td><td>2,163 px blank block; six empty 701 px cells</td><td class="mono">Phase 5</td></tr>
+      <tr><td>Form cannot qualify a lead</td><td>Name, email, message only</td><td class="mono">Phase 5</td></tr>
+      <tr><td>No service or case-study pages</td><td>"Six main areas", none expanded</td><td class="mono">Phase 2 + 5</td></tr>
+      <tr><td>English only, KSA market</td><td>No Arabic, no <code>hreflang</code></td><td class="mono">Gate&nbsp;6</td></tr>
+      <tr><td>Mobile hero letterboxed</td><td>16:9 video uncropped at 375 px</td><td class="mono">Phase 4</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <div class="sec-head">
+    <div class="eyebrow">Section 2</div>
+    <h2>What we are building</h2>
+  </div>
+
+  <p>
+    The new site opens with a <strong>scroll-scrubbed continuous camera flight</strong> —
+    the visitor scrolls and a camera flies through a connected world, scene to scene,
+    with no cuts. Scroll drives time; the camera genuinely moves. This is the technique
+    behind Apple's scroll-through product pages, built here with the
+    <code>scroll-world</code> skill already in your Downloads.
+  </p>
+
+  <p>
+    It fits HelloVoice specifically: you sell cinematic craft, so the homepage should
+    <em>be</em> a piece of cinematic craft rather than a grid of thumbnails describing one.
+    Each scene in the flight becomes one of your service areas, and the copy pins over
+    the film as the camera settles.
+  </p>
+
+  <div class="callout">
+    <h4>The tension we have to design around, stated plainly</h4>
+    <p>
+      The audit's headline complaint was weight — 31.6 MB of GIFs, 6.3 s to load. A
+      scroll film is <em>also</em> heavy: eleven clips for a six-scene chain, roughly
+      8 MB each. If we build it naively we replace one weight problem with a bigger one.
+    </p>
+    <p>
+      The difference is architecture, and it is not optional. The engine loads clips
+      lazily as blobs, shows a still poster until the video paints, prefetches only the
+      neighbouring clip, and falls back to stills entirely under
+      <code>prefers-reduced-motion</code>. First paint stays around 400 KB; the film
+      streams in behind it. <strong>Phase 6 exists to prove that on a throttled Riyadh
+      mobile connection, and we do not launch until it passes.</strong>
+    </p>
+  </div>
+</section>
+
+<section class="break">
+  <div class="sec-head">
+    <div class="eyebrow">Section 3</div>
+    <h2>Seven decisions I need from you</h2>
+  </div>
+
+  <p>
+    Each of these changes what gets built or what it costs. My recommendation is on
+    each one — but they are yours to make, and Phase 1 stalls without them.
+  </p>
+
+  <div class="gate">
+    <div class="gate-top"><span class="gate-id">GATE 1</span><h3>AI-generated world, or your own footage?</h3></div>
+    <p>
+      The skill's default is AI-generated isometric diorama scenes. That looks superb and
+      is fast. But HelloVoice's entire pitch is that you shoot real premium work for
+      Pfizer, L'Oréal and Abbott — opening with an AI cartoon world could undercut it.
+      The scrub engine does not care where the frames come from: your editors could cut a
+      continuous camera move from real footage instead.
+    </p>
+    <div class="rec">RECOMMEND · Hybrid. Real footage for the opening and closing scenes, AI dioramas for the abstract middle ones (post-production, AI, CGI). Decide before any render spend.</div>
+  </div>
+
+  <div class="gate">
+    <div class="gate-top"><span class="gate-id">GATE 2</span><h3>How many scenes?</h3></div>
+    <p>
+      Scene count drives everything: render cost is <code>N stills + (2N−1) clips</code>.
+      Your site currently claims six areas of expertise, which maps cleanly to six scenes.
+    </p>
+    <div class="rec">RECOMMEND · N = 6. Five scenes if budget is tight; seven is the practical ceiling before the scroll feels long.</div>
+  </div>
+
+  <div class="gate">
+    <div class="gate-top"><span class="gate-id">GATE 3</span><h3>Mobile version — yes or no?</h3></div>
+    <p>
+      A proper mobile version means a second camera chain rendered natively in 9:16
+      portrait, not a crop. It roughly doubles render cost. Without it, phones get the
+      desktop film centre-cropped, which cuts the sides off every scene — exactly the
+      fault the audit already flagged on your current hero.
+    </p>
+    <div class="rec">RECOMMEND · Yes. Mobile is likely the majority of your traffic, and shipping a crop repeats the mistake we are fixing.</div>
+  </div>
+
+  <div class="gate">
+    <div class="gate-top"><span class="gate-id">GATE 4</span><h3>Who pays for the renders — Monid or Higgsfield?</h3></div>
+    <p>
+      Monid bills per clip in USD with no subscription; Higgsfield bills credits against
+      your plan. Same underlying model. Neither is ready right now: Monid is not installed
+      on this machine, and the Higgsfield CLI is installed but not logged in.
+    </p>
+    <div class="rec">RECOMMEND · Monid for a one-off build (pay-per-use, nothing expires). Higgsfield if you already hold credits you want to burn.</div>
+  </div>
+
+  <div class="gate">
+    <div class="gate-top"><span class="gate-id">GATE 5</span><h3>Keep WordPress, or rebuild the front end?</h3></div>
+    <p>
+      The current stack is WordPress 6.9 with Elementor Pro, 27 stylesheets and jQuery.
+      The scrub engine is plain JavaScript and will run inside it — but the empty-section
+      bug and the page weight both trace back to that stack.
+    </p>
+    <div class="rec">RECOMMEND · Rebuild the front end as a static site; keep WordPress only if a non-technical person must publish case studies weekly. This is the single biggest fork in the plan.</div>
+  </div>
+
+  <div class="gate">
+    <div class="gate-top"><span class="gate-id">GATE 6</span><h3>Is Arabic in scope?</h3></div>
+    <p>
+      Riyadh office, Gulf clients, English-only site, no <code>hreflang</code>. Full RTL
+      localisation is a different-sized project from an Arabic landing page — and it
+      affects the type system, the layout and the scroll copy from day one.
+    </p>
+    <div class="rec">RECOMMEND · Decide now even if the answer is "later". Retrofitting RTL after launch costs more than building for it.</div>
+  </div>
+
+  <div class="gate">
+    <div class="gate-top"><span class="gate-id">GATE 7</span><h3>Camera personality?</h3></div>
+    <p>
+      Three options. <strong>Fly-through</strong> dives into each scene then pulls up and
+      hops to the next — expressive, best for miniature worlds.
+      <strong>Walkthrough</strong> glides forward only, never pulling back — grounded and
+      cinematic. <strong>Locked isometric</strong> holds one fixed angle throughout —
+      calmest, cheapest to re-roll.
+    </p>
+    <div class="rec">RECOMMEND · Walkthrough, if Gate 1 lands on real footage — a forward-only glide reads as filmmaking. Fly-through if the world goes fully AI diorama.</div>
+  </div>
+</section>
+
+<section class="break">
+  <div class="sec-head">
+    <div class="eyebrow">Section 4</div>
+    <h2>The phases</h2>
+  </div>
+
+  <div class="phase">
+    <div class="phase-num">0</div>
+    <div>
+      <h3>Stop the bleeding on the live site</h3>
+      <div class="phase-when">Week 1 · runs in parallel with everything · ~2 days</div>
+      <ul>
+        <li>Repoint the Free Consultation button at the real contact page</li>
+        <li>Re-encode the five GIFs as looping muted MP4 — 31.6 MB down to under 1 MB</li>
+        <li>Install GA4 plus Meta and LinkedIn pixels; fire a conversion event on form submit</li>
+        <li>Add Open Graph and Twitter Card tags with a proper share image</li>
+        <li>Write meta descriptions and real page titles; generate and submit a sitemap</li>
+        <li>Fix the 2024 copyright; verify the mobile number's digit count</li>
+      </ul>
+      <div class="out"><b>Output:</b> the current site stops losing enquiries. None of this work is wasted by the rebuild.</div>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-num">1</div>
+    <div>
+      <h3>Foundations and tooling</h3>
+      <div class="phase-when">Week 1–2 · ~3 days · blocked by Gates 1–7</div>
+      <ul>
+        <li>Answer the seven gates; lock scene count, camera style and budget ceiling</li>
+        <li>Install the missing tooling (see Section 6) and authenticate the render backend</li>
+        <li>Build the brand kit: 4–6 named hex values, display name, tone — pulled from the existing logo and site, then approved</li>
+        <li>Run one still and one clip as a calibration probe; extrapolate real cost before committing</li>
+      </ul>
+      <div class="out"><b>Output:</b> a signed-off brief, a working render pipeline, and a cost figure based on measurement rather than estimate.</div>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-num">2</div>
+    <div>
+      <h3>Content and information architecture</h3>
+      <div class="phase-when">Week 2–3 · ~5 days</div>
+      <ul>
+        <li>Map the six scenes to the six service areas; write eyebrow, headline, body and tags for each</li>
+        <li>Define the full sitemap: home, six service pages, case-study template, filterable portfolio, about, contact</li>
+        <li>Choose three flagship projects and start client clearance — this takes longest, so it starts early</li>
+        <li>Write one real H1 per page, stated as a proposition rather than the brand name</li>
+        <li>Draft alt text for every image that survives into the new site</li>
+        <li>Specify the new enquiry form: company, service, budget band, phone, WhatsApp opt-in</li>
+      </ul>
+      <div class="out"><b>Output:</b> approved copy deck and sitemap. Nothing renders until the words exist — re-rendering a scene because the copy changed is the most expensive mistake available.</div>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-num">3</div>
+    <div>
+      <h3>Art direction and cheap previz</h3>
+      <div class="phase-when">Week 3–4 · ~4 days</div>
+      <ul>
+        <li>Lock the style preamble — one paragraph reused verbatim in every scene prompt; this is what makes the world cohesive</li>
+        <li>Generate the six scene stills and review them side by side as one world</li>
+        <li>Render the entire chain at draft quality (480p) — the whole flight for a few dollars</li>
+        <li>Watch the draft end to end, fix pacing and scene order, re-roll what does not work</li>
+      </ul>
+      <div class="out"><b>Output:</b> an approved low-res film. <b>Approval gate — nothing renders at full quality until you have watched this.</b></div>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-num">4</div>
+    <div>
+      <h3>Full render</h3>
+      <div class="phase-when">Week 4–5 · ~5 days · mostly machine time</div>
+      <ul>
+        <li>Render the final desktop chain at 1080p: six dives plus five connectors</li>
+        <li>Frame-lock every seam — each connector starts on the previous clip's actual last frame and ends on the next clip's actual first frame</li>
+        <li>Render the native 9:16 portrait chain if Gate 3 said yes</li>
+        <li>Encode for scrubbing: native resolution, crf 20, short GOP, audio stripped</li>
+        <li>Budget re-rolls — the content filter flags innocuous clips and some legs need two or three attempts</li>
+      </ul>
+      <div class="out"><b>Output:</b> the finished film, desktop and mobile, encoded and ready to wire.</div>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-num">5</div>
+    <div>
+      <h3>Build the site around the film</h3>
+      <div class="phase-when">Week 5–7 · ~10 days</div>
+      <ul>
+        <li>Wire the scrub engine: sections, connectors, per-scene pacing and dwell</li>
+        <li>Build the pages the audit found missing — six service pages, case-study template, filterable portfolio</li>
+        <li>Build the new enquiry form with real qualification fields</li>
+        <li>Image pipeline: WebP at sensible dimensions, lazy loading below the fold</li>
+        <li>Accessibility pass: heading order, alt text, contrast, visible focus states, keyboard navigation</li>
+        <li>Rename and reorganise the media library — no more <code>12345_00000-1.png</code></li>
+      </ul>
+      <div class="out"><b>Output:</b> a complete site on a staging URL, with every audit fault closed.</div>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-num">6</div>
+    <div>
+      <h3>Performance and seam QA</h3>
+      <div class="phase-when">Week 7 · ~3 days</div>
+      <ul>
+        <li>Screenshot either side of every seam — they must match in composition, not just look similar</li>
+        <li>Throttle CPU 4–6× on an emulated phone and scroll fast; the film must track without freezing</li>
+        <li>Test iOS Safari specifically — it is the browser that goes blank if the video priming regresses</li>
+        <li>Confirm the portrait clips actually serve on mobile and the 1080p masters only on desktop</li>
+        <li>Measure against the budget: first paint under 400 KB, largest contentful paint under 2.5 s on mobile</li>
+        <li>Verify the reduced-motion path falls back cleanly to stills</li>
+      </ul>
+      <div class="out"><b>Output:</b> a signed performance report. <b>This phase can send us back to Phase 4 — that is what it is for.</b></div>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-num">7</div>
+    <div>
+      <h3>Launch and measure</h3>
+      <div class="phase-when">Week 8 · ~3 days</div>
+      <ul>
+        <li>Redirect map for every changed URL; re-submit the sitemap to Search Console</li>
+        <li>Confirm conversion tracking fires end to end, form to inbox to analytics</li>
+        <li>Capture the launch baseline against the audit's numbers</li>
+        <li>Agree the reporting cadence and who owns it</li>
+      </ul>
+      <div class="out"><b>Output:</b> live site, tracked, with a measured before-and-after.</div>
+    </div>
+  </div>
+</section>
+
+<section class="break">
+  <div class="sec-head">
+    <div class="eyebrow">Section 5</div>
+    <h2>What the renders cost</h2>
+  </div>
+
+  <p>
+    Render spend is the only genuinely variable cost, and it is driven by Gates 2 and 3.
+    Figures below are the skill's documented rates for a six-scene chain — six stills plus
+    eleven clips, doubled if mobile is in scope. Phase 1's calibration probe replaces
+    these estimates with measured numbers before anything is committed.
+  </p>
+
+  <table>
+    <thead>
+      <tr><th>Scope</th><th>Clips</th><th class="num">Monid (USD)</th><th class="num">Higgsfield (credits)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Draft previz</strong> — whole chain at 480p</td><td class="mono">11</td><td class="num">≈ $3</td><td class="num">≈ 120</td></tr>
+      <tr><td><strong>Desktop final</strong> — 1080p</td><td class="mono">11</td><td class="num">≈ $27</td><td class="num">≈ 440–605</td></tr>
+      <tr><td><strong>Mobile chain</strong> — native 9:16</td><td class="mono">11</td><td class="num">≈ $27</td><td class="num">≈ 440–605</td></tr>
+      <tr><td>Scene stills — six images</td><td class="mono">6</td><td class="num">—</td><td class="num">≈ 90</td></tr>
+      <tr><td>Re-roll headroom — 15%</td><td class="mono">—</td><td class="num">≈ $9</td><td class="num">≈ 160</td></tr>
+      <tr><td><strong>Total, desktop + mobile</strong></td><td class="mono">28+</td><td class="num"><strong>≈ $66</strong></td><td class="num"><strong>≈ 1,250–1,500</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout good">
+    <p>
+      <strong>The draft tier is the cost control.</strong> Three dollars buys the entire
+      flight at low resolution. Watching that before committing to the full render is what
+      stops a $66 mistake from becoming a $130 one — and it is why Phase 3 has a hard
+      approval gate.
+    </p>
+  </div>
+
+  <p>
+    Design and build time is separate and depends on Gate 5. A static rebuild is roughly
+    25–30 working days across Phases 1–7; keeping WordPress is nearer 18–22 but inherits
+    the current stack's limits.
+  </p>
+</section>
+
+<section>
+  <div class="sec-head">
+    <div class="eyebrow">Section 6</div>
+    <h2>Tooling — what is ready and what is not</h2>
+  </div>
+
+  <p>Checked on this machine, 2 August. Three items are blockers and two of them only you can clear.</p>
+
+  <table>
+    <thead>
+      <tr><th>Tool</th><th>Needed for</th><th>Status</th><th>Action</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>ffmpeg</strong> 7.1.1</td><td>Frame extraction, encoding</td><td class="status-ok">Ready</td><td>—</td></tr>
+      <tr><td><strong>Python 3 + Pillow</strong> 11.3</td><td>Portrait canvases, knockout</td><td class="status-ok">Ready</td><td>—</td></tr>
+      <tr><td><strong>Node</strong> v24.15</td><td>Build tooling</td><td class="status-ok">Ready</td><td>—</td></tr>
+      <tr><td><strong>Git</strong></td><td>Version control</td><td class="status-ok">Ready</td><td>Repo initialised in this folder</td></tr>
+      <tr><td><strong>ffprobe</strong></td><td>Reading clip resolution and duration</td><td class="status-miss">Missing</td><td>I can install it</td></tr>
+      <tr><td><strong>Higgsfield CLI</strong></td><td>Scene stills; fallback renderer</td><td class="status-miss">Not logged in</td><td><strong>You must run <code>hf auth login</code></strong> — interactive, I cannot do it</td></tr>
+      <tr><td><strong>Monid CLI</strong></td><td>Default render backend</td><td class="status-miss">Not installed</td><td>Install and fund only if Gate 4 chooses Monid</td></tr>
+      <tr><td>Codex CLI</td><td>Optional cheaper stills</td><td class="status-miss">Not installed</td><td>Skip unless you hold a ChatGPT subscription</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <div class="sec-head">
+    <div class="eyebrow">Section 7</div>
+    <h2>Risks, and how each is handled</h2>
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>Risk</th><th>Why it matters</th><th>Handling</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>The film is too heavy on Saudi mobile</strong></td>
+        <td>Repeats the exact fault we are fixing, on a bigger scale</td>
+        <td>Lazy blob loading, poster stills, 720p portrait encodes, and a hard performance gate in Phase 6 that can send us back to Phase 4</td>
+      </tr>
+      <tr>
+        <td><strong>Visible pop at a seam</strong></td>
+        <td>Breaks the single illusion the whole build rests on</td>
+        <td>Every connector frame-locked to actual rendered frames, never to the original still; short crossfade as insurance; screenshot QA on both sides of each seam</td>
+      </tr>
+      <tr>
+        <td><strong>AI art undercuts the premium pitch</strong></td>
+        <td>You sell real production to pharma multinationals</td>
+        <td>Gate 1 — decided before any spend, with a hybrid recommendation</td>
+      </tr>
+      <tr>
+        <td><strong>Client clearance blocks the case studies</strong></td>
+        <td>Clearance routinely outlasts the build</td>
+        <td>Started in Phase 2, weeks before it is needed; the site ships with whatever has cleared</td>
+      </tr>
+      <tr>
+        <td><strong>Content filter rejects innocuous clips</strong></td>
+        <td>Interiors and certain words trip it non-deterministically</td>
+        <td>15% re-roll headroom budgeted; alternate model available for stubborn clips</td>
+      </tr>
+      <tr>
+        <td><strong>Copy changes after render</strong></td>
+        <td>Scene copy is baked into the film's pacing</td>
+        <td>Phase 2 approves all copy before Phase 3 renders anything</td>
+      </tr>
+      <tr>
+        <td><strong>Scroll-jacking frustrates visitors</strong></td>
+        <td>A long scrubbed film can trap someone who just wants your phone number</td>
+        <td>Persistent nav and a route rail throughout; contact reachable from any scroll position</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <div class="sec-head">
+    <div class="eyebrow">Section 8</div>
+    <h2>Timeline at a glance</h2>
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>Week</th><th>Phase</th><th>Milestone</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="mono">1</td><td>0 + 1</td><td>Live site stabilised · gates answered · tooling live</td></tr>
+      <tr><td class="mono">2–3</td><td>2</td><td>Copy and sitemap approved · clearance requests sent</td></tr>
+      <tr><td class="mono">3–4</td><td>3</td><td><strong>Draft film approved</strong> — hard gate before full spend</td></tr>
+      <tr><td class="mono">4–5</td><td>4</td><td>Final chain rendered and encoded</td></tr>
+      <tr><td class="mono">5–7</td><td>5</td><td>Full site on staging, all audit faults closed</td></tr>
+      <tr><td class="mono">7</td><td>6</td><td><strong>Performance and seam QA signed off</strong></td></tr>
+      <tr><td class="mono">8</td><td>7</td><td>Launch, tracked, with a measured baseline</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <p>
+      <strong>Next step:</strong> answer the seven gates in Section 3. Gates 1, 2 and 3
+      alone unlock Phases 1 through 4 — and Gate 5 decides how the rest of the build is
+      shaped. Nothing renders and nothing is spent until you have said go.
+    </p>
+  </div>
+</section>
+
+<footer>
+  HelloVoice website upgrade roadmap · prepared 2 August 2026 · Blue Holding<br>
+  Built on the hellovoice.co.uk audit of the same date and the scroll-world skill
+  (v1, copied to reference/scroll-world). Render costs are the skill's documented rates
+  and are replaced by measured figures at Phase 1.
+</footer>
+
+</body>
+</html>

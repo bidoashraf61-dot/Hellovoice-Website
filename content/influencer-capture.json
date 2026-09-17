@@ -1,0 +1,43 @@
+{
+  "_captured": "2026-08-17",
+  "_method": "in-app browser, public profile pages, read-only",
+  "_finding": "No influencer campaign library exists on any reachable account.",
+  "helv_studio": {
+    "handle": "helv.studio",
+    "followers": 60,
+    "following": 8,
+    "bio": "Hello Voice Studio — We are a Voice, Not an echo. Partner:@mimitalks17",
+    "total_posts_in_grid": 12,
+    "own_posts": 8,
+    "blueholding_posts": 4,
+    "date_range": "2025-06-02 to 2025-10-22",
+    "posts": [
+      {"href": "/helv.studio/reel/DQHP6sgDESf/", "kind": "reel", "date": "2025-10-22"},
+      {"href": "/helv.studio/reel/DPyQmbHjCIj/", "kind": "reel", "date": "2025-10-14"},
+      {"href": "/helv.studio/p/DPbdfHBDDqz/", "kind": "post", "date": "2025-10-05"},
+      {"href": "/helv.studio/reel/DPTskggCX07/", "kind": "reel", "date": "2025-10-02"},
+      {"href": "/helv.studio/p/DPJbq7WjKiB/", "kind": "post", "date": "2025-09-28"},
+      {"href": "/blueholding.co/reel/DPBpwIgElxg/", "kind": "reel", "date": "2025-09-25"},
+      {"href": "/helv.studio/p/DO8kJlbjAXQ/", "kind": "post", "date": "2025-09-23"},
+      {"href": "/helv.studio/reel/DO3V_DnAaB5/", "kind": "reel", "date": "2025-09-21"},
+      {"href": "/helv.studio/reel/DOv3OSuE4WL/", "kind": "reel", "date": "2025-09-18"},
+      {"href": "/blueholding.co/reel/DOvwanDCP5I/", "kind": "reel", "date": "2025-09-18"},
+      {"href": "/blueholding.co/reel/DLFXUc8oQ21/", "kind": "reel", "date": "2025-06-19"},
+      {"href": "/blueholding.co/reel/DKZegw-MGFT/", "kind": "reel", "date": "2025-06-02"}
+    ]
+  },
+  "semak_roster": {
+    "_source": "Semak_Penduline_Influencer_Delivery_Tracker.xlsx",
+    "_status": "blank template — no publish dates, no video links, no received statuses",
+    "influencers": 14,
+    "combined_reach": 3701700,
+    "handles": ["noha.mgdi", "bybashair", "shahoda_touch", "nouralotfy", "noon24n",
+                "smralamoudi", "ramaamodel", "bashira_alhalabi_7", "model.lilianaa",
+                "reemyahia.mua", "weam784", "shayma.hakeem_", "iizwxh"]
+  },
+  "blockers": [
+    "No identifier (hashtag, tagged brand handle, or date range) to tell a HelloVoice post from a creator's own content",
+    "Creator grids sampled are travel/lifestyle — no cosmetics or Semak posts in recent posts",
+    "Mac Chrome extension never registered with this account; two broadcast attempts timed out"
+  ]
+}

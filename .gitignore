@@ -1,0 +1,52 @@
+.DS_Store
+node_modules/
+*.log
+
+# Client-supplied source media
+User Assets/FY26 Presentation/*.pptx
+User Assets/Tech Prochuere/**/*.mp4
+User Assets/Tech Prochuere/**/*.MP4
+User Assets/Tech Prochuere/**/*.MOV
+User Assets/Tech Prochuere/**/*.pptx
+
+# Reproducible capture artefacts
+capture/media/
+capture/frames/
+capture/raw/*.html
+.playwright-mcp/
+.DS_Store
+*.png.tmp
+build/preview.html
+
+# The reference's own licensed assets — 49MB of someone else's template,
+# review-only, and reproducible in one command:
+#   python3 capture/fetch_all.py && python3 build/clone.py
+# The manifest they are fetched from is committed.
+capture/reference-assets/
+site/assets/ref/
+
+# character cutout working files; source.png is 25MB and the masks are
+# diagnostics. scratchpad/char/cut.py is kept, the rest regenerate.
+scratchpad/char/*.png
+scratchpad/char/*.webp
+
+# Influencer catalogue — identity key and harvest, never deploy
+content/catalogue_private.json
+content/_harvest.json
+
+# Admin service: live data and the session-signing secret. Never commit.
+admin/catalogue.db
+admin/catalogue.db-wal
+admin/catalogue.db-shm
+admin/.secret
+
+# The source workbook: 162 creators' names, handles, follower counts and the
+# tier pricing. Not in the public deploy repo — mirrored here from its
+# .gitignore so the two do not drift.
+Influncer Proposal Catalogue/
+__pycache__/
+
+# The photo-link signing key (mirrors the deploy repo). nginx checks every
+# creator photograph against it; committed, every link would be forgeable.
+admin/.photo-secret
+deploy/catalogue/secret.conf

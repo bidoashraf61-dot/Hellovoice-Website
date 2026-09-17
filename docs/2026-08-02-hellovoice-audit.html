@@ -1,0 +1,932 @@
+<title>HelloVoice — Website Audit &amp; Revamp Plan</title>
+
+<style>
+  :root {
+    --paper:      #F2F4F8;
+    --surface:    #FFFFFF;
+    --ink:        #10182C;
+    --ink-2:      #47526B;
+    --ink-3:      #75809A;
+    --hairline:   #D7DDE8;
+    --hairline-2: #E6EAF1;
+
+    --sev-1:      #8F1D10;   /* critical  — deep vermilion */
+    --sev-2:      #C4552E;   /* high      — mid vermilion  */
+    --sev-3:      #75809A;   /* medium    — neutral        */
+    --sev-1-wash: #F7E9E6;
+    --sev-2-wash: #FAEDE7;
+    --sev-3-wash: #ECEFF5;
+
+    --bar:        #C4552E;
+    --bar-target: #75809A;
+
+    --font-display: "Helvetica Neue", Helvetica, "Arial Nova", Arial, sans-serif;
+    --font-body:    "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --font-mono:    ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+
+    --measure: 68ch;
+    --rule:    1px solid var(--hairline);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper:      #0A1024;
+      --surface:    #111A33;
+      --ink:        #E8ECF5;
+      --ink-2:      #97A2BA;
+      --ink-3:      #6E7A94;
+      --hairline:   #23304F;
+      --hairline-2: #1A2440;
+
+      --sev-1:      #FF6F52;
+      --sev-2:      #D2764F;
+      --sev-3:      #8794AF;
+      --sev-1-wash: #2A1A1C;
+      --sev-2-wash: #241C1B;
+      --sev-3-wash: #18213A;
+
+      --bar:        #D2764F;
+      --bar-target: #6E7A94;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper:      #0A1024;
+    --surface:    #111A33;
+    --ink:        #E8ECF5;
+    --ink-2:      #97A2BA;
+    --ink-3:      #6E7A94;
+    --hairline:   #23304F;
+    --hairline-2: #1A2440;
+    --sev-1:      #FF6F52;
+    --sev-2:      #D2764F;
+    --sev-3:      #8794AF;
+    --sev-1-wash: #2A1A1C;
+    --sev-2-wash: #241C1B;
+    --sev-3-wash: #18213A;
+    --bar:        #D2764F;
+    --bar-target: #6E7A94;
+  }
+
+  :root[data-theme="light"] {
+    --paper:      #F2F4F8;
+    --surface:    #FFFFFF;
+    --ink:        #10182C;
+    --ink-2:      #47526B;
+    --ink-3:      #75809A;
+    --hairline:   #D7DDE8;
+    --hairline-2: #E6EAF1;
+    --sev-1:      #8F1D10;
+    --sev-2:      #C4552E;
+    --sev-3:      #75809A;
+    --sev-1-wash: #F7E9E6;
+    --sev-2-wash: #FAEDE7;
+    --sev-3-wash: #ECEFF5;
+    --bar:        #C4552E;
+    --bar-target: #75809A;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4.5rem;
+  }
+
+  p { max-width: var(--measure); }
+
+  /* ---------- type roles ---------- */
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+    line-height: 1.08;
+  }
+
+  h1 { font-size: clamp(2.4rem, 6vw, 3.6rem); }
+  h2 { font-size: clamp(1.6rem, 3.6vw, 2.1rem); }
+  h3 { font-size: 1.12rem; letter-spacing: -0.015em; line-height: 1.3; }
+
+  .mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    background: var(--hairline-2);
+    padding: 0.1em 0.38em;
+    border-radius: 3px;
+    word-break: break-word;
+  }
+
+  /* ---------- slate header ---------- */
+
+  .slate {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .slate-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1px;
+    background: var(--hairline);
+    border: var(--rule);
+  }
+
+  .slate-meta div {
+    background: var(--surface);
+    padding: 0.7rem 0.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.28rem;
+  }
+
+  .slate-meta dt {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+
+  .slate-meta dd {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .lede {
+    font-size: 1.16rem;
+    color: var(--ink-2);
+    max-width: 62ch;
+  }
+
+  /* ---------- section scaffolding ---------- */
+
+  section { display: flex; flex-direction: column; gap: 1.5rem; }
+
+  .sec-head {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  /* ---------- headline stats ---------- */
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 1px;
+    background: var(--hairline);
+    border: var(--rule);
+  }
+
+  .stat {
+    background: var(--surface);
+    padding: 1.35rem 1.15rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    color: var(--sev-1);
+  }
+
+  .stat-num span { font-size: 1.1rem; letter-spacing: -0.01em; }
+
+  .stat-label { font-size: 0.9rem; color: var(--ink-2); line-height: 1.4; }
+
+  /* ---------- callout ---------- */
+
+  .callout {
+    background: var(--surface);
+    border: var(--rule);
+    border-left: 4px solid var(--sev-1);
+    padding: 1.5rem 1.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .callout p { max-width: 60ch; }
+
+  /* ---------- chart ---------- */
+
+  figure {
+    background: var(--surface);
+    border: var(--rule);
+    padding: 1.5rem 1.6rem 1.35rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  figcaption { font-size: 0.85rem; color: var(--ink-3); max-width: 62ch; }
+
+  .bars { display: flex; flex-direction: column; gap: 0.85rem; }
+
+  .bar-row {
+    display: grid;
+    grid-template-columns: minmax(96px, 168px) 1fr;
+    align-items: center;
+    gap: 0.9rem;
+  }
+
+  .bar-name {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: var(--ink-2);
+    overflow-wrap: anywhere;
+  }
+
+  .bar-track { display: flex; align-items: center; gap: 0.6rem; min-width: 0; }
+
+  .bar-fill {
+    height: 15px;
+    background: var(--bar);
+    border-radius: 0 4px 4px 0;
+    transform-origin: left center;
+    animation: grow 900ms cubic-bezier(0.2, 0.7, 0.3, 1) both;
+  }
+
+  .bar-fill.target { background: var(--bar-target); }
+
+  .bar-val {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+
+  @keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bar-fill { animation: none; }
+  }
+
+  /* ---------- findings ---------- */
+
+  .findings { display: flex; flex-direction: column; gap: 1px; background: var(--hairline); border: var(--rule); }
+
+  .finding {
+    background: var(--surface);
+    padding: 1.25rem 1.35rem 1.35rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    border-left: 4px solid var(--sev-3);
+  }
+
+  .finding[data-sev="critical"] { border-left-color: var(--sev-1); }
+  .finding[data-sev="high"]     { border-left-color: var(--sev-2); }
+
+  .finding-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.75rem; }
+
+  .chip {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    padding: 0.24rem 0.5rem;
+    border-radius: 3px;
+    white-space: nowrap;
+    background: var(--sev-3-wash);
+    color: var(--sev-3);
+    border: 1px solid currentColor;
+  }
+
+  .chip[data-sev="critical"] { background: var(--sev-1-wash); color: var(--sev-1); }
+  .chip[data-sev="high"]     { background: var(--sev-2-wash); color: var(--sev-2); }
+
+  .finding p { font-size: 0.96rem; color: var(--ink-2); max-width: 66ch; }
+
+  .evidence {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: var(--ink-3);
+    background: var(--hairline-2);
+    padding: 0.55rem 0.7rem;
+    border-radius: 3px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+
+  /* ---------- routes ---------- */
+
+  .routes { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px; background: var(--hairline); border: var(--rule); }
+
+  .route { background: var(--surface); padding: 1.4rem 1.4rem 1.5rem; display: flex; flex-direction: column; gap: 0.7rem; }
+
+  .route ul { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.35rem; }
+  .route li { font-size: 0.92rem; color: var(--ink-2); }
+  .route .verdict { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); padding-top: 0.5rem; border-top: var(--rule); }
+
+  /* ---------- phases ---------- */
+
+  .phases { display: flex; flex-direction: column; gap: 1px; background: var(--hairline); border: var(--rule); }
+
+  .phase { background: var(--surface); padding: 1.3rem 1.4rem; display: grid; grid-template-columns: 3.2rem 1fr; gap: 1.1rem; align-items: start; }
+
+  .phase-num {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    color: var(--ink-3);
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
+  }
+
+  .phase-body { display: flex; flex-direction: column; gap: 0.55rem; min-width: 0; }
+  .phase-body ul { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.3rem; }
+  .phase-body li { font-size: 0.94rem; color: var(--ink-2); }
+  .phase-when { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); }
+
+  /* ---------- table ---------- */
+
+  .table-scroll { overflow-x: auto; border: var(--rule); background: var(--surface); }
+
+  table { border-collapse: collapse; width: 100%; font-size: 0.9rem; min-width: 460px; }
+
+  th, td { text-align: left; padding: 0.7rem 0.9rem; border-bottom: 1px solid var(--hairline-2); }
+
+  th {
+    font-family: var(--font-mono);
+    font-size: 0.63rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    border-bottom: var(--rule);
+  }
+
+  td { color: var(--ink-2); }
+  td:first-child { color: var(--ink); }
+  tbody tr:last-child td { border-bottom: none; }
+  .num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+
+  /* ---------- questions ---------- */
+
+  .questions { display: flex; flex-direction: column; gap: 1px; background: var(--hairline); border: var(--rule); }
+  .question { background: var(--surface); padding: 1.1rem 1.3rem; display: flex; flex-direction: column; gap: 0.3rem; }
+  .question p { font-size: 0.92rem; color: var(--ink-2); max-width: 64ch; }
+
+  footer {
+    border-top: 2px solid var(--ink);
+    padding-top: 1.2rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--ink-3);
+    line-height: 1.7;
+  }
+
+  a { color: var(--sev-2); }
+  a:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--sev-2); outline-offset: 2px; }
+</style>
+
+<div class="wrap">
+
+  <header class="slate">
+    <div class="eyebrow">Website audit &amp; revamp plan</div>
+    <h1>hellovoice.co.uk</h1>
+    <p class="lede">
+      The site looks the part and the client logos do real work. Underneath, the
+      page that is supposed to generate enquiries ships 31.6&nbsp;MB of animated
+      GIFs, has no working call-to-action, and carries no analytics at all — so
+      nobody can see what it is costing.
+    </p>
+    <dl class="slate-meta">
+      <div><dt>Audited</dt><dd>2 Aug 2026</dd></div>
+      <div><dt>Pages</dt><dd>4</dd></div>
+      <div><dt>Platform</dt><dd>WordPress 6.9</dd></div>
+      <div><dt>Builder</dt><dd>Elementor Pro 3.33</dd></div>
+      <div><dt>Method</dt><dd>Live DOM + network</dd></div>
+    </dl>
+  </header>
+
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Headline</div>
+      <h2>Three numbers that decide the brief</h2>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">31.6<span> MB</span></div>
+        <div class="stat-label">of animated GIFs loaded by the homepage, in five files</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">0<span> / 93</span></div>
+        <div class="stat-label">images across the site that have alt text</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">0</div>
+        <div class="stat-label">analytics or pixel tags installed, on any page</div>
+      </div>
+    </div>
+
+    <p>
+      Those three tell the whole story. The site is heavy, invisible to search
+      engines and screen readers, and unmeasured. Everything below is detail on
+      that, plus the one bug that should be fixed before you read any further.
+    </p>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Fix today</div>
+      <h2>The Free Consultation button goes nowhere</h2>
+    </div>
+
+    <div class="callout">
+      <p>
+        The orange <strong>Free Consultation</strong> button sits in the header of
+        every page. It is the site's only primary call-to-action. Its link target
+        is a malformed page anchor, so clicking it does nothing at all — no
+        navigation, no scroll, no form.
+      </p>
+      <div class="evidence">&lt;a href="#hellovoice.co.uk/contact"&gt;Free Consultation&lt;/a&gt;
+→ should be: href="https://hellovoice.co.uk/contact-us/"</div>
+      <p>
+        This is a one-line change in the Elementor header template. Until it is
+        made, every click on the site's main conversion button is lost.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Performance</div>
+      <h2>The homepage is built out of GIFs</h2>
+    </div>
+
+    <p>
+      The six-service section uses animated GIFs as CSS background images. GIF has
+      no modern compression, so each one is tens of megabytes for a few seconds of
+      motion. The same clips as looping, muted MP4 or WebM would be roughly 2–4%
+      of the size with better image quality.
+    </p>
+
+    <figure>
+      <div class="bars" role="img" aria-label="Five animated GIF files on the homepage, sized 3.2 to 12.9 megabytes, totalling 31.6 megabytes, against a recommended total page budget of 1.5 megabytes.">
+        <div class="bar-row">
+          <div class="bar-name">cgi-2.gif</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width: 100%; animation-delay: 0ms;"></div>
+            <div class="bar-val">12.9 MB</div>
+          </div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">avl-ezgif.com-optimize.gif</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width: 49%; animation-delay: 60ms;"></div>
+            <div class="bar-val">6.3 MB</div>
+          </div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">PostProduction-2.gif</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width: 40%; animation-delay: 120ms;"></div>
+            <div class="bar-val">5.2 MB</div>
+          </div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">AI-GIF-Optimized-1.gif</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width: 32%; animation-delay: 180ms;"></div>
+            <div class="bar-val">4.1 MB</div>
+          </div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">moncule-2.gif</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width: 25%; animation-delay: 240ms;"></div>
+            <div class="bar-val">3.2 MB</div>
+          </div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">Whole-page budget</div>
+          <div class="bar-track">
+            <div class="bar-fill target" style="width: 12%; animation-delay: 320ms;"></div>
+            <div class="bar-val">1.5 MB target</div>
+          </div>
+        </div>
+      </div>
+      <figcaption>
+        File sizes read from each asset's <code>Content-Length</code> response
+        header. The bottom bar is the recommended total weight for the entire
+        page, not just its images.
+      </figcaption>
+    </figure>
+
+    <p>
+      One measured load of the homepage transferred 19.2&nbsp;MB across 93
+      requests and finished loading in 6.3&nbsp;seconds — on desktop broadband,
+      with some GIFs already cached. On a Riyadh mobile connection the first
+      visit is far worse, and the visitor is a marketing director who has clicked
+      through from LinkedIn and will not wait.
+    </p>
+
+    <p>
+      The build compounds it: 27 separate stylesheets, 23 scripts, jQuery plus
+      jQuery Migrate, and no WebP or AVIF anywhere — every one of the 155 image
+      references is PNG, JPG or GIF.
+    </p>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Findings</div>
+      <h2>Everything else, worst first</h2>
+    </div>
+
+    <div class="findings">
+
+      <div class="finding" data-sev="critical">
+        <div class="finding-top">
+          <span class="chip" data-sev="critical">Critical</span>
+          <h3>Whole sections render as empty space</h3>
+        </div>
+        <p>
+          At 1440&times;900 the homepage contains a 2,163&nbsp;px block of blank
+          navy and six empty 701&nbsp;px cells where the case-study grid should
+          be. A visitor scrolls through several screens of nothing. The page is
+          10,797&nbsp;px tall — about twelve full screens — and a meaningful
+          share of that is void.
+        </p>
+      </div>
+
+      <div class="finding" data-sev="critical">
+        <div class="finding-top">
+          <span class="chip" data-sev="critical">Critical</span>
+          <h3>No analytics, no pixels, no measurement</h3>
+        </div>
+        <p>
+          There is no GA4, no Meta pixel, no LinkedIn insight tag, no Clarity or
+          Hotjar. You cannot answer how many people visit, which services they
+          look at, or where enquiries come from. Every recommendation in this
+          document is currently unfalsifiable, which is itself the problem.
+        </p>
+      </div>
+
+      <div class="finding" data-sev="critical">
+        <div class="finding-top">
+          <span class="chip" data-sev="critical">Critical</span>
+          <h3>Shared links preview as blank</h3>
+        </div>
+        <p>
+          The site has no Open Graph or Twitter Card tags. When the URL is pasted
+          into WhatsApp, LinkedIn or Slack it renders with no image, no title
+          card, no description. For an agency that pitches over WhatsApp in the
+          Gulf, the link you send a prospect is a first impression, and right now
+          it is an empty grey box.
+        </p>
+      </div>
+
+      <div class="finding" data-sev="high">
+        <div class="finding-top">
+          <span class="chip" data-sev="high">High</span>
+          <h3>Not one image has alt text</h3>
+        </div>
+        <p>
+          Across all four pages, 93 images carry an empty <code>alt</code>
+          attribute. That is a straight WCAG&nbsp;2.1 failure on 1.1.1
+          Non-text Content, and it throws away the descriptive text that would
+          otherwise tell Google what your portfolio actually shows.
+        </p>
+        <div class="evidence">home 26 · about 22 · portfolio 43 · contact 2  →  0 with non-empty alt</div>
+      </div>
+
+      <div class="finding" data-sev="high">
+        <div class="finding-top">
+          <span class="chip" data-sev="high">High</span>
+          <h3>Three of four pages have no H1</h3>
+        </div>
+        <p>
+          About, Portfolio and Contact have no top-level heading at all. The
+          homepage does have one, but it reads <code>HELLO VOICE</code> — the
+          brand name, not a proposition. Meanwhile the portfolio page carries 52
+          H2s, so the heading structure conveys no hierarchy to a screen reader
+          or a crawler.
+        </p>
+      </div>
+
+      <div class="finding" data-sev="high">
+        <div class="finding-top">
+          <span class="chip" data-sev="high">High</span>
+          <h3>No meta descriptions and no sitemap</h3>
+        </div>
+        <p>
+          Every page returns a null description, so Google writes its own snippet
+          from whatever text it finds first. Titles are bare
+          (<code>HelloVoice</code>, <code>About – HelloVoice</code>) with no
+          service or location terms. Both standard sitemap URLs return 404, and
+          there is no structured data on any page.
+        </p>
+        <div class="evidence">/sitemap_index.xml → 404    /wp-sitemap.xml → 404    ld+json blocks: 0</div>
+      </div>
+
+      <div class="finding" data-sev="high">
+        <div class="finding-top">
+          <span class="chip" data-sev="high">High</span>
+          <h3>The contact form cannot qualify a lead</h3>
+        </div>
+        <p>
+          It captures name, email and message. Nothing else. No company, no
+          service interest, no budget band, no phone number — and in this market
+          most serious enquiries want to continue on WhatsApp. Every submission
+          arrives needing a discovery call before you can even tell whether it is
+          worth one.
+        </p>
+      </div>
+
+      <div class="finding" data-sev="high">
+        <div class="finding-top">
+          <span class="chip" data-sev="high">High</span>
+          <h3>A UK domain selling to Saudi Arabia, in English only</h3>
+        </div>
+        <p>
+          The domain is <code>.co.uk</code>; the only office, phone number and
+          working hours listed are Riyadh. There is no Arabic version and no
+          <code>hreflang</code>. Roughly half the decision-makers in the named
+          client set — Nahdi, Sudair, Al-Naghi — will search and shortlist in
+          Arabic.
+        </p>
+      </div>
+
+      <div class="finding" data-sev="medium">
+        <div class="finding-top">
+          <span class="chip" data-sev="medium">Medium</span>
+          <h3>No service pages and no case studies</h3>
+        </div>
+        <p>
+          The homepage promises "exceptional expertise in six main areas" and
+          then never expands on any of them. There is no page to rank for
+          "video production Riyadh" or "3D CGI Saudi Arabia", and no per-project
+          page a salesperson can send. The portfolio is one flat page of 43
+          images with no filtering by service or sector.
+        </p>
+      </div>
+
+      <div class="finding" data-sev="medium">
+        <div class="finding-top">
+          <span class="chip" data-sev="medium">Medium</span>
+          <h3>The mobile hero is letterboxed</h3>
+        </div>
+        <p>
+          The 16:9 background video is not cropped for portrait, so at
+          375&nbsp;px it sits in a narrow band with dark columns either side and
+          the headline crowded against the logo. Mobile is likely the majority of
+          traffic.
+        </p>
+      </div>
+
+      <div class="finding" data-sev="medium">
+        <div class="finding-top">
+          <span class="chip" data-sev="medium">Medium</span>
+          <h3>Details that read as neglect</h3>
+        </div>
+        <p>
+          The footer says <em>Copyright &copy; 2024</em>. The favicon is a
+          150&times;150 crop of a file named <code>12345_00000-1.png</code>, and
+          the media library is full of similar names —
+          <code>123456_00000.png</code>, <code>Logo_00023_00000.png</code>,
+          <code>avl-ezgif.com-optimize.gif</code>. The listed mobile number,
+          <code>+966 50 74488665</code>, has one digit more than a Saudi mobile
+          number holds and should be checked against the landline on the contact
+          page.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Decision</div>
+      <h2>Two routes, and what I would do</h2>
+    </div>
+
+    <div class="routes">
+      <div class="route">
+        <h3>A · Remediate in place</h3>
+        <p style="font-size:0.94rem;color:var(--ink-2)">
+          Stay on WordPress and Elementor. Fix the bugs, replace the GIFs, add
+          the missing tags and content.
+        </p>
+        <ul>
+          <li>Fastest path to a site that works</li>
+          <li>No migration, no retraining</li>
+          <li>Inherits the 27-stylesheet Elementor stack and its ceiling</li>
+          <li>Empty-section problem may resist a clean fix</li>
+        </ul>
+        <div class="verdict">Est. 8–12 days</div>
+      </div>
+
+      <div class="route">
+        <h3>B · Rebuild</h3>
+        <p style="font-size:0.94rem;color:var(--ink-2)">
+          New front end on a static or hybrid framework, with a proper content
+          model for services and case studies.
+        </p>
+        <ul>
+          <li>Fixes weight and rendering structurally, not by patching</li>
+          <li>Real templates for services, cases, Arabic</li>
+          <li>Longer, and needs a content decision before design</li>
+          <li>Editing workflow changes for whoever updates the site</li>
+        </ul>
+        <div class="verdict">Est. 30–40 days</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p>
+        <strong>Do Phase 0 this week regardless of which route you pick.</strong>
+        The broken CTA, the missing analytics and the 31.6&nbsp;MB of GIFs are
+        costing you enquiries right now, and none of those fixes is wasted if you
+        rebuild later. Then choose: Route&nbsp;A if the site has to hold for
+        another year, Route&nbsp;B if you want service pages, case studies and
+        Arabic — which is the actual growth argument.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Roadmap</div>
+      <h2>Sequenced, because each phase needs the last</h2>
+    </div>
+
+    <div class="phases">
+
+      <div class="phase">
+        <div class="phase-num">0</div>
+        <div class="phase-body">
+          <div class="phase-when">Week 1 · stop the bleeding</div>
+          <ul>
+            <li>Point the Free Consultation button at the contact page</li>
+            <li>Re-encode the five GIFs as looping muted MP4/WebM — 31.6 MB to under 1 MB</li>
+            <li>Install GA4, plus Meta and LinkedIn pixels; set a form-submission conversion event</li>
+            <li>Add Open Graph and Twitter Card tags with a proper share image</li>
+            <li>Write meta descriptions and real titles for all four pages</li>
+            <li>Install an SEO plugin to generate the sitemap; submit to Search Console</li>
+            <li>Update the copyright year; verify both phone numbers</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-num">1</div>
+        <div class="phase-body">
+          <div class="phase-when">Weeks 2–3 · structure and content</div>
+          <ul>
+            <li>Define the IA: six service pages, a case-study template, a filterable portfolio</li>
+            <li>Write one H1 per page, stated as a proposition rather than a brand name</li>
+            <li>Alt text pass across all 93 images, written for humans first</li>
+            <li>Rebuild the contact form: company, service, budget band, phone, WhatsApp opt-in</li>
+            <li>Decide the Arabic question — full localisation, or an Arabic landing page</li>
+            <li>Pick three flagship projects and write real case studies with results</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-num">2</div>
+        <div class="phase-body">
+          <div class="phase-when">Weeks 4–7 · design and build</div>
+          <ul>
+            <li>Design the homepage against the new IA; cut it to five or six screens</li>
+            <li>Fix the mobile hero with a portrait crop or a poster-image fallback</li>
+            <li>Build service and case-study templates</li>
+            <li>Image pipeline: WebP with sensible dimensions, lazy loading below the fold</li>
+            <li>Accessibility pass — contrast, focus states, heading order, keyboard nav</li>
+            <li>Rename and re-organise the media library</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-num">3</div>
+        <div class="phase-body">
+          <div class="phase-when">Week 8 · launch and measure</div>
+          <ul>
+            <li>Redirect map for any changed URLs; re-submit the sitemap</li>
+            <li>Lighthouse and Core Web Vitals baseline on mobile</li>
+            <li>Confirm conversion tracking fires end to end</li>
+            <li>Agree the reporting cadence and who owns it</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Baseline</div>
+      <h2>What to measure from day one</h2>
+    </div>
+
+    <p>
+      Capture these before Phase 0 lands, so the revamp can be argued with
+      numbers rather than taste. The current column is what was measured on
+      2&nbsp;August.
+    </p>
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Metric</th>
+            <th scope="col" class="num">Now</th>
+            <th scope="col" class="num">Target</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Homepage transferred weight</td><td class="num">19.2 MB</td><td class="num">&lt; 1.5 MB</td></tr>
+          <tr><td>Homepage load, desktop</td><td class="num">6.3 s</td><td class="num">&lt; 2.0 s</td></tr>
+          <tr><td>HTTP requests</td><td class="num">93</td><td class="num">&lt; 40</td></tr>
+          <tr><td>Time to first byte</td><td class="num">738 ms</td><td class="num">&lt; 400 ms</td></tr>
+          <tr><td>Images with alt text</td><td class="num">0 / 93</td><td class="num">93 / 93</td></tr>
+          <tr><td>Pages with a meta description</td><td class="num">0 / 4</td><td class="num">all</td></tr>
+          <tr><td>Indexable service pages</td><td class="num">0</td><td class="num">6</td></tr>
+          <tr><td>Monthly qualified enquiries</td><td class="num">unknown</td><td class="num">tracked</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Before we scope</div>
+      <h2>Six questions I need answered</h2>
+    </div>
+
+    <div class="questions">
+      <div class="question">
+        <h3>Who is the site actually for?</h3>
+        <p>Brand marketing managers, agency procurement, or direct founders? The IA and the tone change completely depending on the answer.</p>
+      </div>
+      <div class="question">
+        <h3>Is Arabic in scope?</h3>
+        <p>This is the single biggest fork in cost and timeline. A full RTL localisation is a different project from an Arabic landing page.</p>
+      </div>
+      <div class="question">
+        <h3>Who edits the site after launch?</h3>
+        <p>If an internal marketer needs to add case studies weekly, that rules some rebuild options out entirely.</p>
+      </div>
+      <div class="question">
+        <h3>Do the source clips for the five GIFs still exist?</h3>
+        <p>Re-encoding from the original masters gives a far better result than transcoding the GIFs.</p>
+      </div>
+      <div class="question">
+        <h3>Which client work can be named and shown?</h3>
+        <p>Pfizer, L'Oréal, Abbott and Isuzu are on the homepage as logos. Case studies need clearance, and that usually takes longer than the build.</p>
+      </div>
+      <div class="question">
+        <h3>Why <code>.co.uk</code>?</h3>
+        <p>If the business is Riyadh-based and Gulf-facing, a <code>.sa</code> or <code>.com</code> may serve better — but a domain move has SEO consequences that need planning.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Audited 2 August 2026 · hellovoice.co.uk · home, about, portfolio, contact-us<br>
+    Evidence gathered from the live DOM, network timings and HTTP response headers.
+    Figures reflect one measured session and will vary with caching and connection.
+  </footer>
+
+</div>

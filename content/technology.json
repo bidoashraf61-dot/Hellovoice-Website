@@ -1,0 +1,646 @@
+[
+  {
+    "id": "int",
+    "code": "BANK 01 / INT",
+    "title": "Real-time interactive",
+    "note": "Installations that respond to a person in the room — touch, gesture, movement or voice. The audience is the input.",
+    "applications": [
+      {
+        "code": "HV-INT-01",
+        "name": "Interactive Art Wall",
+        "provisional": false,
+        "headline": "The guest becomes the artwork.",
+        "description": "A few quick questions establish a visitor's style, then the wall transforms them live into their own generated artwork. They watch themselves become the campaign — and they film it happening.",
+        "tags": [
+          "Interactive wall",
+          "Live generation",
+          "Shareable"
+        ],
+        "poster": "art-wall.webp",
+        "status": "awaiting-upload",
+        "films": [
+          {
+            "label": "Who Art You",
+            "host": "local",
+            "id": "art-wall",
+            "hash": null,
+            "embed": "/assets/tech/art-wall.mp4",
+            "ratio": "9:16"
+          }
+        ]
+      },
+      {
+        "code": "HV-INT-02",
+        "name": "Interactive Game Wall",
+        "provisional": false,
+        "headline": "Everyone already knows the rules.",
+        "description": "Hit the targets, claim your squares on the LED screen, and race to three in a row. A game nobody needs explained keeps the queue moving and runs the competition by itself.",
+        "tags": [
+          "Target sensing",
+          "LED screen",
+          "Leaderboard"
+        ],
+        "poster": "game-wall.webp",
+        "status": "awaiting-upload",
+        "films": [
+          {
+            "label": "Tic Tac Toe Goal",
+            "host": "local",
+            "id": "game-wall",
+            "hash": null,
+            "embed": "/assets/tech/game-wall.mp4",
+            "ratio": "9:16"
+          }
+        ]
+      },
+      {
+        "code": "HV-INT-03",
+        "name": "Motion Reactive Wall",
+        "provisional": false,
+        "headline": "The wall answers movement.",
+        "description": "Flowers ripple and part as people pass, reacting to movement with no touch and no instruction. It reads as magic from a distance, which is what stops people walking past.",
+        "tags": [
+          "Motion sensing",
+          "Touchless",
+          "Ambient"
+        ],
+        "poster": "motion-reactive-wall.webp",
+        "status": "awaiting-upload",
+        "films": [
+          {
+            "label": "Flower Wall",
+            "host": "local",
+            "id": "motion-reactive-wall",
+            "hash": null,
+            "embed": "/assets/tech/motion-reactive-wall.mp4",
+            "ratio": "9:16"
+          }
+        ]
+      },
+      {
+        "code": "HV-INT-04",
+        "name": "Multi-Screen Installation",
+        "provisional": false,
+        "headline": "A wall of eyes that follows you.",
+        "description": "Dozens of screens, each showing a watchful eye that tracks people as they pass. Built to make digital harassment physically uncomfortable — an installation with an argument to make.",
+        "tags": [
+          "Multi-screen",
+          "Tracking",
+          "Advocacy"
+        ],
+        "poster": "multi-screen.webp",
+        "status": "awaiting-upload",
+        "films": [
+          {
+            "label": "What Would It Feel",
+            "host": "local",
+            "id": "multi-screen",
+            "hash": null,
+            "embed": "/assets/tech/multi-screen.mp4",
+            "ratio": "16:9"
+          }
+        ]
+      },
+      {
+        "code": "HV-INT-05",
+        "name": "Interactive Music Wall",
+        "provisional": false,
+        "headline": "Tap it and it plays.",
+        "description": "A wall of instruments anyone can play by touch — no skill required, no instructions, no queue discipline. Simple enough for a child and photogenic enough for the parent filming it.",
+        "tags": [
+          "Touch surface",
+          "Audio",
+          "All ages"
+        ],
+        "poster": "music-wall.webp",
+        "status": "awaiting-upload",
+        "films": [
+          {
+            "label": "Music Wall",
+            "host": "local",
+            "id": "music-wall",
+            "hash": null,
+            "embed": "/assets/tech/music-wall.mp4",
+            "ratio": "16:9"
+          }
+        ]
+      },
+      {
+        "code": "HV-INT-06",
+        "name": "Interactive Light & Sound Tunnel",
+        "provisional": false,
+        "headline": "Every step reveals the next thing.",
+        "description": "Walking through triggers messages and sound that respond to where people are and how fast they move. A corridor stops being a corridor and becomes the reason to walk that way.",
+        "tags": [
+          "Light and sound",
+          "Walkthrough",
+          "Motion driven"
+        ],
+        "poster": "posters/tunnel.jpg",
+        "status": "live",
+        "films": [
+          {
+            "label": "Music Tunnel",
+            "host": "vimeo",
+            "id": "1217651676",
+            "hash": null,
+            "embed": "https://player.vimeo.com/video/1217651676"
+          }
+        ]
+      },
+      {
+        "code": "HV-INT-07",
+        "name": "Interactive Touch Catalogue",
+        "provisional": false,
+        "headline": "The whole range, at wall scale.",
+        "description": "A large touchscreen catalogue for browsing the range, switching language, and going deeper on whatever interests the visitor. Every session is logged, so you learn what people actually opened.",
+        "tags": [
+          "Touch screen",
+          "Multi-language",
+          "Data out"
+        ],
+        "poster": "touch-catalogue.webp",
+        "status": "awaiting-upload",
+        "films": [
+          {
+            "label": "Catalogue Display",
+            "host": "local",
+            "id": "touch-catalogue",
+            "hash": null,
+            "embed": "/assets/tech/touch-catalogue.mp4",
+            "ratio": "16:9"
+          }
+        ]
+      },
+      {
+        "code": "HV-INT-08",
+        "name": "Smart Cube",
+        "provisional": false,
+        "headline": "Turn the cube, change the story.",
+        "description": "A physical cube that drives the screen — rotate a face and the content switches. The interface is an object rather than a menu, so people pick it up without being invited to.",
+        "tags": [
+          "Physical product",
+          "Tangible control",
+          "No instructions"
+        ],
+        "poster": "posters/smart-cube.jpg",
+        "status": "live",
+        "films": [
+          {
+            "label": "Film 01",
+            "host": "vimeo",
+            "id": "1146927623",
+            "hash": null,
+            "embed": "https://player.vimeo.com/video/1146927623"
+          },
+          {
+            "label": "Film 02",
+            "host": "vimeo",
+            "id": "1184612647",
+            "hash": "27d6bfd696",
+            "embed": "https://player.vimeo.com/video/1184612647?h=27d6bfd696"
+          },
+          {
+            "label": "Film 03",
+            "host": "vimeo",
+            "id": null,
+            "hash": null,
+            "embed": null
+          }
+        ]
+      },
+      {
+        "code": "HV-INT-09",
+        "name": "Touch Interactive Screen",
+        "provisional": true,
+        "headline": "Point, press, explore.",
+        "description": "Large-format touch screens for stands and showrooms, running product content the visitor controls themselves.",
+        "tags": [
+          "Touch screen",
+          "Large format",
+          "Provisional"
+        ],
+        "poster": "posters/touch-screen.jpg",
+        "status": "live",
+        "films": [
+          {
+            "label": "Film 01",
+            "host": "vimeo",
+            "id": null,
+            "hash": null,
+            "embed": null
+          },
+          {
+            "label": "Film 02",
+            "host": "vimeo",
+            "id": "1217649812",
+            "hash": null,
+            "embed": "https://player.vimeo.com/video/1217649812"
+          }
+        ]
+      },
+      {
+        "code": "HV-INT-10",
+        "name": "Motion Gesture Interactive Screen",
+        "provisional": true,
+        "headline": "Control it without touching it.",
+        "description": "Gesture-tracked screens that respond to hand and body movement from a distance — no surface to touch, nothing to clean between visitors.",
+        "tags": [
+          "Gesture control",
+          "Touchless",
+          "Provisional"
+        ],
+        "poster": "posters/motion-gesture.jpg",
+        "status": "live",
+        "films": [
+          {
+            "label": "Film 01",
+            "host": "vimeo",
+            "id": "1217650577",
+            "hash": null,
+            "embed": "https://player.vimeo.com/video/1217650577"
+          },
+          {
+            "label": "Film 02",
+            "host": "vimeo",
+            "id": "1217650906",
+            "hash": null,
+            "embed": "https://player.vimeo.com/video/1217650906"
+          }
+        ]
+      },
+      {
+        "code": "HV-INT-11",
+        "name": "Interactive Product Detailing",
+        "provisional": true,
+        "headline": "The product explains itself.",
+        "description": "A guided interactive detailer that walks a visitor through a product's features at their own pace — built for environments where the claims have to be exact.",
+        "tags": [
+          "Guided",
+          "Product-led",
+          "Provisional"
+        ],
+        "poster": "posters/product-detailing.jpg",
+        "status": "live",
+        "films": [
+          {
+            "label": "Film 01",
+            "host": "vimeo",
+            "id": "1217651752",
+            "hash": null,
+            "embed": "https://player.vimeo.com/video/1217651752"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "imm",
+    "code": "BANK 02 / IMM",
+    "title": "Immersive & holographic",
+    "note": "Hardware that puts something in the room that is not really there — holograms, headsets and light in mid-air.",
+    "applications": [
+      {
+        "code": "HV-IMM-01",
+        "name": "Interactive Hologram",
+        "provisional": false,
+        "headline": "A life-size hologram that answers back.",
+        "description": "A 75-inch holographic unit with a bilingual AI avatar. A sensor wakes it as someone approaches; they speak, tap or press to ask, and it answers on-brand in Arabic or English — all day, unstaffed.",
+        "tags": [
+          "75-inch display",
+          "Arabic & English",
+          "AI avatar",
+          "Plug and play"
+        ],
+        "poster": "posters/holobox.jpg",
+        "status": "live",
+        "films": [
+          {
+            "label": "Film 01",
+            "host": "vimeo",
+            "id": "1217631831",
+            "hash": null,
+            "embed": "https://player.vimeo.com/video/1217631831"
+          },
+          {
+            "label": "Film 02",
+            "host": "vimeo",
+            "id": "1217631828",
+            "hash": null,
+            "embed": "https://player.vimeo.com/video/1217631828"
+          },
+          {
+            "label": "Film 03",
+            "host": "vimeo",
+            "id": "1217631830",
+            "hash": null,
+            "embed": "https://player.vimeo.com/video/1217631830"
+          },
+          {
+            "label": "Film 04",
+            "host": "vimeo",
+            "id": "1217631829",
+            "hash": null,
+            "embed": "https://player.vimeo.com/video/1217631829"
+          }
+        ]
+      },
+      {
+        "code": "HV-IMM-02",
+        "name": "VR Experience",
+        "provisional": false,
+        "headline": "Somewhere you cannot build on a stand.",
+        "description": "Headset experiences for the places a stand cannot contain — a plant, a finished development, the inside of a machine. Supervised, reset between guests, repeatable all day.",
+        "tags": [
+          "Headset",
+          "Supervised",
+          "High dwell"
+        ],
+        "poster": "posters/vr.jpg",
+        "status": "live",
+        "films": [
+          {
+            "label": "Film 01",
+            "host": "vimeo",
+            "id": "1217635643",
+            "hash": null,
+            "embed": "https://player.vimeo.com/video/1217635643"
+          }
+        ]
+      },
+      {
+        "code": "HV-IMM-03",
+        "name": "Laser Cube",
+        "provisional": false,
+        "headline": "Light, cut into shape.",
+        "description": "A laser volume that draws geometry in mid-air inside a defined cube of space. Pure spectacle, readable from the other side of a hall.",
+        "tags": [
+          "Laser",
+          "Spectacle",
+          "Dark environment"
+        ],
+        "poster": "posters/laser-cube.jpg",
+        "status": "live",
+        "films": [
+          {
+            "label": "Film 01",
+            "host": "vimeo",
+            "id": "1217640072",
+            "hash": "7f3574479b",
+            "embed": "https://player.vimeo.com/video/1217640072?h=7f3574479b"
+          }
+        ]
+      },
+      {
+        "code": "HV-IMM-04",
+        "name": "Hologram Fan",
+        "provisional": false,
+        "headline": "Awaiting content.",
+        "description": "Holographic fan display. No description or footage has been supplied yet — this card is a placeholder and will not go live until Hello Voice sends both.",
+        "tags": [
+          "Awaiting content"
+        ],
+        "poster": null,
+        "status": "no-material",
+        "films": []
+      },
+      {
+        "code": "HV-IMM-05",
+        "name": "UV Camera",
+        "provisional": false,
+        "headline": "Awaiting content.",
+        "description": "A UV camera set up in pharmacy activations, showing what the eye cannot see on skin. Visitors see their own sun damage on screen, which makes the case for the product better than any claim on a shelf-talker.",
+        "tags": [
+          "Pharmacy",
+          "Awaiting content"
+        ],
+        "poster": "uv-cam.webp",
+        "status": "no-material",
+        "films": [
+          {
+            "label": "UV Cam",
+            "host": "local",
+            "id": "uv-cam",
+            "hash": null,
+            "embed": "/assets/tech/uv-cam.mp4",
+            "ratio": "9:16"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "mmc",
+    "code": "BANK 03 / MMC",
+    "title": "Multimedia creation",
+    "note": "Content built for a specific surface — an LED screen, a building, a stage, or a headset. The technique is in the making, not the hardware.",
+    "applications": [
+      {
+        "code": "HV-MMC-01",
+        "name": "3D Naked Eye",
+        "provisional": false,
+        "headline": "Depth without glasses.",
+        "description": "Content built for LED screens that reads as genuine depth to the naked eye. No glasses and no app — the illusion works for anyone standing in roughly the right place.",
+        "tags": [
+          "LED screen",
+          "No glasses",
+          "Depth"
+        ],
+        "poster": "naked-eye.webp",
+        "status": "awaiting-upload",
+        "films": [
+          {
+            "label": "3D Naked Eye",
+            "host": "local",
+            "id": "naked-eye",
+            "hash": null,
+            "embed": "/assets/tech/naked-eye.mp4",
+            "ratio": "16:9"
+          }
+        ]
+      },
+      {
+        "code": "HV-MMC-02",
+        "name": "3D Anamorphic Content",
+        "provisional": false,
+        "headline": "The screen that breaks its own frame.",
+        "description": "Anamorphic content matched to the exact shape of an LED screen, so the subject appears to lean out of it into the room. Engineered around the one viewing angle every phone films from.",
+        "tags": [
+          "Anamorphic",
+          "Built for filming",
+          "Corner LED"
+        ],
+        "poster": "posters/anamorphic.jpg",
+        "status": "live",
+        "films": [
+          {
+            "label": "Film 01",
+            "host": "vimeo",
+            "id": null,
+            "hash": null,
+            "embed": null
+          },
+          {
+            "label": "Film 02",
+            "host": "vimeo",
+            "id": "1217649496",
+            "hash": null,
+            "embed": "https://player.vimeo.com/video/1217649496"
+          },
+          {
+            "label": "Film 03",
+            "host": "vimeo",
+            "id": "1137468181",
+            "hash": "33cf76b38d",
+            "embed": "https://player.vimeo.com/video/1137468181?h=33cf76b38d"
+          },
+          {
+            "label": "Showreel",
+            "host": "vimeo",
+            "id": "1046771415",
+            "hash": null,
+            "embed": "https://player.vimeo.com/video/1046771415"
+          }
+        ]
+      },
+      {
+        "code": "HV-MMC-03",
+        "name": "3D Projection Mapping",
+        "provisional": false,
+        "headline": "Any surface becomes a screen.",
+        "description": "Projectors and purpose-built content that turn buildings, stages and objects into animated displays. The geometry is surveyed first, so the content fits what is actually there.",
+        "tags": [
+          "Venue scale",
+          "Buildings & objects",
+          "Cue driven"
+        ],
+        "poster": "posters/projection-mapping.jpg",
+        "status": "live",
+        "films": [
+          {
+            "label": "Film 01",
+            "host": "vimeo",
+            "id": "1217655378",
+            "hash": null,
+            "embed": "https://player.vimeo.com/video/1217655378"
+          }
+        ]
+      },
+      {
+        "code": "HV-MMC-04",
+        "name": "Laser Mapping",
+        "provisional": false,
+        "headline": "Drawn in light, on the building.",
+        "description": "Synchronised lasers and animation projected onto real surfaces, turning architecture into a moving display. Reaches a scale and a brightness projection alone cannot.",
+        "tags": [
+          "Laser",
+          "Architectural",
+          "Night"
+        ],
+        "poster": "laser-mapping.webp",
+        "status": "awaiting-upload",
+        "films": [
+          {
+            "label": "Laser Mapping",
+            "host": "local",
+            "id": "laser-mapping",
+            "hash": null,
+            "embed": "/assets/tech/laser-mapping.mp4",
+            "ratio": "16:9"
+          }
+        ]
+      },
+      {
+        "code": "HV-MMC-05",
+        "name": "Stage Show Media",
+        "provisional": false,
+        "headline": "Content cut to the run of show.",
+        "description": "Stage visuals built to the timing of the event itself. The reveal lands on the beat because the content was made against the cue sheet rather than adapted to it afterwards.",
+        "tags": [
+          "Stage",
+          "Cue synced",
+          "Event scale"
+        ],
+        "poster": "stage-show.webp",
+        "status": "awaiting-upload",
+        "films": [
+          {
+            "label": "Pharaonic Show",
+            "host": "local",
+            "id": "stage-show",
+            "hash": null,
+            "embed": "/assets/tech/stage-show.mp4",
+            "ratio": "16:9"
+          }
+        ]
+      },
+      {
+        "code": "HV-MMC-06",
+        "name": "CGI Production",
+        "provisional": false,
+        "headline": "The product, before it exists.",
+        "description": "Full CGI for products and vehicles that cannot be filmed — because they are not built yet, or cannot be moved. Photoreal, and still usable long after the event is over.",
+        "tags": [
+          "CGI",
+          "Photoreal",
+          "Reusable"
+        ],
+        "poster": "posters/cgi.jpg",
+        "status": "live",
+        "films": [
+          {
+            "label": "Film 01",
+            "host": "vimeo",
+            "id": "1046702532",
+            "hash": null,
+            "embed": "https://player.vimeo.com/video/1046702532"
+          },
+          {
+            "label": "Film 02",
+            "host": "vimeo",
+            "id": null,
+            "hash": null,
+            "embed": null
+          },
+          {
+            "label": "Film 03",
+            "host": "vimeo",
+            "id": null,
+            "hash": null,
+            "embed": null
+          },
+          {
+            "label": "Film 04",
+            "host": "vimeo",
+            "id": null,
+            "hash": null,
+            "embed": null
+          }
+        ]
+      },
+      {
+        "code": "HV-MMC-07",
+        "name": "360° Video",
+        "provisional": false,
+        "headline": "Look anywhere in the room.",
+        "description": "360-degree film for onboarding and site familiarisation, where the viewer chooses where to look. Works in a headset or by dragging a finger across a phone.",
+        "tags": [
+          "360 degree",
+          "Onboarding",
+          "Headset or phone"
+        ],
+        "poster": "posters/video360.jpg",
+        "status": "live",
+        "films": [
+          {
+            "label": "Film 01",
+            "host": "youtube",
+            "id": "PMcCcWbHy04",
+            "hash": null,
+            "embed": "https://www.youtube.com/embed/PMcCcWbHy04"
+          }
+        ]
+      }
+    ]
+  }
+]

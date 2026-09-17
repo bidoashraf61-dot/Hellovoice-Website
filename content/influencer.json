@@ -1,0 +1,877 @@
+{
+ "_captured": "2026-08-17",
+ "_source": "instagram.com/helv.studio/reposts — read-only, owner session",
+ "_note": "Thumbnails are Instagram's public Open Graph poster for each post, downloaded and stored locally under /assets/ig so they cannot expire. Campaigns are derived from the @mentions, hashtags and links in each caption; 'Other campaigns' is the residual where no brand was named.",
+ "counts": {
+  "posts": 86,
+  "creators": 46,
+  "accounts": 47,
+  "campaigns": 8
+ },
+ "creators": [
+  "10anmar",
+  "33nabah",
+  "ahdabyamanii",
+  "amal.ramadaan",
+  "anharmii",
+  "awsafalfares",
+  "beautydemoisellle",
+  "besh_7h",
+  "daliaasaharti111",
+  "dona.335",
+  "dr.hanouf97",
+  "dr_zaina_alsebaei",
+  "foga.1980",
+  "ghaidaa_ali",
+  "ghufranhatim",
+  "hebaaltaib98",
+  "heidi_ahmed2",
+  "hindalbaba",
+  "its_me_sofia94",
+  "loura_sakoul",
+  "mahahajibraheem",
+  "model.lilianaa",
+  "model.mouhra369",
+  "model.nour1",
+  "model.rahaf",
+  "model.sarita7",
+  "model_aram_",
+  "model_dinadounia_",
+  "model_ibtissam",
+  "najlaa_saloon1",
+  "najlaagashar",
+  "njla347",
+  "noha.mgdi",
+  "officialrooa",
+  "ph_lutfi",
+  "ramaamodel",
+  "randbadawi.official",
+  "rankandie9",
+  "rimar.moe",
+  "samirahmoe77",
+  "shahoda_touch",
+  "shaimaaalassaad",
+  "shosho_ibasha",
+  "soso_benz_beauty_world",
+  "tala.nn",
+  "weam784"
+ ],
+ "posts": [
+  {
+   "handle": "tala.nn",
+   "kind": "reel",
+   "code": "DbN2yjmNqHZ",
+   "permalink": "https://www.instagram.com/tala.nn/reel/DbN2yjmNqHZ/",
+   "embed": "https://www.instagram.com/reel/DbN2yjmNqHZ/embed/",
+   "campaign": "StarVille",
+   "thumb": "/assets/ig/DbN2yjmNqHZ.webp"
+  },
+  {
+   "handle": "hebaaltaib98",
+   "kind": "reel",
+   "code": "DXHw3n7iBN8",
+   "permalink": "https://www.instagram.com/hebaaltaib98/reel/DXHw3n7iBN8/",
+   "embed": "https://www.instagram.com/reel/DXHw3n7iBN8/embed/",
+   "campaign": "SVR Sun Secure",
+   "thumb": "/assets/ig/DXHw3n7iBN8.webp"
+  },
+  {
+   "handle": "dr_zaina_alsebaei",
+   "kind": "reel",
+   "code": "DXH_rr6iCip",
+   "permalink": "https://www.instagram.com/dr_zaina_alsebaei/reel/DXH_rr6iCip/",
+   "embed": "https://www.instagram.com/reel/DXH_rr6iCip/embed/",
+   "campaign": "SVR Sun Secure",
+   "thumb": "/assets/ig/DXH_rr6iCip.webp"
+  },
+  {
+   "handle": "svr_saudi",
+   "kind": "p",
+   "code": "DX9Ok7ilzs1",
+   "permalink": "https://www.instagram.com/svr_saudi/p/DX9Ok7ilzs1/",
+   "embed": "https://www.instagram.com/p/DX9Ok7ilzs1/embed/",
+   "campaign": "SVR",
+   "thumb": "/assets/ig/DX9Ok7ilzs1.webp"
+  },
+  {
+   "handle": "samirahmoe77",
+   "kind": "reel",
+   "code": "DXT8UGzCtPz",
+   "permalink": "https://www.instagram.com/samirahmoe77/reel/DXT8UGzCtPz/",
+   "embed": "https://www.instagram.com/reel/DXT8UGzCtPz/embed/",
+   "campaign": "SVR Sun Secure",
+   "thumb": "/assets/ig/DXT8UGzCtPz.webp"
+  },
+  {
+   "handle": "daliaasaharti111",
+   "kind": "reel",
+   "code": "DXFX3TKja5i",
+   "permalink": "https://www.instagram.com/daliaasaharti111/reel/DXFX3TKja5i/",
+   "embed": "https://www.instagram.com/reel/DXFX3TKja5i/embed/",
+   "campaign": "SVR Sun Secure",
+   "thumb": "/assets/ig/DXFX3TKja5i.webp"
+  },
+  {
+   "handle": "amal.ramadaan",
+   "kind": "p",
+   "code": "DXFDnfYiHIl",
+   "permalink": "https://www.instagram.com/amal.ramadaan/p/DXFDnfYiHIl/",
+   "embed": "https://www.instagram.com/p/DXFDnfYiHIl/embed/",
+   "campaign": "SVR",
+   "thumb": "/assets/ig/DXFDnfYiHIl.webp"
+  },
+  {
+   "handle": "heidi_ahmed2",
+   "kind": "reel",
+   "code": "DW6zCzAN15i",
+   "permalink": "https://www.instagram.com/heidi_ahmed2/reel/DW6zCzAN15i/",
+   "embed": "https://www.instagram.com/reel/DW6zCzAN15i/embed/",
+   "campaign": "SVR Sun Secure",
+   "thumb": "/assets/ig/DW6zCzAN15i.webp"
+  },
+  {
+   "handle": "noha.mgdi",
+   "kind": "reel",
+   "code": "DW1JJePjapG",
+   "permalink": "https://www.instagram.com/noha.mgdi/reel/DW1JJePjapG/",
+   "embed": "https://www.instagram.com/reel/DW1JJePjapG/embed/",
+   "campaign": "SVR",
+   "thumb": "/assets/ig/DW1JJePjapG.webp"
+  },
+  {
+   "handle": "daliaasaharti111",
+   "kind": "reel",
+   "code": "DWmRBGwjRHM",
+   "permalink": "https://www.instagram.com/daliaasaharti111/reel/DWmRBGwjRHM/",
+   "embed": "https://www.instagram.com/reel/DWmRBGwjRHM/embed/",
+   "campaign": "SVR Sun Secure",
+   "thumb": "/assets/ig/DWmRBGwjRHM.webp"
+  },
+  {
+   "handle": "besh_7h",
+   "kind": "reel",
+   "code": "DWmP2RDDXj5",
+   "permalink": "https://www.instagram.com/besh_7h/reel/DWmP2RDDXj5/",
+   "embed": "https://www.instagram.com/reel/DWmP2RDDXj5/embed/",
+   "campaign": "SVR",
+   "thumb": "/assets/ig/DWmP2RDDXj5.webp"
+  },
+  {
+   "handle": "hindalbaba",
+   "kind": "reel",
+   "code": "DWY86VhiOTy",
+   "permalink": "https://www.instagram.com/hindalbaba/reel/DWY86VhiOTy/",
+   "embed": "https://www.instagram.com/reel/DWY86VhiOTy/embed/",
+   "campaign": "SVR",
+   "thumb": "/assets/ig/DWY86VhiOTy.webp"
+  },
+  {
+   "handle": "ahdabyamanii",
+   "kind": "reel",
+   "code": "DWc4bVziMLX",
+   "permalink": "https://www.instagram.com/ahdabyamanii/reel/DWc4bVziMLX/",
+   "embed": "https://www.instagram.com/reel/DWc4bVziMLX/embed/",
+   "campaign": "SVR Sun Secure",
+   "thumb": "/assets/ig/DWc4bVziMLX.webp"
+  },
+  {
+   "handle": "shahoda_touch",
+   "kind": "reel",
+   "code": "DWXgqwZjITK",
+   "permalink": "https://www.instagram.com/shahoda_touch/reel/DWXgqwZjITK/",
+   "embed": "https://www.instagram.com/reel/DWXgqwZjITK/embed/",
+   "campaign": "SVR",
+   "thumb": "/assets/ig/DWXgqwZjITK.webp"
+  },
+  {
+   "handle": "svr_saudi",
+   "kind": "reel",
+   "code": "DU_PFdwkoDC",
+   "permalink": "https://www.instagram.com/svr_saudi/reel/DU_PFdwkoDC/",
+   "embed": "https://www.instagram.com/reel/DU_PFdwkoDC/embed/",
+   "campaign": "SVR",
+   "thumb": "/assets/ig/DU_PFdwkoDC.webp"
+  },
+  {
+   "handle": "mahahajibraheem",
+   "kind": "reel",
+   "code": "DXUb2fEDfW_",
+   "permalink": "https://www.instagram.com/mahahajibraheem/reel/DXUb2fEDfW_/",
+   "embed": "https://www.instagram.com/reel/DXUb2fEDfW_/embed/",
+   "campaign": "SVR Sun Secure",
+   "thumb": "/assets/ig/DXUb2fEDfW_.webp"
+  },
+  {
+   "handle": "foga.1980",
+   "kind": "reel",
+   "code": "DXJdg3wtCve",
+   "permalink": "https://www.instagram.com/foga.1980/reel/DXJdg3wtCve/",
+   "embed": "https://www.instagram.com/reel/DXJdg3wtCve/embed/",
+   "campaign": "SVR",
+   "thumb": "/assets/ig/DXJdg3wtCve.webp"
+  },
+  {
+   "handle": "beautydemoisellle",
+   "kind": "p",
+   "code": "DW2_xMyjDHe",
+   "permalink": "https://www.instagram.com/beautydemoisellle/p/DW2_xMyjDHe/",
+   "embed": "https://www.instagram.com/p/DW2_xMyjDHe/embed/",
+   "campaign": "Other campaigns",
+   "thumb": "/assets/ig/DW2_xMyjDHe.webp"
+  },
+  {
+   "handle": "foga.1980",
+   "kind": "p",
+   "code": "DW1PkEYDYS3",
+   "permalink": "https://www.instagram.com/foga.1980/p/DW1PkEYDYS3/",
+   "embed": "https://www.instagram.com/p/DW1PkEYDYS3/embed/",
+   "campaign": "SVR",
+   "thumb": "/assets/ig/DW1PkEYDYS3.webp"
+  },
+  {
+   "handle": "its_me_sofia94",
+   "kind": "reel",
+   "code": "DYZoUjBMCet",
+   "permalink": "https://www.instagram.com/its_me_sofia94/reel/DYZoUjBMCet/",
+   "embed": "https://www.instagram.com/reel/DYZoUjBMCet/embed/",
+   "campaign": "Whites",
+   "thumb": "/assets/ig/DYZoUjBMCet.webp"
+  },
+  {
+   "handle": "model.nour1",
+   "kind": "reel",
+   "code": "DYbuOP1CXm_",
+   "permalink": "https://www.instagram.com/model.nour1/reel/DYbuOP1CXm_/",
+   "embed": "https://www.instagram.com/reel/DYbuOP1CXm_/embed/",
+   "campaign": "Alpha Plus",
+   "thumb": "/assets/ig/DYbuOP1CXm_.webp"
+  },
+  {
+   "handle": "rimar.moe",
+   "kind": "reel",
+   "code": "DYfohz6uprC",
+   "permalink": "https://www.instagram.com/rimar.moe/reel/DYfohz6uprC/",
+   "embed": "https://www.instagram.com/reel/DYfohz6uprC/embed/",
+   "campaign": "Alpha Plus",
+   "thumb": "/assets/ig/DYfohz6uprC.webp"
+  },
+  {
+   "handle": "rimar.moe",
+   "kind": "reel",
+   "code": "DYj5eh0IoLV",
+   "permalink": "https://www.instagram.com/rimar.moe/reel/DYj5eh0IoLV/",
+   "embed": "https://www.instagram.com/reel/DYj5eh0IoLV/embed/",
+   "campaign": "Alpha Plus",
+   "thumb": "/assets/ig/DYj5eh0IoLV.webp"
+  },
+  {
+   "handle": "ghufranhatim",
+   "kind": "reel",
+   "code": "DYkCSIvxQNq",
+   "permalink": "https://www.instagram.com/ghufranhatim/reel/DYkCSIvxQNq/",
+   "embed": "https://www.instagram.com/reel/DYkCSIvxQNq/embed/",
+   "campaign": "Alpha Plus",
+   "thumb": "/assets/ig/DYkCSIvxQNq.webp"
+  },
+  {
+   "handle": "model_ibtissam",
+   "kind": "reel",
+   "code": "DYmujXJs1sa",
+   "permalink": "https://www.instagram.com/model_ibtissam/reel/DYmujXJs1sa/",
+   "embed": "https://www.instagram.com/reel/DYmujXJs1sa/embed/",
+   "campaign": "Alpha Plus",
+   "thumb": "/assets/ig/DYmujXJs1sa.webp"
+  },
+  {
+   "handle": "heidi_ahmed2",
+   "kind": "reel",
+   "code": "DYm2tExNyHs",
+   "permalink": "https://www.instagram.com/heidi_ahmed2/reel/DYm2tExNyHs/",
+   "embed": "https://www.instagram.com/reel/DYm2tExNyHs/embed/",
+   "campaign": "Ivatherm",
+   "thumb": "/assets/ig/DYm2tExNyHs.webp"
+  },
+  {
+   "handle": "10anmar",
+   "kind": "reel",
+   "code": "DYqAg8xKw6e",
+   "permalink": "https://www.instagram.com/10anmar/reel/DYqAg8xKw6e/",
+   "embed": "https://www.instagram.com/reel/DYqAg8xKw6e/embed/",
+   "campaign": "Alpha Plus",
+   "thumb": "/assets/ig/DYqAg8xKw6e.webp"
+  },
+  {
+   "handle": "model.sarita7",
+   "kind": "reel",
+   "code": "DYnUjLNMILV",
+   "permalink": "https://www.instagram.com/model.sarita7/reel/DYnUjLNMILV/",
+   "embed": "https://www.instagram.com/reel/DYnUjLNMILV/embed/",
+   "campaign": "Alpha Plus",
+   "thumb": "/assets/ig/DYnUjLNMILV.webp"
+  },
+  {
+   "handle": "dona.335",
+   "kind": "reel",
+   "code": "DXHCxIWCHmR",
+   "permalink": "https://www.instagram.com/dona.335/reel/DXHCxIWCHmR/",
+   "embed": "https://www.instagram.com/reel/DXHCxIWCHmR/embed/",
+   "campaign": "SVR Sun Secure",
+   "thumb": "/assets/ig/DXHCxIWCHmR.webp"
+  },
+  {
+   "handle": "randbadawi.official",
+   "kind": "reel",
+   "code": "DYqEFZzMW5j",
+   "permalink": "https://www.instagram.com/randbadawi.official/reel/DYqEFZzMW5j/",
+   "embed": "https://www.instagram.com/reel/DYqEFZzMW5j/embed/",
+   "campaign": "Alpha Plus",
+   "thumb": "/assets/ig/DYqEFZzMW5j.webp"
+  },
+  {
+   "handle": "model_aram_",
+   "kind": "reel",
+   "code": "DYsD_NMoWG5",
+   "permalink": "https://www.instagram.com/model_aram_/reel/DYsD_NMoWG5/",
+   "embed": "https://www.instagram.com/reel/DYsD_NMoWG5/embed/",
+   "campaign": "Alpha Plus",
+   "thumb": "/assets/ig/DYsD_NMoWG5.webp"
+  },
+  {
+   "handle": "heidi_ahmed2",
+   "kind": "reel",
+   "code": "DYswAg3qy39",
+   "permalink": "https://www.instagram.com/heidi_ahmed2/reel/DYswAg3qy39/",
+   "embed": "https://www.instagram.com/reel/DYswAg3qy39/embed/",
+   "campaign": "Alpha Plus",
+   "thumb": "/assets/ig/DYswAg3qy39.webp"
+  },
+  {
+   "handle": "njla347",
+   "kind": "reel",
+   "code": "DYuDGx8NoL3",
+   "permalink": "https://www.instagram.com/njla347/reel/DYuDGx8NoL3/",
+   "embed": "https://www.instagram.com/reel/DYuDGx8NoL3/embed/",
+   "campaign": "Other campaigns",
+   "thumb": "/assets/ig/DYuDGx8NoL3.webp"
+  },
+  {
+   "handle": "model.mouhra369",
+   "kind": "reel",
+   "code": "DYugrKPoXqA",
+   "permalink": "https://www.instagram.com/model.mouhra369/reel/DYugrKPoXqA/",
+   "embed": "https://www.instagram.com/reel/DYugrKPoXqA/embed/",
+   "campaign": "Alpha Plus",
+   "thumb": "/assets/ig/DYugrKPoXqA.webp"
+  },
+  {
+   "handle": "weam784",
+   "kind": "reel",
+   "code": "DYuydCqt1bL",
+   "permalink": "https://www.instagram.com/weam784/reel/DYuydCqt1bL/",
+   "embed": "https://www.instagram.com/reel/DYuydCqt1bL/embed/",
+   "campaign": "Other campaigns",
+   "thumb": "/assets/ig/DYuydCqt1bL.webp"
+  },
+  {
+   "handle": "anharmii",
+   "kind": "reel",
+   "code": "DYvHY3jMomT",
+   "permalink": "https://www.instagram.com/anharmii/reel/DYvHY3jMomT/",
+   "embed": "https://www.instagram.com/reel/DYvHY3jMomT/embed/",
+   "campaign": "Alpha Plus",
+   "thumb": "/assets/ig/DYvHY3jMomT.webp"
+  },
+  {
+   "handle": "ghaidaa_ali",
+   "kind": "reel",
+   "code": "DYvM5p_IVd6",
+   "permalink": "https://www.instagram.com/ghaidaa_ali/reel/DYvM5p_IVd6/",
+   "embed": "https://www.instagram.com/reel/DYvM5p_IVd6/embed/",
+   "campaign": "Alpha Plus",
+   "thumb": "/assets/ig/DYvM5p_IVd6.webp"
+  },
+  {
+   "handle": "weam784",
+   "kind": "reel",
+   "code": "DYv_sO-t8im",
+   "permalink": "https://www.instagram.com/weam784/reel/DYv_sO-t8im/",
+   "embed": "https://www.instagram.com/reel/DYv_sO-t8im/embed/",
+   "campaign": "Alpha Plus",
+   "thumb": "/assets/ig/DYv_sO-t8im.webp"
+  },
+  {
+   "handle": "soso_benz_beauty_world",
+   "kind": "reel",
+   "code": "DYw5REvsNbr",
+   "permalink": "https://www.instagram.com/soso_benz_beauty_world/reel/DYw5REvsNbr/",
+   "embed": "https://www.instagram.com/reel/DYw5REvsNbr/embed/",
+   "campaign": "Other campaigns",
+   "thumb": "/assets/ig/DYw5REvsNbr.webp"
+  },
+  {
+   "handle": "ahdabyamanii",
+   "kind": "reel",
+   "code": "DYxnD6du9qt",
+   "permalink": "https://www.instagram.com/ahdabyamanii/reel/DYxnD6du9qt/",
+   "embed": "https://www.instagram.com/reel/DYxnD6du9qt/embed/",
+   "campaign": "Alpha Plus",
+   "thumb": "/assets/ig/DYxnD6du9qt.webp"
+  },
+  {
+   "handle": "loura_sakoul",
+   "kind": "reel",
+   "code": "DYzL3v9uS6W",
+   "permalink": "https://www.instagram.com/loura_sakoul/reel/DYzL3v9uS6W/",
+   "embed": "https://www.instagram.com/reel/DYzL3v9uS6W/embed/",
+   "campaign": "Other campaigns",
+   "thumb": "/assets/ig/DYzL3v9uS6W.webp"
+  },
+  {
+   "handle": "awsafalfares",
+   "kind": "reel",
+   "code": "DYzkMlAtKLh",
+   "permalink": "https://www.instagram.com/awsafalfares/reel/DYzkMlAtKLh/",
+   "embed": "https://www.instagram.com/reel/DYzkMlAtKLh/embed/",
+   "campaign": "Ivatherm",
+   "thumb": "/assets/ig/DYzkMlAtKLh.webp"
+  },
+  {
+   "handle": "model_dinadounia_",
+   "kind": "reel",
+   "code": "DY2R9wgMWlH",
+   "permalink": "https://www.instagram.com/model_dinadounia_/reel/DY2R9wgMWlH/",
+   "embed": "https://www.instagram.com/reel/DY2R9wgMWlH/embed/",
+   "campaign": "Alpha Plus",
+   "thumb": "/assets/ig/DY2R9wgMWlH.webp"
+  },
+  {
+   "handle": "ahdabyamanii",
+   "kind": "reel",
+   "code": "DY7ZLmcsY4p",
+   "permalink": "https://www.instagram.com/ahdabyamanii/reel/DY7ZLmcsY4p/",
+   "embed": "https://www.instagram.com/reel/DY7ZLmcsY4p/embed/",
+   "campaign": "Other campaigns",
+   "thumb": "/assets/ig/DY7ZLmcsY4p.webp"
+  },
+  {
+   "handle": "rankandie9",
+   "kind": "reel",
+   "code": "DWuGpfigkAy",
+   "permalink": "https://www.instagram.com/rankandie9/reel/DWuGpfigkAy/",
+   "embed": "https://www.instagram.com/reel/DWuGpfigkAy/embed/",
+   "campaign": "SVR Sun Secure",
+   "thumb": "/assets/ig/DWuGpfigkAy.webp"
+  },
+  {
+   "handle": "rankandie9",
+   "kind": "reel",
+   "code": "DWfAUxSgsY9",
+   "permalink": "https://www.instagram.com/rankandie9/reel/DWfAUxSgsY9/",
+   "embed": "https://www.instagram.com/reel/DWfAUxSgsY9/embed/",
+   "campaign": "SVR",
+   "thumb": "/assets/ig/DWfAUxSgsY9.webp"
+  },
+  {
+   "handle": "its_me_sofia94",
+   "kind": "reel",
+   "code": "DZCQ2HasrF4",
+   "permalink": "https://www.instagram.com/its_me_sofia94/reel/DZCQ2HasrF4/",
+   "embed": "https://www.instagram.com/reel/DZCQ2HasrF4/embed/",
+   "campaign": "Other campaigns",
+   "thumb": "/assets/ig/DZCQ2HasrF4.webp"
+  },
+  {
+   "handle": "ramaamodel",
+   "kind": "reel",
+   "code": "DZF-tIMMPdP",
+   "permalink": "https://www.instagram.com/ramaamodel/reel/DZF-tIMMPdP/",
+   "embed": "https://www.instagram.com/reel/DZF-tIMMPdP/embed/",
+   "campaign": "Other campaigns",
+   "thumb": "/assets/ig/DZF-tIMMPdP.webp"
+  },
+  {
+   "handle": "rankandie9",
+   "kind": "reel",
+   "code": "DZIlQqVCGDc",
+   "permalink": "https://www.instagram.com/rankandie9/reel/DZIlQqVCGDc/",
+   "embed": "https://www.instagram.com/reel/DZIlQqVCGDc/embed/",
+   "campaign": "Alpha Plus",
+   "thumb": "/assets/ig/DZIlQqVCGDc.webp"
+  },
+  {
+   "handle": "model.lilianaa",
+   "kind": "reel",
+   "code": "DZKgOOyIbKs",
+   "permalink": "https://www.instagram.com/model.lilianaa/reel/DZKgOOyIbKs/",
+   "embed": "https://www.instagram.com/reel/DZKgOOyIbKs/embed/",
+   "campaign": "Alpha Plus",
+   "thumb": "/assets/ig/DZKgOOyIbKs.webp"
+  },
+  {
+   "handle": "ph_lutfi",
+   "kind": "reel",
+   "code": "DZsLvHqNO4U",
+   "permalink": "https://www.instagram.com/ph_lutfi/reel/DZsLvHqNO4U/",
+   "embed": "https://www.instagram.com/reel/DZsLvHqNO4U/embed/",
+   "campaign": "Ivatherm",
+   "thumb": "/assets/ig/DZsLvHqNO4U.webp"
+  },
+  {
+   "handle": "najlaagashar",
+   "kind": "reel",
+   "code": "DWbv8qKDFtG",
+   "permalink": "https://www.instagram.com/najlaagashar/reel/DWbv8qKDFtG/",
+   "embed": "https://www.instagram.com/reel/DWbv8qKDFtG/embed/",
+   "campaign": "SVR Sun Secure",
+   "thumb": "/assets/ig/DWbv8qKDFtG.webp"
+  },
+  {
+   "handle": "najlaagashar",
+   "kind": "reel",
+   "code": "DWbvzzZjFgD",
+   "permalink": "https://www.instagram.com/najlaagashar/reel/DWbvzzZjFgD/",
+   "embed": "https://www.instagram.com/reel/DWbvzzZjFgD/embed/",
+   "campaign": "SVR",
+   "thumb": "/assets/ig/DWbvzzZjFgD.webp"
+  },
+  {
+   "handle": "its_me_sofia94",
+   "kind": "reel",
+   "code": "DaJZGuCs0tu",
+   "permalink": "https://www.instagram.com/its_me_sofia94/reel/DaJZGuCs0tu/",
+   "embed": "https://www.instagram.com/reel/DaJZGuCs0tu/embed/",
+   "campaign": "StarVille",
+   "thumb": "/assets/ig/DaJZGuCs0tu.webp"
+  },
+  {
+   "handle": "hindalbaba",
+   "kind": "reel",
+   "code": "DaNXw1Lo2J0",
+   "permalink": "https://www.instagram.com/hindalbaba/reel/DaNXw1Lo2J0/",
+   "embed": "https://www.instagram.com/reel/DaNXw1Lo2J0/embed/",
+   "campaign": "Parkville",
+   "thumb": "/assets/ig/DaNXw1Lo2J0.webp"
+  },
+  {
+   "handle": "officialrooa",
+   "kind": "reel",
+   "code": "DaSqnAcM0iI",
+   "permalink": "https://www.instagram.com/officialrooa/reel/DaSqnAcM0iI/",
+   "embed": "https://www.instagram.com/reel/DaSqnAcM0iI/embed/",
+   "campaign": "Other campaigns",
+   "thumb": "/assets/ig/DaSqnAcM0iI.webp"
+  },
+  {
+   "handle": "awsafalfares",
+   "kind": "reel",
+   "code": "DaVGujOKz2-",
+   "permalink": "https://www.instagram.com/awsafalfares/reel/DaVGujOKz2-/",
+   "embed": "https://www.instagram.com/reel/DaVGujOKz2-/embed/",
+   "campaign": "Other campaigns",
+   "thumb": "/assets/ig/DaVGujOKz2-.webp"
+  },
+  {
+   "handle": "soso_benz_beauty_world",
+   "kind": "reel",
+   "code": "DaLVkI3MjPV",
+   "permalink": "https://www.instagram.com/soso_benz_beauty_world/reel/DaLVkI3MjPV/",
+   "embed": "https://www.instagram.com/reel/DaLVkI3MjPV/embed/",
+   "campaign": "Other campaigns",
+   "thumb": "/assets/ig/DaLVkI3MjPV.webp"
+  },
+  {
+   "handle": "model.mouhra369",
+   "kind": "reel",
+   "code": "DadVmllo8Dl",
+   "permalink": "https://www.instagram.com/model.mouhra369/reel/DadVmllo8Dl/",
+   "embed": "https://www.instagram.com/reel/DadVmllo8Dl/embed/",
+   "campaign": "Parkville",
+   "thumb": "/assets/ig/DadVmllo8Dl.webp"
+  },
+  {
+   "handle": "33nabah",
+   "kind": "reel",
+   "code": "DadSAoyt0aa",
+   "permalink": "https://www.instagram.com/33nabah/reel/DadSAoyt0aa/",
+   "embed": "https://www.instagram.com/reel/DadSAoyt0aa/embed/",
+   "campaign": "Parkville",
+   "thumb": "/assets/ig/DadSAoyt0aa.webp"
+  },
+  {
+   "handle": "awsafalfares",
+   "kind": "reel",
+   "code": "DacoMVINhHj",
+   "permalink": "https://www.instagram.com/awsafalfares/reel/DacoMVINhHj/",
+   "embed": "https://www.instagram.com/reel/DacoMVINhHj/embed/",
+   "campaign": "Other campaigns",
+   "thumb": "/assets/ig/DacoMVINhHj.webp"
+  },
+  {
+   "handle": "ahdabyamanii",
+   "kind": "reel",
+   "code": "Dafm2adsymz",
+   "permalink": "https://www.instagram.com/ahdabyamanii/reel/Dafm2adsymz/",
+   "embed": "https://www.instagram.com/reel/Dafm2adsymz/embed/",
+   "campaign": "Parkville",
+   "thumb": "/assets/ig/Dafm2adsymz.webp"
+  },
+  {
+   "handle": "33nabah",
+   "kind": "reel",
+   "code": "Daf4q75NOqg",
+   "permalink": "https://www.instagram.com/33nabah/reel/Daf4q75NOqg/",
+   "embed": "https://www.instagram.com/reel/Daf4q75NOqg/embed/",
+   "campaign": "Parkville",
+   "thumb": "/assets/ig/Daf4q75NOqg.webp"
+  },
+  {
+   "handle": "tala.nn",
+   "kind": "reel",
+   "code": "DauINQuNM30",
+   "permalink": "https://www.instagram.com/tala.nn/reel/DauINQuNM30/",
+   "embed": "https://www.instagram.com/reel/DauINQuNM30/embed/",
+   "campaign": "Parkville",
+   "thumb": "/assets/ig/DauINQuNM30.webp"
+  },
+  {
+   "handle": "model.nour1",
+   "kind": "reel",
+   "code": "DavQvM3i0Tn",
+   "permalink": "https://www.instagram.com/model.nour1/reel/DavQvM3i0Tn/",
+   "embed": "https://www.instagram.com/reel/DavQvM3i0Tn/embed/",
+   "campaign": "Other campaigns",
+   "thumb": "/assets/ig/DavQvM3i0Tn.webp"
+  },
+  {
+   "handle": "mahahajibraheem",
+   "kind": "reel",
+   "code": "DaxupiHNF6F",
+   "permalink": "https://www.instagram.com/mahahajibraheem/reel/DaxupiHNF6F/",
+   "embed": "https://www.instagram.com/reel/DaxupiHNF6F/embed/",
+   "campaign": "Parkville",
+   "thumb": "/assets/ig/DaxupiHNF6F.webp"
+  },
+  {
+   "handle": "svr_saudi",
+   "kind": "reel",
+   "code": "Da2qmYYiqpt",
+   "permalink": "https://www.instagram.com/svr_saudi/reel/Da2qmYYiqpt/",
+   "embed": "https://www.instagram.com/reel/Da2qmYYiqpt/embed/",
+   "campaign": "SVR",
+   "thumb": "/assets/ig/Da2qmYYiqpt.webp"
+  },
+  {
+   "handle": "soso_benz_beauty_world",
+   "kind": "reel",
+   "code": "Da3DVYusUuv",
+   "permalink": "https://www.instagram.com/soso_benz_beauty_world/reel/Da3DVYusUuv/",
+   "embed": "https://www.instagram.com/reel/Da3DVYusUuv/embed/",
+   "campaign": "Other campaigns",
+   "thumb": "/assets/ig/Da3DVYusUuv.webp"
+  },
+  {
+   "handle": "officialrooa",
+   "kind": "reel",
+   "code": "Da-gNufMlAT",
+   "permalink": "https://www.instagram.com/officialrooa/reel/Da-gNufMlAT/",
+   "embed": "https://www.instagram.com/reel/Da-gNufMlAT/embed/",
+   "campaign": "Other campaigns",
+   "thumb": "/assets/ig/Da-gNufMlAT.webp"
+  },
+  {
+   "handle": "svr_saudi",
+   "kind": "reel",
+   "code": "DbA_ZjID1VC",
+   "permalink": "https://www.instagram.com/svr_saudi/reel/DbA_ZjID1VC/",
+   "embed": "https://www.instagram.com/reel/DbA_ZjID1VC/embed/",
+   "campaign": "SVR",
+   "thumb": "/assets/ig/DbA_ZjID1VC.webp"
+  },
+  {
+   "handle": "model.sarita7",
+   "kind": "reel",
+   "code": "DbD3AyaMhkb",
+   "permalink": "https://www.instagram.com/model.sarita7/reel/DbD3AyaMhkb/",
+   "embed": "https://www.instagram.com/reel/DbD3AyaMhkb/embed/",
+   "campaign": "Parkville",
+   "thumb": "/assets/ig/DbD3AyaMhkb.webp"
+  },
+  {
+   "handle": "tala.nn",
+   "kind": "reel",
+   "code": "DbS_kdntwyC",
+   "permalink": "https://www.instagram.com/tala.nn/reel/DbS_kdntwyC/",
+   "embed": "https://www.instagram.com/reel/DbS_kdntwyC/embed/",
+   "campaign": "SVR Sun Secure",
+   "thumb": "/assets/ig/DbS_kdntwyC.webp"
+  },
+  {
+   "handle": "daliaasaharti111",
+   "kind": "reel",
+   "code": "DbaRuwoNVgG",
+   "permalink": "https://www.instagram.com/daliaasaharti111/reel/DbaRuwoNVgG/",
+   "embed": "https://www.instagram.com/reel/DbaRuwoNVgG/embed/",
+   "campaign": "Other campaigns",
+   "thumb": "/assets/ig/DbaRuwoNVgG.webp"
+  },
+  {
+   "handle": "mahahajibraheem",
+   "kind": "reel",
+   "code": "Dba3nWxNxdO",
+   "permalink": "https://www.instagram.com/mahahajibraheem/reel/Dba3nWxNxdO/",
+   "embed": "https://www.instagram.com/reel/Dba3nWxNxdO/embed/",
+   "campaign": "Other campaigns",
+   "thumb": "/assets/ig/Dba3nWxNxdO.webp"
+  },
+  {
+   "handle": "dona.335",
+   "kind": "reel",
+   "code": "DZP0m7NI0XC",
+   "permalink": "https://www.instagram.com/dona.335/reel/DZP0m7NI0XC/",
+   "embed": "https://www.instagram.com/reel/DZP0m7NI0XC/embed/",
+   "campaign": "Alpha Plus",
+   "thumb": "/assets/ig/DZP0m7NI0XC.webp"
+  },
+  {
+   "handle": "shaimaaalassaad",
+   "kind": "reel",
+   "code": "DZdCK7IIOVx",
+   "permalink": "https://www.instagram.com/shaimaaalassaad/reel/DZdCK7IIOVx/",
+   "embed": "https://www.instagram.com/reel/DZdCK7IIOVx/embed/",
+   "campaign": "Alpha Plus",
+   "thumb": "/assets/ig/DZdCK7IIOVx.webp"
+  },
+  {
+   "handle": "model.rahaf",
+   "kind": "reel",
+   "code": "DZktmWTIMTr",
+   "permalink": "https://www.instagram.com/model.rahaf/reel/DZktmWTIMTr/",
+   "embed": "https://www.instagram.com/reel/DZktmWTIMTr/embed/",
+   "campaign": "Alpha Plus",
+   "thumb": "/assets/ig/DZktmWTIMTr.webp"
+  },
+  {
+   "handle": "dr.hanouf97",
+   "kind": "reel",
+   "code": "DZnEbkIoWYi",
+   "permalink": "https://www.instagram.com/dr.hanouf97/reel/DZnEbkIoWYi/",
+   "embed": "https://www.instagram.com/reel/DZnEbkIoWYi/embed/",
+   "campaign": "Alpha Plus",
+   "thumb": "/assets/ig/DZnEbkIoWYi.webp"
+  },
+  {
+   "handle": "daliaasaharti111",
+   "kind": "reel",
+   "code": "DZw0JcytqfL",
+   "permalink": "https://www.instagram.com/daliaasaharti111/reel/DZw0JcytqfL/",
+   "embed": "https://www.instagram.com/reel/DZw0JcytqfL/embed/",
+   "campaign": "Other campaigns",
+   "thumb": "/assets/ig/DZw0JcytqfL.webp"
+  },
+  {
+   "handle": "shosho_ibasha",
+   "kind": "reel",
+   "code": "DZzp3xzs4-O",
+   "permalink": "https://www.instagram.com/shosho_ibasha/reel/DZzp3xzs4-O/",
+   "embed": "https://www.instagram.com/reel/DZzp3xzs4-O/embed/",
+   "campaign": "Other campaigns",
+   "thumb": "/assets/ig/DZzp3xzs4-O.webp"
+  },
+  {
+   "handle": "hindalbaba",
+   "kind": "reel",
+   "code": "DZ0h0BJogLF",
+   "permalink": "https://www.instagram.com/hindalbaba/reel/DZ0h0BJogLF/",
+   "embed": "https://www.instagram.com/reel/DZ0h0BJogLF/embed/",
+   "campaign": "Alpha Plus",
+   "thumb": "/assets/ig/DZ0h0BJogLF.webp"
+  },
+  {
+   "handle": "najlaagashar",
+   "kind": "reel",
+   "code": "DZ46VJRNkpT",
+   "permalink": "https://www.instagram.com/najlaagashar/reel/DZ46VJRNkpT/",
+   "embed": "https://www.instagram.com/reel/DZ46VJRNkpT/embed/",
+   "campaign": "Alpha Plus",
+   "thumb": "/assets/ig/DZ46VJRNkpT.webp"
+  },
+  {
+   "handle": "najlaa_saloon1",
+   "kind": "reel",
+   "code": "DZ465mbNWcY",
+   "permalink": "https://www.instagram.com/najlaa_saloon1/reel/DZ465mbNWcY/",
+   "embed": "https://www.instagram.com/reel/DZ465mbNWcY/embed/",
+   "campaign": "Alpha Plus",
+   "thumb": "/assets/ig/DZ465mbNWcY.webp"
+  },
+  {
+   "handle": "najlaagashar",
+   "kind": "reel",
+   "code": "DZ47vtJtuTz",
+   "permalink": "https://www.instagram.com/najlaagashar/reel/DZ47vtJtuTz/",
+   "embed": "https://www.instagram.com/reel/DZ47vtJtuTz/embed/",
+   "campaign": "Alpha Plus",
+   "thumb": "/assets/ig/DZ47vtJtuTz.webp"
+  },
+  {
+   "handle": "ahdabyamanii",
+   "kind": "reel",
+   "code": "Dal2HMSsfRo",
+   "permalink": "https://www.instagram.com/ahdabyamanii/reel/Dal2HMSsfRo/",
+   "embed": "https://www.instagram.com/reel/Dal2HMSsfRo/embed/",
+   "campaign": "Parkville",
+   "thumb": "/assets/ig/Dal2HMSsfRo.webp"
+  },
+  {
+   "handle": "model.nour1",
+   "kind": "reel",
+   "code": "DbD0tPqi79K",
+   "permalink": "https://www.instagram.com/model.nour1/reel/DbD0tPqi79K/",
+   "embed": "https://www.instagram.com/reel/DbD0tPqi79K/embed/",
+   "campaign": "Parkville",
+   "thumb": "/assets/ig/DbD0tPqi79K.webp"
+  }
+ ],
+ "campaigns": [
+  {
+   "name": "Alpha Plus",
+   "posts": 26,
+   "creators": 24
+  },
+  {
+   "name": "SVR",
+   "posts": 13,
+   "creators": 9
+  },
+  {
+   "name": "SVR Sun Secure",
+   "posts": 12,
+   "creators": 11
+  },
+  {
+   "name": "Parkville",
+   "posts": 10,
+   "creators": 8
+  },
+  {
+   "name": "Ivatherm",
+   "posts": 3,
+   "creators": 3
+  },
+  {
+   "name": "StarVille",
+   "posts": 2,
+   "creators": 2
+  },
+  {
+   "name": "Whites",
+   "posts": 1,
+   "creators": 1
+  },
+  {
+   "name": "Other campaigns",
+   "posts": 19,
+   "creators": 14
+  }
+ ]
+}

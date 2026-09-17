@@ -1,0 +1,42 @@
+[
+  {
+    "slug": "mondelez-international",
+    "name": "Mondelez International"
+  },
+  {
+    "slug": "abbott",
+    "name": "Abbott"
+  },
+  {
+    "slug": "pfizer",
+    "name": "Pfizer"
+  },
+  {
+    "slug": "astrazeneca",
+    "name": "AstraZeneca"
+  },
+  {
+    "slug": "svr",
+    "name": "SVR"
+  },
+  {
+    "slug": "uriage",
+    "name": "Uriage"
+  },
+  {
+    "slug": "spc",
+    "name": "SPC"
+  },
+  {
+    "slug": "neweast",
+    "name": "NewEast"
+  },
+  {
+    "slug": "dr-sulaiman-al-habib",
+    "name": "Dr Sulaiman Al Habib"
+  },
+  {
+    "slug": "l-oreal-dermatological-beauty",
+    "name": "L'Oreal Dermatological Beauty"
+  }
+]

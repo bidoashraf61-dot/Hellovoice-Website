@@ -1,0 +1,615 @@
+{
+  "work": [
+    {
+      "slug": "dermactive-ad-control-your-skin-campaign",
+      "title": "Dermactive Ad - Control Your Skin Campaign",
+      "vimeo": "1089539257",
+      "img": "assets/work/dermactive-ad-control-your-skin-campaign",
+      "poster_source": "site",
+      "w": 1080,
+      "h": 1920,
+      "portrait": true
+    },
+    {
+      "slug": "qasser-el-saraya-ad",
+      "title": "Qasser El saraya Ad",
+      "vimeo": null,
+      "img": "assets/work/qasser-el-saraya-ad",
+      "poster_source": "site",
+      "w": 1080,
+      "h": 1920,
+      "portrait": true
+    },
+    {
+      "slug": "dermactive-acti-repair",
+      "title": "Dermactive - Acti Repair",
+      "vimeo": "1128584075",
+      "img": "assets/work/dermactive-acti-repair",
+      "poster_source": "site",
+      "w": 1080,
+      "h": 1920,
+      "portrait": true
+    },
+    {
+      "slug": "neweast-isuzu-riyadh-grand-opening-video",
+      "title": "Neweast Isuzu Riyadh Grand Opening Video",
+      "vimeo": "1087486372",
+      "img": "assets/work/neweast-isuzu-riyadh-grand-opening-video",
+      "poster_source": "site",
+      "w": 1920,
+      "h": 1080,
+      "portrait": false
+    },
+    {
+      "slug": "suliman-al-habib-patient-awarness-video",
+      "title": "Suliman Al Habib patient Awarness Video",
+      "vimeo": "1128620587",
+      "img": "assets/work/suliman-al-habib-patient-awarness-video",
+      "poster_source": "site",
+      "w": 1920,
+      "h": 1080,
+      "portrait": false
+    },
+    {
+      "slug": "molyncke-cycle-meeting-teaser",
+      "title": "Molyncke Cycle Meeting Teaser",
+      "vimeo": "1129467510",
+      "img": "assets/work/molyncke-cycle-meeting-teaser",
+      "poster_source": "site",
+      "w": 1920,
+      "h": 1080,
+      "portrait": false
+    },
+    {
+      "slug": "neweast-x-isuzu-2025-riyadh-corporate-video",
+      "title": "NewEast x Isuzu 2025 Riyadh Corporate Video",
+      "vimeo": "1121170424",
+      "img": "assets/work/neweast-x-isuzu-2025-riyadh-corporate-video",
+      "poster_source": "site",
+      "w": 1920,
+      "h": 1080,
+      "portrait": false
+    },
+    {
+      "slug": "abbott-corporate-video",
+      "title": "Abbott Corporate Video",
+      "vimeo": "1096243125",
+      "img": "assets/work/abbott-corporate-video",
+      "poster_source": "site",
+      "w": 1920,
+      "h": 1080,
+      "portrait": false
+    },
+    {
+      "slug": "take-off-agreement-between-sanofi-sudair",
+      "title": "Take Off Agreement between Sanofi & Sudair",
+      "vimeo": "1061792907",
+      "img": "assets/work/take-off-agreement-between-sanofi-sudair",
+      "poster_source": "site",
+      "w": 1920,
+      "h": 1080,
+      "portrait": false
+    },
+    {
+      "slug": "neweast-aisin-corporate-video",
+      "title": "Neweast Aisin Corporate Video",
+      "vimeo": "1044293612",
+      "img": "assets/work/neweast-aisin-corporate-video",
+      "poster_source": "site",
+      "w": 1920,
+      "h": 1080,
+      "portrait": false
+    },
+    {
+      "slug": "sudair-saudi-national-day-video",
+      "title": "sudair Saudi National Day Video",
+      "vimeo": "1121168234",
+      "img": "assets/work/sudair-saudi-national-day-video",
+      "poster_source": "site",
+      "w": 1920,
+      "h": 1080,
+      "portrait": false
+    },
+    {
+      "slug": "al-naghi-saudi-national-day",
+      "title": "Al Naghi Saudi National Day",
+      "vimeo": "1129104747",
+      "img": "assets/work/al-naghi-saudi-national-day",
+      "poster_source": "site",
+      "w": 1920,
+      "h": 1080,
+      "portrait": false
+    },
+    {
+      "slug": "abbott-x-kwait-blood-bank-interviews",
+      "title": "ِAbbott X Kwait Blood Bank Interviews",
+      "vimeo": "1096246650",
+      "img": "assets/work/abbott-x-kwait-blood-bank-interviews",
+      "poster_source": "site",
+      "w": 1920,
+      "h": 1080,
+      "portrait": false
+    },
+    {
+      "slug": "la-roche-posay-mela-b3-cgi",
+      "title": "LA Roche- Posay Mela B3 CGI",
+      "vimeo": "1000062298",
+      "img": "assets/work/la-roche-posay-mela-b3-cgi",
+      "poster_source": "site",
+      "w": 1920,
+      "h": 1080,
+      "portrait": false
+    },
+    {
+      "slug": "neweast-automechanika-3d-screen",
+      "title": "Neweast Automechanika 3D Screen",
+      "vimeo": "1044938306",
+      "img": "assets/work/neweast-automechanika-3d-screen",
+      "poster_source": "site",
+      "w": 1080,
+      "h": 1920,
+      "portrait": true
+    },
+    {
+      "slug": "dermactive-el-nahdi-cgi-ad",
+      "title": "Dermactive & El Nahdi CGi Ad",
+      "vimeo": "1087517782",
+      "img": "assets/work/dermactive-el-nahdi-cgi-ad",
+      "poster_source": "site",
+      "w": 1080,
+      "h": 1920,
+      "portrait": true
+    },
+    {
+      "slug": "molynlcke-cycle-meeting-3d-screen",
+      "title": "Molynlcke Cycle Meeting 3D Screen",
+      "vimeo": "1121174207",
+      "img": "assets/work/molynlcke-cycle-meeting-3d-screen",
+      "poster_source": "site",
+      "w": 1080,
+      "h": 1920,
+      "portrait": true
+    },
+    {
+      "slug": "anamorphic-illusion-showreel",
+      "title": "Anamorphic illusion Showreel",
+      "vimeo": "1046771415",
+      "img": "assets/work/anamorphic-illusion-showreel",
+      "poster_source": "site",
+      "w": 1920,
+      "h": 1080,
+      "portrait": false
+    },
+    {
+      "slug": "l-oreal-derma-2024-closing-video",
+      "title": "L'Oreal Derma 2024 Closing Video",
+      "vimeo": "946172331",
+      "img": "assets/work/l-oreal-derma-2024-closing-video",
+      "poster_source": "site",
+      "w": 1920,
+      "h": 1080,
+      "portrait": false
+    },
+    {
+      "slug": "neweast-isuzu-riyadh-grand-opening-recap-video",
+      "title": "Neweast Isuzu Riyadh Grand Opening Recap Video",
+      "vimeo": "1087504352",
+      "img": "assets/work/neweast-isuzu-riyadh-grand-opening-recap-video",
+      "poster_source": "site",
+      "w": 1920,
+      "h": 1080,
+      "portrait": false
+    },
+    {
+      "slug": "neweast-aisin-gala-dinner-recap-video",
+      "title": "Neweast Aisin Gala Dinner Recap Video",
+      "vimeo": "1044933778",
+      "img": "assets/work/neweast-aisin-gala-dinner-recap-video",
+      "poster_source": "site",
+      "w": 1920,
+      "h": 1080,
+      "portrait": false
+    },
+    {
+      "slug": "molnlycke-cycle-meeting-recap-video",
+      "title": "Molnlycke Cycle meeting Recap Video",
+      "vimeo": "1067272227",
+      "img": "assets/work/molnlycke-cycle-meeting-recap-video",
+      "poster_source": "site",
+      "w": 1920,
+      "h": 1080,
+      "portrait": false
+    },
+    {
+      "slug": "filorga-event-recap-video",
+      "title": "Filorga Event Recap Video",
+      "vimeo": "1087509454",
+      "img": "assets/work/filorga-event-recap-video",
+      "poster_source": "site",
+      "w": 1920,
+      "h": 1080,
+      "portrait": false
+    },
+    {
+      "slug": "spimaco-cycle-meeting-recap-video",
+      "title": "Spimaco Cycle Meeting Recap Video",
+      "vimeo": "1063174099",
+      "img": "assets/work/spimaco-cycle-meeting-recap-video",
+      "poster_source": "site",
+      "w": 1920,
+      "h": 1080,
+      "portrait": false
+    },
+    {
+      "slug": "vichy-derma-gallery-recap-video",
+      "title": "Vichy Derma Gallery Recap Video",
+      "vimeo": "946566818",
+      "img": "assets/work/vichy-derma-gallery-recap-video",
+      "poster_source": "site",
+      "w": 1920,
+      "h": 1080,
+      "portrait": false
+    },
+    {
+      "slug": "qv-x-elnahdi-general-recap-video",
+      "title": "QV X Elnahdi General Recap Video",
+      "vimeo": "1087959658",
+      "img": "assets/work/qv-x-elnahdi-general-recap-video",
+      "poster_source": "site",
+      "w": 1920,
+      "h": 1080,
+      "portrait": false
+    },
+    {
+      "slug": "jeddah-derm-2024-closing-video",
+      "title": "Jeddah Derm 2024 Closing Video",
+      "vimeo": "1129806297",
+      "img": "assets/work/jeddah-derm-2024-closing-video",
+      "poster_source": "site",
+      "w": 1920,
+      "h": 1080,
+      "portrait": false
+    },
+    {
+      "slug": "neweast-isuzu-grand-opening-animated-screen",
+      "title": "Neweast Isuzu Grand opening Animated Screen",
+      "vimeo": "1046727295",
+      "img": "assets/work/neweast-isuzu-grand-opening-animated-screen",
+      "poster_source": "site",
+      "w": 1920,
+      "h": 1080,
+      "portrait": false
+    },
+    {
+      "slug": "sudair-x-ksmc-hospital-awareness-video",
+      "title": "Sudair X KSMC Hospital Awareness Video",
+      "vimeo": "1044950394",
+      "img": "assets/work/sudair-x-ksmc-hospital-awareness-video",
+      "poster_source": "site",
+      "w": 1920,
+      "h": 1080,
+      "portrait": false
+    },
+    {
+      "slug": "whites-school-campaign-awareness-video",
+      "title": "Whites School Campaign Awareness Video",
+      "vimeo": "1096217860",
+      "img": "assets/work/whites-school-campaign-awareness-video",
+      "poster_source": "site",
+      "w": 1920,
+      "h": 1080,
+      "portrait": false
+    },
+    {
+      "slug": "spc-seroflo-inhaler-whiteboard-awareness",
+      "title": "Spc- Seroflo Inhaler Whiteboard Awareness",
+      "vimeo": "1046739402",
+      "img": "assets/work/spc-seroflo-inhaler-whiteboard-awareness",
+      "poster_source": "site",
+      "w": 1920,
+      "h": 1080,
+      "portrait": false
+    },
+    {
+      "slug": "seroflo-ciphaler-awareness-video",
+      "title": "Seroflo Ciphaler Awareness Video",
+      "vimeo": "1121138755",
+      "img": "assets/work/seroflo-ciphaler-awareness-video",
+      "poster_source": "site",
+      "w": 1920,
+      "h": 1080,
+      "portrait": false
+    },
+    {
+      "slug": "medical-skintellectual-solutions",
+      "title": "Medical_Skintellectual Solutions",
+      "vimeo": "1096212925",
+      "img": "assets/work/medical-skintellectual-solutions",
+      "poster_source": "site",
+      "w": 1920,
+      "h": 1080,
+      "portrait": false
+    },
+    {
+      "slug": "abbott-x-kwait-blood-bank-awareness-video",
+      "title": "Abbott X kwait Blood Bank Awareness Video",
+      "vimeo": "1096245358",
+      "img": "assets/work/abbott-x-kwait-blood-bank-awareness-video",
+      "poster_source": "site",
+      "w": 1920,
+      "h": 1080,
+      "portrait": false
+    },
+    {
+      "slug": "zoiets-awarness-video",
+      "title": "Zoiets Awarness Video",
+      "vimeo": "1096238587",
+      "img": "assets/work/zoiets-awarness-video",
+      "poster_source": "site",
+      "w": 1920,
+      "h": 1080,
+      "portrait": false
+    },
+    {
+      "slug": "medugate-menarini-hcp-portal-on-boarding-video",
+      "title": "Medugate- Menarini HCP Portal - On Boarding Video",
+      "vimeo": "1096218525",
+      "img": "assets/work/medugate-menarini-hcp-portal-on-boarding-video",
+      "poster_source": "site",
+      "w": 1920,
+      "h": 1080,
+      "portrait": false
+    },
+    {
+      "slug": "orchidia-solo-fresh-video",
+      "title": "Orchidia - Solo fresh Video",
+      "vimeo": "1046731124",
+      "img": "assets/work/orchidia-solo-fresh-video",
+      "poster_source": "site",
+      "w": 1920,
+      "h": 1080,
+      "portrait": false
+    },
+    {
+      "slug": "fgm-female-genital-mutilation",
+      "title": "FGM- Female Genital Mutilation",
+      "vimeo": "1129791881",
+      "img": "assets/work/fgm-female-genital-mutilation",
+      "poster_source": "site",
+      "w": 1920,
+      "h": 1080,
+      "portrait": false
+    },
+    {
+      "slug": "interviews-showreel",
+      "title": "Interviews Showreel",
+      "vimeo": "1046716780",
+      "img": "assets/work/interviews-showreel",
+      "poster_source": "site",
+      "w": 1920,
+      "h": 1080,
+      "portrait": false
+    },
+    {
+      "slug": "neweast-automechanika-interviews",
+      "title": "Neweast Automechanika Interviews",
+      "vimeo": "1044946268",
+      "img": "assets/work/neweast-automechanika-interviews",
+      "poster_source": "site",
+      "w": 1080,
+      "h": 1920,
+      "portrait": true
+    },
+    {
+      "slug": "vichy-derma-gallery-interviews",
+      "title": "Vichy Derma Gallery Interviews",
+      "vimeo": "1044948416",
+      "img": "assets/work/vichy-derma-gallery-interviews",
+      "poster_source": "site",
+      "w": 1080,
+      "h": 1920,
+      "portrait": true
+    },
+    {
+      "slug": "bionnex-event-interviews",
+      "title": "Bionnex Event Interviews",
+      "vimeo": "1129833861",
+      "img": "assets/work/bionnex-event-interviews",
+      "poster_source": "site",
+      "w": 1080,
+      "h": 1920,
+      "portrait": true
+    }
+  ],
+  "clients": [
+    {
+      "slug": "abbvie",
+      "company": "AbbVie"
+    },
+    {
+      "slug": "arac-healthcare",
+      "company": "ARAC Healthcare (آراك)"
+    },
+    {
+      "slug": "asaq-nasaq-al-efjaz",
+      "company": "ASAQ — Nasaq Al Efjaz"
+    },
+    {
+      "slug": "astrazeneca",
+      "company": "AstraZeneca"
+    },
+    {
+      "slug": "avalon-pharma",
+      "company": "Avalon Pharma"
+    },
+    {
+      "slug": "bayer",
+      "company": "Bayer"
+    },
+    {
+      "slug": "biotech-cigalah",
+      "company": "Biotech Cigalah"
+    },
+    {
+      "slug": "boston-scientific",
+      "company": "Boston Scientific"
+    },
+    {
+      "slug": "eva-pharma",
+      "company": "EVA Pharma"
+    },
+    {
+      "slug": "fresenius",
+      "company": "Fresenius"
+    },
+    {
+      "slug": "gilead",
+      "company": "Gilead / Kite"
+    },
+    {
+      "slug": "inpharmus",
+      "company": "inpharmus"
+    },
+    {
+      "slug": "menarini",
+      "company": "Menarini Group"
+    },
+    {
+      "slug": "molnlycke",
+      "company": "Mölnlycke"
+    },
+    {
+      "slug": "nahdi",
+      "company": "Nahdi (النهدي)"
+    },
+    {
+      "slug": "opella",
+      "company": "Opella"
+    },
+    {
+      "slug": "parkville",
+      "company": "Parkville"
+    },
+    {
+      "slug": "pfizer",
+      "company": "Pfizer"
+    },
+    {
+      "slug": "pharmalys-laboratories",
+      "company": "Pharmalys Laboratories"
+    },
+    {
+      "slug": "saja",
+      "company": "SAJA"
+    },
+    {
+      "slug": "semak",
+      "company": "SEMAK"
+    },
+    {
+      "slug": "spc-sudair-pharma",
+      "company": "SPC — Sudair Pharma Company"
+    },
+    {
+      "slug": "abbott",
+      "company": "Abbott"
+    },
+    {
+      "slug": "alnaghi",
+      "company": "Alnaghi"
+    },
+    {
+      "slug": "automechanika",
+      "company": "Automechanika Frankfurt"
+    },
+    {
+      "slug": "bionnex",
+      "company": "Bionnex Heaven"
+    },
+    {
+      "slug": "dermactive",
+      "company": "Dermactive"
+    },
+    {
+      "slug": "elsewedy-electric",
+      "company": "Elsewedy Electric"
+    },
+    {
+      "slug": "filorga",
+      "company": "Laboratoires Filorga"
+    },
+    {
+      "slug": "hikma",
+      "company": "Hikma"
+    },
+    {
+      "slug": "isuzu",
+      "company": "Isuzu"
+    },
+    {
+      "slug": "jeddaderm",
+      "company": "JeddaDerm"
+    },
+    {
+      "slug": "la-roche-posay",
+      "company": "La Roche-Posay"
+    },
+    {
+      "slug": "loreal-dermatological-beauty",
+      "company": "L'Oréal Dermatological Beauty"
+    },
+    {
+      "slug": "mondelez-international",
+      "company": "Mondelēz International"
+    },
+    {
+      "slug": "neweast",
+      "company": "Neweast"
+    },
+    {
+      "slug": "proderma",
+      "company": "ProDerma"
+    },
+    {
+      "slug": "qasser-al-saraya",
+      "company": "Qasser Al-Saraya — قصر السرايا"
+    },
+    {
+      "slug": "qv-face",
+      "company": "QV Face"
+    },
+    {
+      "slug": "skintellectual-solutions",
+      "company": "Skintellectual Solutions"
+    },
+    {
+      "slug": "spimaco",
+      "company": "SPIMACO — الدوائية"
+    },
+    {
+      "slug": "vichy-laboratoires",
+      "company": "Vichy Laboratoires"
+    },
+    {
+      "slug": "whites",
+      "company": "Whites"
+    },
+    {
+      "slug": "zoetis",
+      "company": "Zoetis"
+    },
+    {
+      "slug": "qv",
+      "company": "QV"
+    }
+  ],
+  "team": [
+    "fy25-team-1",
+    "fy25-team-2",
+    "fy25-team-3",
+    "fy25-team-4",
+    "fy25-team-5",
+    "fy25-team-6"
+  ],
+  "notes": []
+}
