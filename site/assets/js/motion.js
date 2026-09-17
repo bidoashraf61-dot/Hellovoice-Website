@@ -2407,7 +2407,15 @@
     var clearBtn = $("[data-clear-filters]");
     var listing = $(".projects_listing");
 
-    var active = [];                 /* empty means "all work" */
+    /* Two facets since 17 Sep 2026: the video type and the sector. Chips in the
+     * same row are a union ("pharma or automotive"); the two rows narrow
+     * together ("corporate films, for pharma"). */
+    var active = { type: [], sector: [] };
+    function facetOf(btn) {
+      var row = btn.closest("[data-facet]");
+      return (row && row.getAttribute("data-facet")) || "sector";
+    }
+    function allActive() { return active.type.concat(active.sector); }
 
     function labelFor(value) {
       var b = buttons.filter(function (x) { return x.getAttribute("data-filter") === value; })[0];
@@ -2416,9 +2424,12 @@
 
     function apply() {
       var shown = [];
+      var any = allActive();
       items.forEach(function (item) {
         var tags = (item.getAttribute("data-tags") || "").split(" ");
-        var on = !active.length || active.some(function (f) { return tags.indexOf(f) !== -1; });
+        var hit = function (f) { return tags.indexOf(f) !== -1; };
+        var on = (!active.type.length || active.type.some(hit)) &&
+                 (!active.sector.length || active.sector.some(hit));
         item.hidden = !on;
         item.classList.remove("is-offset");
         if (on) shown.push(item);
@@ -2426,7 +2437,7 @@
 
       groups.forEach(function (g) {
         if (g.hasAttribute("data-exclusive-group")) {
-          g.hidden = active.length > 0;      /* the pick is not a sector */
+          g.hidden = any.length > 0;         /* the client's pick is not a filter */
           return;
         }
         g.hidden = !$$(".project_item", g).some(function (it) { return !it.hidden; });
@@ -2448,33 +2459,34 @@
         band.hidden = !next || next.hidden;
       });
 
-      if (listing) listing.classList.toggle("is-results", active.length > 0);
-      grid.classList.toggle("is-filtered", active.length > 0);
+      if (listing) listing.classList.toggle("is-results", any.length > 0);
+      grid.classList.toggle("is-filtered", any.length > 0);
       shown.forEach(function (item, i) {
         if (i % 2 === 1) item.classList.add("is-offset");
       });
 
       buttons.forEach(function (b) {
         var v = b.getAttribute("data-filter");
-        var on = v === "all" ? !active.length : active.indexOf(v) !== -1;
+        var list = active[facetOf(b)];
+        var on = (v === "all" || v === "all-type") ? !list.length : list.indexOf(v) !== -1;
         b.classList.toggle("is-active", on);
         b.setAttribute("aria-pressed", on ? "true" : "false");
       });
 
-      if (resultBar) resultBar.hidden = !active.length;
+      if (resultBar) resultBar.hidden = !any.length;
       /* The count reads only while a filter is on. Unfiltered it was a running
        * total of the whole portfolio under the controls, which is inventory
        * rather than navigation — the client's call is that it goes. Filtered it
        * stays, because a visitor who has narrowed to a handful needs to know
        * whether that handful is the answer or a failure. */
       if (count) {
-        count.textContent = active.length
+        count.textContent = any.length
           ? shown.length + (shown.length === 1 ? " film" : " films")
           : "";
       }
       if (activeChips) {
         activeChips.innerHTML = "";
-        active.forEach(function (v) {
+        any.forEach(function (v) {
           var chip = document.createElement("button");
           chip.type = "button";
           chip.className = "works_active_chip";
@@ -2483,7 +2495,9 @@
             '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" ' +
             'stroke="currentColor" stroke-width="2.5" aria-hidden="true">' +
             '<path d="M6 6l12 12M18 6L6 18"/></svg>';
-          chip.addEventListener("click", function () { toggle(v); });
+          chip.addEventListener("click", function () {
+            toggle(v, active.type.indexOf(v) !== -1 ? "type" : "sector");
+          });
           activeChips.appendChild(chip);
         });
       }
@@ -2511,19 +2525,24 @@
       ScrollTrigger.refresh();
     }
 
-    function toggle(value) {
-      if (value === "all") { active = []; apply(); return; }
-      var i = active.indexOf(value);
-      if (i === -1) active.push(value); else active.splice(i, 1);
+    function toggle(value, facet) {
+      facet = facet || "sector";
+      if (value === "all") { active.sector = []; apply(); return; }
+      if (value === "all-type") { active.type = []; apply(); return; }
+      var list = active[facet];
+      var i = list.indexOf(value);
+      if (i === -1) list.push(value); else list.splice(i, 1);
       apply();
     }
 
     buttons.forEach(function (b) {
       b.addEventListener("click", function () {
-        toggle(b.getAttribute("data-filter"));
+        toggle(b.getAttribute("data-filter"), facetOf(b));
       });
     });
-    if (clearBtn) clearBtn.addEventListener("click", function () { active = []; apply(); });
+    if (clearBtn) clearBtn.addEventListener("click", function () {
+      active = { type: [], sector: [] }; apply();
+    });
 
     apply();
   })();

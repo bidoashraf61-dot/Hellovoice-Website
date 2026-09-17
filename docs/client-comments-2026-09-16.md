@@ -40,3 +40,14 @@ Rules from the client:
 | D | Influencer · hero | Stats clash with the video's burned-in subtitles — stronger scrim | Done |
 | E | Services · film tiles | Tile label sits over the client logo in the poster | Done — full-width tiles, one-line label |
 | F | Work · category sections | Same tag repeated under every film in its own category | Kept — client asked for the tag to stay, only smaller (#10) |
+
+## Round four — 17 Sep 2026
+
+| # | Where | Change | Status |
+|---|---|---|---|
+| 20 | Home · hero | The client's Vimeo film (1227814361) loops in the hero; phones show the whole 16:9 frame with the lockup over it | Done |
+| 21 | Work · filter | Second chip row by video type — the six categories plus AI Videos; the rows narrow together | Done |
+| 22 | Work · AI Videos | Suliman Al Habib awareness, SVR Sun Secure, NewEast Isuzu grand opening (the wolf) | Done |
+| 23 | Home · What we make | Three services only, as on the Services page | Done |
+| 24 | Home + Work · the short film | "The Four Coats" section: looping cut of the film, poster, Higgsfield and festival lockups, synopsis, Watch the film | Done — replaces Featured Works on Home; leads the Work page |
+| 25 | Home · values | Ethics card removed from Home; About keeps all six | Done |

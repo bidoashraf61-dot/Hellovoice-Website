@@ -114,6 +114,21 @@ INDUSTRY_TAGS = [
 ]
 
 
+# The films made with AI, named by the client 17 Sep 2026. They keep their own
+# category as well — a film is an awareness film and an AI film at once, which
+# is why the bar carries two rows rather than one.
+AI_FILMS = {
+    "suliman-al-habib-patient-awarness-video",
+    "svr-sun-secure-spf50",
+    "neweast-isuzu-riyadh-grand-opening-video",
+}
+
+# The video-type row, in the order the page's own bands run.
+TYPE_TAGS = ["Commercial Ads", "Corporate Videos", "Awareness Videos",
+             "CGI & Anamorphic Illusion", "Events & Live Production",
+             "Interviews & Testimonials", "AI Videos"]
+
+
 def industry_tags(project) -> list:
     """Which industry facets a project carries.
 
@@ -276,7 +291,8 @@ def work_card(p, offset=False):
     # "Corporate Videos" and to "Automotive" without either filter knowing the
     # other exists. Built here rather than inline because a nested join inside
     # an f-string is not valid on the Python this builds with.
-    tagstr = " ".join([slug(p["section"])] + [slug(t) for t in industry_tags(p)])
+    tagstr = " ".join([slug(p["section"])] + [slug(t) for t in industry_tags(p)]
+                      + (["ai-videos"] if p.get("slug") in AI_FILMS else []))
     cls = "is-" + p["ratio"].replace(":", "-")
     img = (f'<img src="/assets/work/{p["img"]}-700.webp" '
            f'srcset="/assets/work/{p["img"]}-700.webp 700w, /assets/work/{p["img"]}-1400.webp 1400w" '
@@ -439,13 +455,23 @@ def works_page(html):
                 f'<span class="works_filter_label">{esc(label)}</span></button>')
 
     row_sector = "".join(chip(name, slug(name)) for name, _keys in INDUSTRY_TAGS)
+    # A second row, by what kind of film it is — the client's ask, 17 Sep 2026.
+    # The two rows narrow together: a sector and a type give the films that are
+    # both, while two chips in the same row give either.
+    row_type = "".join(chip(name, slug(name)) for name in TYPE_TAGS)
 
     buttons = (
         '<div class="works_filter_head">'
         '<span class="works_filter_kicker">Filter</span>'
         '<h3 class="works_filter_lead">What are you looking for?</h3>'
         '</div>'
-        '<div class="works_filter_chips" role="group" aria-label="Filter work by sector">'
+        '<p class="works_filter_row_label" id="filter-type-label">Video type</p>'
+        '<div class="works_filter_chips" data-facet="type" role="group" '
+        'aria-labelledby="filter-type-label">'
+        f'{chip("All types", "all-type", True)}{row_type}</div>'
+        '<p class="works_filter_row_label" id="filter-sector-label">Sector</p>'
+        '<div class="works_filter_chips" data-facet="sector" role="group" '
+        'aria-labelledby="filter-sector-label">'
         f'{chip("All work", "all", True)}{row_sector}</div>'
         '<div class="works_result_bar" data-result-bar hidden>'
         '<p class="works_result_count" role="status" aria-live="polite"></p>'
@@ -643,8 +669,13 @@ def services(html):
                     b = b[:at] + link + b[at:]
         return b
 
+    # The home page shows the three services the Services page leads with —
+    # the client's call, 17 Sep 2026. The full list still drives the ticker and
+    # the Services page's own sections.
+    home_names = {"Video Production", "Influencer Campaigns", "Technology Activations"}
+    shown = [sv for sv in SERVICES if sv[0] in home_names]
     run = "".join(block(name, tags, i)
-                  for i, (name, tags) in enumerate(SERVICES))
+                  for i, (name, tags) in enumerate(shown))
 
     # replace every existing block in one go
     first = html.index(tpl_found)
