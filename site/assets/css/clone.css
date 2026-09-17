@@ -5659,8 +5659,8 @@ html.intro-seen .preloader { display: none !important; }
   position: absolute; inset: -8%;
   z-index: 0;
   background: url("/assets/film/four-coats-art-1600.webp") center / cover no-repeat;
-  filter: blur(46px) saturate(1.1) brightness(.5);
-  opacity: .55;
+  filter: blur(60px) saturate(1.05) brightness(.45);
+  opacity: .48;
 }
 .film_feature::after {
   content: "";
@@ -5674,17 +5674,17 @@ html.intro-seen .preloader { display: none !important; }
    printed title so nothing on it competes with the heading. */
 .film_feature_inner {
   display: grid;
-  grid-template-columns: minmax(0, .58fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, .58fr);
   grid-template-areas:
     "head head"
-    "reel body";
+    "body reel";
   align-items: center;
   gap: clamp(20px, 2.4vw, 34px) clamp(26px, 3.6vw, 56px);
   width: min(100%, 1180px);
   margin-inline: auto;
 }
 .film_feature_head { grid-area: head; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
-.film_feature_lockup { width: clamp(200px, 20vw, 300px); height: auto; }
+.film_feature_lockup { width: clamp(280px, 28vw, 460px); height: auto; }
 .film_feature_kicker {
   display: inline-flex; align-items: center; gap: 9px; margin: 0;
   font-size: .75rem; letter-spacing: .16em; text-transform: uppercase;
@@ -5754,14 +5754,14 @@ html.intro-seen .preloader { display: none !important; }
 @media screen and (max-width: 991px) {
   .film_feature_inner {
     grid-template-columns: 1fr;
-    grid-template-areas: "head" "reel" "body";
+    grid-template-areas: "head" "body" "reel";
   }
   .film_feature_reel { height: auto; width: min(68%, 380px); margin-inline: auto; }
 }
 @media screen and (max-width: 767px) {
   .film_feature { padding-block: 48px; }
   .film_feature_head { justify-content: center; }
-  .film_feature_lockup { width: min(58vw, 230px); }
+  .film_feature_lockup { width: min(76vw, 300px); }
   .film_feature_reel { width: min(78%, 320px); }
   .film_feature_title { font-size: clamp(2.25rem, 11vw, 3rem); }
   .film_feature_play { width: 100%; justify-content: center; }
