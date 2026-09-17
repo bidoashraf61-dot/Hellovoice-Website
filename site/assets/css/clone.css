@@ -5662,7 +5662,9 @@ html.intro-seen .preloader { display: none !important; }
      the picture through (client, 18 Sep 2026). */
   background:
     linear-gradient(rgba(0, 0, 0, .66), rgba(0, 0, 0, .66)),
-    url("/assets/film/four-coats-cover-1600.webp") center / cover no-repeat;
+    /* the artwork crop: the poster past its printed title, so the house fills
+       the band and the film's name is never doubled behind the heading */
+    url("/assets/film/four-coats-art-1600.webp") center 62% / cover no-repeat;
 }
 .film_feature::after {
   content: "";
