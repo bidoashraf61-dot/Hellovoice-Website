@@ -5656,16 +5656,22 @@ html.intro-seen .preloader { display: none !important; }
   isolation: isolate;
 }
 .film_feature_bg {
-  position: absolute; inset: -8%;
+  position: absolute; inset: 0;
   z-index: 0;
-  background: url("/assets/film/four-coats-art-1600.webp") center / cover no-repeat;
-  filter: blur(60px) saturate(1.05) brightness(.45);
-  opacity: .48;
+  /* The film's own cover, held under a black wash that is light enough to see
+     the picture through (client, 18 Sep 2026). */
+  background:
+    linear-gradient(rgba(0, 0, 0, .66), rgba(0, 0, 0, .66)),
+    url("/assets/film/four-coats-cover-1600.webp") center / cover no-repeat;
 }
 .film_feature::after {
   content: "";
   position: absolute; inset: 0; z-index: 1; pointer-events: none;
-  background: radial-gradient(120% 90% at 50% 15%, rgba(5,5,5,.25), rgba(5,5,5,.88) 72%);
+  /* a soft hold under the type on the left, so the copy keeps its contrast
+     without flattening the picture across the whole band */
+  background:
+    linear-gradient(to right, rgba(5,5,5,.72) 0%, rgba(5,5,5,.45) 46%, rgba(5,5,5,.2) 100%),
+    linear-gradient(to top, rgba(5,5,5,.72), rgba(5,5,5,0) 38%);
 }
 .film_feature .padding_global { position: relative; z-index: 2; }
 /* Split screen (client, 18 Sep 2026): the vertical reel runs full height on
