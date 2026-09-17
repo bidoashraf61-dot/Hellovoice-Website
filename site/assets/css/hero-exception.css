@@ -380,27 +380,67 @@
 }
 .hero_section.is-light .hero_vimeo.is-ready { opacity: 1; }
 
-/* Phones (upright or on their side): the whole 16:9 film as a full-width band
-   under the header, and the lockup on the dark ground beneath it — a
-   viewport-tall box would have cut the film to a narrow slice. */
+/* Phones: the hero is exactly the film — a full-width 16:9 frame, nothing
+   cropped — with the lockup over it, as on desktop. The type steps down so the
+   whole block sits inside the frame's lower half. */
 @media screen and (max-width: 767px) {
   .hero_section.is-light {
     min-height: 0 !important;
-    aspect-ratio: auto !important;
-    justify-content: flex-start;
-    padding-top: 84px;
-    padding-bottom: 36px;
+    aspect-ratio: 16 / 9 !important;
+    height: auto;
+    justify-content: flex-end;
+    padding-top: 0;
+    padding-bottom: clamp(.5rem, 2vw, .8rem);
   }
   .hero_section.is-light .hero_image {
-    position: relative !important;
-    inset: auto !important;
-    order: -1;
-    width: 100%;
-    aspect-ratio: 16 / 9;
+    position: absolute !important;
+    inset: 0 !important;
+    order: 0;
+    width: auto;
+    aspect-ratio: auto;
     height: auto;
-    margin-bottom: 28px;
-    background-image: url("https://i.vimeocdn.com/video/2202126783-9d94dc1b8e8e84d09aa22d7d6bdb47d94a9bd744966854b7e9efc4e63f1dcd57-d_1280?region=us") !important;
+    margin-bottom: 0;
   }
-  .hero_section.is-light::after,
   .hero_section.is-light::before { display: none; }
+  .hero_section.is-light::after { display: block; height: 76%; }
+  .hero_section.is-light .hero_heading { margin-bottom: 2px; padding: 0 4%; }
+  /* !important: clone.css sizes every phone h1 with one, and the hero's
+     lockup has to fit inside the film's lower half. */
+  .hero_section.is-light .hero_heading h1 { font-size: clamp(1.15rem, 6.1vw, 1.75rem) !important; line-height: .85; }
+  .hero_section.is-light .hero_content_wrapper { margin: 0 0 4px; padding: 0 4%; }
+  .hero_section.is-light .hero_sub_title { font-size: clamp(.6rem, 2.7vw, .8rem) !important; line-height: 1.18; max-width: 24ch; }
+  .hero_section.is-light .hero_proof_area {
+    margin: 0 4%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: .6rem;
+    padding-top: 6px;
+  }
+  .hero_section.is-light .hero_social_links { gap: .4rem; }
+  .hero_section.is-light .hero_social_links .text-weight-medium { font-size: .7rem; }
+  .hero_section.is-light .hero_social_line { width: 18px; }
+  .hero_section.is-light .hero_social_icon_link { width: 26px; height: 26px; }
+  .hero_section.is-light .hero_social_icon svg { width: 15px; height: 15px; }
+  .hero_section.is-light .hero_stat { gap: .4rem; }
+  .hero_section.is-light .hero_stat img,
+  .hero_section.is-light .hero_stat svg { width: 22px; height: 22px; }
+  .hero_section.is-light .hero_stat_number,
+  .hero_section.is-light .hero_stat .text-weight-medium { font-size: .8rem; }
+  .hero_section.is-light .hero_stat_text,
+  .hero_section.is-light .hero_stat p:last-child { font-size: .55rem; letter-spacing: .04em; }
+}
+
+/* The smallest phones (SE, 320px): the film's frame is only 180px tall, so the
+   lockup trims again to clear the header — the label beside the Instagram icon
+   goes, the type steps down once more. */
+@media screen and (max-width: 360px) {
+  .hero_section.is-light .hero_heading h1 { font-size: clamp(1rem, 5.3vw, 1.3rem) !important; }
+  .hero_section.is-light .hero_sub_title { font-size: .55rem !important; max-width: 30ch; }
+  .hero_section.is-light .hero_proof_area { padding-top: 4px; gap: .4rem; }
+  .hero_section.is-light .hero_social_links .text-weight-medium { display: none; }
+  .hero_section.is-light .hero_social_line { width: 12px; }
+  .hero_section.is-light .hero_stat img,
+  .hero_section.is-light .hero_stat svg { width: 18px; height: 18px; }
+  .hero_section.is-light .hero_stat_title { font-size: .72rem !important; }
 }
