@@ -2594,6 +2594,33 @@
    * the film fades in over it on its first decoded frame. A film that is slow,
    * refused (iOS Low Power Mode blocks autoplay) or never decodes leaves the
    * character on screen instead of an empty box. */
+  /* The client's hero film on Vimeo (17 Sep 2026). The iframe stays invisible
+   * over the still until the player reports it is playing, so the hero never
+   * flashes Vimeo's black loading frame; if no word comes within 6s it is shown
+   * anyway. Under reduced motion the iframe is never loaded and the still stays. */
+  (function heroVimeo() {
+    var frame = $("[data-hero-vimeo]");
+    if (!frame) return;
+    if (reduced) { frame.remove(); return; }
+    var shown = false;
+    function show() { if (!shown) { shown = true; frame.classList.add("is-ready"); } }
+    function post(msg) { try { frame.contentWindow.postMessage(JSON.stringify(msg), "https://player.vimeo.com"); } catch (e) {} }
+    window.addEventListener("message", function (ev) {
+      if (!/^https:\/\/player\.vimeo\.com$/.test(ev.origin) || ev.source !== frame.contentWindow) return;
+      var d = ev.data;
+      if (typeof d === "string") { try { d = JSON.parse(d); } catch (e) { return; } }
+      if (!d || !d.event) return;
+      if (d.event === "ready") {
+        post({ method: "addEventListener", value: "play" });
+        post({ method: "addEventListener", value: "timeupdate" });
+        post({ method: "addEventListener", value: "playProgress" });
+      } else if (d.event === "play" || d.event === "timeupdate" || d.event === "playProgress") {
+        show();
+      }
+    });
+    frame.addEventListener("load", function () { setTimeout(show, 6000); });
+  })();
+
   (function heroFilm() {
     var film = $("[data-hero-film]");
     var hero = film && film.closest(".hero_section");

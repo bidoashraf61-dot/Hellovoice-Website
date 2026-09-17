@@ -47,6 +47,11 @@ CDN = "https://cdn.prod.website-files.com"
 # approved 3D character rather than the reference's dark VR photograph.
 # Set to False for a hero that matches the reference exactly.
 HERO_EXCEPTION = True
+# The home hero film (client, 17 Sep 2026) and Vimeo's own 1280x720 still of it,
+# shown until the player's first frame and whenever the film cannot play.
+HERO_VIMEO = "1227814361"
+HERO_POSTER = ("https://i.vimeocdn.com/video/2202126783-9d94dc1b8e8e84d09aa22d7d6bdb47d94"
+               "a9bd744966854b7e9efc4e63f1dcd57-d_1280?region=us")
 
 # The WebGL character is ON, at the client's request.
 #
@@ -1258,10 +1263,17 @@ def apply_hero_exception(html: str) -> str:
     html = html.replace(
         '<div data-hero-image="" class="hero_image"></div>',
         '<div data-hero-image="" class="hero_image">'
-        '<video class="hero_film" data-hero-film muted playsinline loop autoplay '
-        'preload="metadata" aria-hidden="true" tabindex="-1">'
-        '<source src="/assets/video/hero-loop.mp4" type="video/mp4"/>'
-        '</video></div>', 1)
+        # 17 Sep 2026: the client's hero film, played by Vimeo's background
+        # player (muted, looping, no controls). It is 16:9 — the desktop hero is
+        # 16:9 too, and phones show it as a full-width band (hero-exception.css)
+        # so nothing is cropped on either.
+        f'<iframe class="hero_film hero_vimeo" data-hero-vimeo '
+        f'src="https://player.vimeo.com/video/{HERO_VIMEO}?background=1&amp;autoplay=1'
+        f'&amp;loop=1&amp;muted=1&amp;dnt=1&amp;quality=1080p" '
+        'title="HelloVoice showreel" allow="autoplay; fullscreen; picture-in-picture" '
+        'referrerpolicy="strict-origin-when-cross-origin" tabindex="-1" aria-hidden="true" '
+        'frameborder="0"></iframe>'
+        '</div>', 1)
     # No poster attribute. The still is the hero's own CSS background (see
     # hero-exception.css), so it shows whether or not the film ever decodes —
     # a poster on the video is hidden along with the video until its first
@@ -1279,10 +1291,10 @@ def apply_hero_exception(html: str) -> str:
     # once rather than when the stylesheet gets round to it — the portrait cut
     # on an upright phone, the 16:9 frame everywhere else.
     html = html.replace("</head>", (
-        '<link rel="preload" as="image" href="/assets/video/hero-loop-m-poster.jpg" '
-        'media="(max-width: 767px) and (orientation: portrait)" fetchpriority="high"/>'
-        '<link rel="preload" as="image" href="/assets/video/hero-loop-poster.jpg" '
-        'media="(min-width: 768px), (orientation: landscape)"/>') + "</head>", 1)
+        f'<link rel="preload" as="image" href="{HERO_POSTER}" fetchpriority="high"/>'
+        '<link rel="preconnect" href="https://player.vimeo.com"/>'
+        '<link rel="preconnect" href="https://i.vimeocdn.com"/>'
+        '<link rel="preconnect" href="https://vod-adaptive-ak.vimeocdn.com"/>') + "</head>", 1)
 
     if not HERO_3D:
         return html

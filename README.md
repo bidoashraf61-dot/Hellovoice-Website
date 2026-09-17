@@ -30,6 +30,6 @@ Nothing needs to be built on the host — `site/` is committed ready to serve.
 ## Notes
 
 - The **creator catalogue** is a separate app at https://influencer-catalogue.hellovoice.co.uk (it needs its own API); the site links to it.
-- The home hero plays `site/assets/video/hero-loop.mp4` (phones: `hero-loop-m.mp4`). Replace those files to change the hero film.
+- The home hero plays the Vimeo film set in `build/clone.py` (`HERO_VIMEO`, `HERO_POSTER`); change the ID there and rebuild to swap it. It is 16:9: full hero on desktop, a full-width band on phones.
 - The private creator roster (`content/catalogue_private.json`) is not in this repository.
 - `site/assets/ref/` holds the Webflow template's own assets the design is built on; check its licence before a public launch.
