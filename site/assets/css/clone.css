@@ -5686,6 +5686,7 @@ html.intro-seen .preloader { display: none !important; }
   grid-template-areas:
     "head head"
     "body reel"
+    "meta reel"
     "cta  reel";
   align-items: start;
   align-items: center;
@@ -5752,8 +5753,10 @@ html.intro-seen .preloader { display: none !important; }
 }
 .film_feature_synopsis { margin: 14px 0 0; font-size: 1.0625rem; line-height: 1.6; color: rgba(255,255,255,.88); max-width: 44ch; }
 .film_feature_meta {
+  grid-area: meta;
+  align-self: start;
   display: flex; flex-wrap: wrap; gap: 6px 22px;
-  margin: 14px 0 0; padding: 0; list-style: none;
+  margin: 12px 0 0; padding: 0; list-style: none;
   font-size: .6875rem; letter-spacing: .12em; text-transform: uppercase;
   color: rgba(255,255,255,.62);
 }
@@ -5775,8 +5778,11 @@ html.intro-seen .preloader { display: none !important; }
 @media screen and (max-width: 991px) {
   .film_feature_inner {
     grid-template-columns: 1fr;
-    grid-template-areas: "head" "body" "reel" "cta";
+    /* On a phone the credits sit centred under the film, just above the
+       button (client, 18 Sep 2026). */
+    grid-template-areas: "head" "body" "reel" "meta" "cta";
   }
+  .film_feature_meta { justify-content: center; text-align: center; margin-top: 4px; }
   .film_feature_reel { height: auto; width: min(68%, 360px); margin-inline: auto; }
   .film_feature_actions { justify-content: center; }
 }
