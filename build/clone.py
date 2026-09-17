@@ -2278,29 +2278,28 @@ FILM = {
     "tagline": "Every house keeps its own rules",
     "synopsis": ("Four thieves enter an abandoned house expecting an easy score, "
                  "only to discover that the house has its own plans for them."),
-    "runtime": "3 min",
+    "runtime": "11 min",
     "url": ("https://higgsfield.ai/@hellovoice/projects/@id__0d8cb1f9-8534-4ad3-"
             "91d6-4def0a9b7549?from=%2Fcontests%2Fhiggsfield-global-film-festival"),
 }
 
 
 def film_feature(where: str = "") -> str:
-    """The film, on a black ground: its own footage running behind the title.
+    """The film, on its own poster: the cover as a faded ground, the festival
+    lockup in the corner, and both cuts running as silent loops beside the copy.
 
-    The loop is a sped-up cut of the film itself (build note: 4 passages at
-    0.42x speed, 21s, 1.5MB — a phone gets a 0.55MB copy), so the section moves
-    without carrying a three-minute file. "Watch the film" opens the whole film
-    in the site's own player; the festival lockup links to the entry.
+    "Watch the film" goes to the entry on Higgsfield — that is where the whole
+    11 minutes lives, with its breakdown. The two loops here are a sped-up cut
+    of the film (21s) and the vertical reel, both muted and looping.
     """
     return (
         f'<section class="film_feature{where}" id="the-four-coats" '
         'aria-labelledby="four-coats-title">'
-        '<div class="film_feature_media" aria-hidden="true">'
-        '<video class="film_feature_video" muted loop playsinline preload="none" '
-        'poster="/assets/film/four-coats-cover-1600.webp">'
-        '<source src="/assets/film/four-coats-loop.mp4" type="video/mp4"/>'
-        '</video></div>'
+        '<div class="film_feature_bg" aria-hidden="true"></div>'
         '<div class="film_feature_scrim" aria-hidden="true"></div>'
+        '<img class="film_feature_lockup" src="/assets/film/festival-lockup.png" '
+        'width="1230" height="256" alt="Higgsfield Global Film Festival" '
+        'loading="lazy" decoding="async"/>'
         '<div class="padding_global"><div class="container">'
         '<div class="film_feature_grid">'
         '<div class="film_feature_copy">'
@@ -2317,32 +2316,31 @@ def film_feature(where: str = "") -> str:
         '<li>Written, directed and produced by HelloVoice</li>'
         '</ul>'
         '<div class="film_feature_actions">'
-        '<button type="button" class="film_feature_play" '
-        'data-ig-embed="/assets/film/four-coats.mp4" data-ratio="16:9" '
-        f'data-title="{HC.esc(FILM["title"])}">'
+        f'<a class="film_feature_play" href="{FILM["url"]}" target="_blank" '
+        'rel="noopener noreferrer">'
         '<span class="film_feature_play_glyph" aria-hidden="true">'
         '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">'
-        '<path d="M8 5v14l11-7z"/></svg></span>Watch the film</button>'
-        f'<a class="film_feature_link" href="{FILM["url"]}" target="_blank" '
-        'rel="noopener noreferrer">See the entry on Higgsfield</a>'
+        '<path d="M8 5v14l11-7z"/></svg></span>Watch the film</a>'
+        '<span class="film_feature_note">Plays on Higgsfield</span>'
         '</div></div>'
         '<div class="film_feature_art">'
-        '<img class="film_feature_poster" src="/assets/film/four-coats-cover-1600.webp" '
-        'srcset="/assets/film/four-coats-cover-800.webp 800w, '
-        '/assets/film/four-coats-cover-1600.webp 1600w" sizes="(max-width: 991px) 92vw, 42vw" '
-        f'width="1000" height="421" alt="{HC.esc(FILM["title"])} — film poster" '
-        'loading="lazy" decoding="async"/>'
-        '<img class="film_feature_lockup" src="/assets/film/festival-lockup.webp" '
-        'width="970" height="470" alt="Higgsfield Global Film Festival" '
-        'loading="lazy" decoding="async"/>'
+        '<div class="film_feature_clip is-wide">'
+        '<video class="film_feature_video" muted loop playsinline preload="none" '
+        'poster="/assets/film/four-coats-cover-1600.webp" aria-hidden="true" tabindex="-1">'
+        '<source src="/assets/film/four-coats-loop.mp4" type="video/mp4"/>'
+        '</video></div>'
+        '<div class="film_feature_clip is-tall">'
+        '<video class="film_feature_video" muted loop playsinline preload="none" '
+        'poster="/assets/film/four-coats-reel-poster.webp" aria-hidden="true" tabindex="-1">'
+        '<source src="/assets/film/four-coats-reel.mp4" type="video/mp4"/>'
+        '</video></div>'
         '</div></div></div></div></section>')
 
 
 def film_on_home(html: str) -> str:
-    """#17 Sep 2026 — the short film takes Featured Works' place on the home page.
+    """The short film takes Featured Works' place on the home page (17 Sep 2026).
 
-    The client's call: the four client cards go and the film stands in that
-    slot. Every one of those films is still on the Work page.
+    The four client cards go; every one of those films is still on the Work page.
     """
     m = re.search(r'<section class="work_section">', html)
     if not m:
@@ -2364,25 +2362,17 @@ def film_on_work(html: str) -> str:
     return html[:m.start()] + film_feature(" is-work") + html[m.start():]
 
 
-def renumber_values(html: str) -> str:
-    """01..N over whatever value cards remain, after one has been removed."""
-    seq = iter(f"{i:02d}" for i in range(1, 12))
-    return re.sub(r'(<h2 class="year_text">)\s*\d+\s*(</h2>)',
-                  lambda m: m.group(1) + next(seq) + m.group(2), html)
-
-
-def drop_ethics_value(html: str) -> str:
-    """The Ethics value leaves the home page's slider; About keeps all six."""
-    for m in re.finditer(r'<div class="year_item">', html):
-        depth = 0
-        for t in re.finditer(r"<(/?)div\b[^>]*>", html[m.start():]):
-            depth += -1 if t.group(1) else 1
-            if depth == 0:
-                end = m.start() + t.end()
-                block = html[m.start():end]
-                if re.search(r">\s*ETHICS\s*<", block, re.I):
-                    return html[:m.start()] + html[end:]
-                break
+def drop_values_track(html: str) -> str:
+    """The 01..06 values leave the home page (client, 17 Sep 2026); About keeps
+    them. The statement above the track stays where it is."""
+    m = re.search(r'<div class="about_track">', html)
+    if not m:
+        return html
+    depth = 0
+    for t in re.finditer(r"<(/?)div\b[^>]*>", html[m.start():]):
+        depth += -1 if t.group(1) else 1
+        if depth == 0:
+            return html[:m.start()] + html[m.start() + t.end():]
     return html
 
 
@@ -2489,8 +2479,7 @@ def transform(name: str, html: str, drop_hero: bool = True) -> str:
         # the six-card copy is kept aside before Ethics is dropped here.
         global _HOME_VALUES_SRC
         _HOME_VALUES_SRC = html
-        html = drop_ethics_value(html)   # Ethics lives on About only
-        html = renumber_values(html)     # ...so renumber what is left, 01..05
+        html = drop_values_track(html)   # the values live on About only
         html = home_order(html)      # hero, clients, film, values, services, work
         html = film_on_home(html)    # the short film stands where Featured Works did
     if name == "about-us":

@@ -51,3 +51,12 @@ Rules from the client:
 | 23 | Home · What we make | Three services only, as on the Services page | Done |
 | 24 | Home + Work · the short film | "The Four Coats" section: looping cut of the film, poster, Higgsfield and festival lockups, synopsis, Watch the film | Done — replaces Featured Works on Home; leads the Work page |
 | 25 | Home · values | Ethics card removed from Home; About keeps all six | Done |
+
+## Round five — 17 Sep 2026
+
+| # | Where | Change | Status |
+|---|---|---|---|
+| 26 | Home · values | The whole 01–06 track leaves Home; About keeps it | Done |
+| 27 | The Four Coats | Festival lockup (their own laurels, transparent PNG) in the top-left corner | Done |
+| 28 | The Four Coats | Cover is the faded background under the type; both cuts loop beside it — the wide film cut and the vertical reel from the Higgsfield folder | Done |
+| 29 | The Four Coats | "Watch the film" opens the entry on Higgsfield; the local 3-min copy is gone | Done — runtime corrected to 11 min from the film's page |
