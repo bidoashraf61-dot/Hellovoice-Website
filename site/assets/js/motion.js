@@ -161,6 +161,11 @@
      can delay the fonts the split depends on */
   [4000, 8000, 14000].forEach(function (t) { setTimeout(rescueReveals, t); });
 
+  /* Tells the stylesheet that JavaScript is alive, which switches off the
+     preloader's no-JS failsafe keyframe. Set before the intro builds so the
+     two can never both be animating the panel. */
+  html.classList.add("js-ready");
+
   /* ------------------------------------------------- preloader + hero intro
    * One timeline, read verbatim from the reference's IX3 timeline t-45657481,
    * fired by its interaction i-99a118f3 on `wf:load` (home page only). Every
@@ -209,7 +214,42 @@
        (A class set in <head> already hid the panel before this ran.) */
     var seen = false;
     try { seen = sessionStorage.getItem("hv-intro") === "1"; sessionStorage.setItem("hv-intro", "1"); } catch (err) {}
-    if (seen) { hardHide(); return; }
+
+    /* Client, 18 Sep 2026: "make sure the logo hellovoice animated appears
+       while any loading". Previously a visitor who had seen the intro — or who
+       landed anywhere but Home — got no panel at all and watched a blank page
+       while the fonts and the first film arrived.
+ 
+       So the panel now covers every load. What differs is how long it holds:
+       the full 7.5s brand sequence stays a once-per-session event on Home,
+       because sitting through it on every click would be worse than the blank
+       screen it replaces. Every other load gets the same animated mark for
+       long enough to read and no longer — it lifts on `load`, or after 1.4s,
+       whichever comes first. */
+    if (seen || !title) {
+      if (!pre) { hardHide(); return; }
+      gsap.set(pre, { yPercent: 0, visibility: "visible" });
+      html.classList.add("is-loading");
+
+      var mark = $(".preloader_video");
+      var quick = gsap.timeline({ onComplete: function () {
+        hardHide(); ScrollTrigger.refresh();
+      } });
+      if (mark) quick.from(mark, { opacity: 0, scale: 0.94, duration: 0.3, ease: "power2.out" }, 0);
+      /* The mark draws itself in 0.97s, so the panel holds until it is
+         whole. Lifting sooner showed a half-drawn logo, which reads as a
+         broken image rather than an animation. */
+      quick.to(pre, { yPercent: -120, duration: 0.5, ease: "power2.inOut" }, 1.0);
+
+      /* No early-lift shortcut here on purpose. An earlier version jumped the
+         playhead to the lift as soon as `load` fired, which on a warm cache is
+         about 200ms — so the panel swept away over a mark that had drawn two
+         letters. The hold is short and fixed precisely so the logo is always
+         whole when it goes: 0.97s to draw, 0.5s to lift, 1.5s in total. */
+
+      setTimeout(hardHide, 4000);      /* last resort, outside GSAP */
+      return;
+    }
 
     /* On a phone it is compressed to about two seconds: the panel lifts at
        0.9s rather than waiting 3.4s for the logo film, and the type follows
@@ -246,7 +286,11 @@
        with it, so the hero sequence keeps the reference's rhythm relative to
        the panel rather than to the clock. Capped at 3.4s — a loading screen
        that outstays the content it covers is the worse failure. */
-    var HOLD = small ? 0.9 : (vid ? 3.4 : 1.44);
+    /* Was 3.4s, when the logo film ran five seconds and the panel had to
+       wait for it. The mark now completes in 0.97s, so the panel lifts as
+       soon as it is whole — which is also the blank-wait the client asked
+       us to cut (checklist row 20). */
+    var HOLD = small ? 0.9 : (vid ? 1.35 : 1.44);
     var SHIFT = HOLD - 1.44;
     if (pre) tl.to(pre, { yPercent: -120, duration: small ? 0.6 : 1, ease: "power2.inOut" }, HOLD);
 

@@ -4881,7 +4881,22 @@ main#main { display: block; }
 
 /* P1-5 · A returning visitor skips the intro; this stops the loading panel
    flashing before motion.js can hide it (the class is set in <head>). */
-html.intro-seen .preloader { display: none !important; }
+/* The panel used to be hidden outright for a returning visitor. The client
+   asked for the animated mark on any load (18 Sep 2026), so it now shows every
+   time and motion.js decides how long it holds — briefly everywhere except
+   Home's once-per-session brand intro.
+
+   That makes the panel's removal depend on JavaScript, so this is the failsafe
+   for the one case that has none: motion.js never executing. It is scoped to
+   `html:not(.js-ready)`, a class motion.js sets the moment it starts, so the
+   keyframe never competes with GSAP's own transform on a working page. */
+@keyframes helv-preloader-failsafe { to { transform: translateY(-120%); } }
+html:not(.js-ready) .preloader {
+  animation: helv-preloader-failsafe .6s ease-in-out 3s forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  html:not(.js-ready) .preloader { animation-duration: .01s; }
+}
 
 /* P1-11 / P2-24 · Contact: a direct line above the form, and an honest note
    under it once the mail app has been asked to open. */

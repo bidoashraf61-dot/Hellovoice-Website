@@ -235,30 +235,32 @@ def _tile(p, i):
         f'</article>')
 
 
-def interleave(posts):
-    """Mix the campaigns so the wall does not run in brand blocks.
+def by_strength(posts):
+    """Checklist row 13 (18 Sep 2026) — strongest work first, weakest last.
 
-    Capturing the reposts in feed order grouped them by campaign, so the grid
-    opened with twenty-six Alpha Plus tiles then thirteen SVR — which reads as
-    two clients rather than a body of work.
+    This replaces the round-robin that used to deal one post per campaign in
+    turn. That existed to stop the wall opening with twenty-six Alpha Plus
+    tiles and reading as one client; ranking by engagement breaks up the
+    campaign runs just as effectively, because the strong posts are spread
+    across brands.
 
-    This is a round-robin across the campaign buckets rather than a shuffle.
-    A shuffle only makes long runs *unlikely*; dealing one from each bucket in
-    turn makes them impossible while the buckets last, and it is deterministic,
-    so the order does not churn on every rebuild. The larger campaigns
-    inevitably tail out on their own at the end, once the small ones are spent.
+    The score adds whatever figures a post actually publishes. Fourteen
+    creators hide their like count while showing comments and reposts, so
+    treating a missing figure as zero would bury a post that did well on the
+    numbers it does show. A post with no figures at all scores nothing and
+    sorts to the end — it cannot be ranked, and the client asked for the
+    strongest first.
+
+    Sorted on the shortcode as a tie-break so the order is stable: an
+    unstable sort would reshuffle equal-scoring tiles on every rebuild and
+    make the diffs unreadable.
     """
-    buckets = {}
-    for post in posts:
-        buckets.setdefault(post.get("campaign") or "Other campaigns", []).append(post)
-    # biggest bucket first so the tail is one campaign rather than an abrupt stop
-    order = sorted(buckets, key=lambda k: -len(buckets[k]))
-    out = []
-    while any(buckets[k] for k in order):
-        for k in order:
-            if buckets[k]:
-                out.append(buckets[k].pop(0))
-    return out
+    def score(post):
+        stem = (post.get("thumb") or "").rsplit("/", 1)[-1].rsplit(".", 1)[0]
+        vals = KPIS.get(stem)
+        return sum(v for v in vals if v is not None) if vals else 0
+
+    return sorted(posts, key=lambda p: (-score(p), p.get("code") or ""))
 
 
 # Posts the client has pulled from the grid, keyed by the Instagram shortcode
@@ -379,7 +381,7 @@ def request_access_form() -> str:
 
 def build(html: str) -> str:
     d = load()
-    posts = interleave([p for p in d["posts"] if not _pulled(p)])
+    posts = by_strength([p for p in d["posts"] if not _pulled(p)])
     creators = d["creators"]
     n_posts = len(posts)
     n_creators = len(creators)

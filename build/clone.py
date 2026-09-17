@@ -2284,9 +2284,90 @@ def seo(html: str, route) -> str:
     return html
 
 
+# Checklist row 20 (18 Sep 2026) — "the page stays blank for a few seconds
+# while it loads". The brand's animated mark existed, but only on Home and only
+# on a visitor's first page of the session; every other load was the blank
+# screen the client saw. The client asked for the animated logo on any load, so
+# the panel goes on every page and motion.js decides how long it holds:
+# the full 7.5s brand intro once per session on Home, a short cover everywhere
+# else that lifts as soon as the page is ready.
+#
+# Cloned from the page that already has it rather than written out here, so the
+# panel cannot drift from Home's. ROUTES puts home first, which is what fills
+# _PRELOADER before any other page asks for it.
+_PRELOADER = None
+
+
+def preloader_everywhere(html: str) -> str:
+    global _PRELOADER
+    if 'class="preloader"' in html:
+        i = html.index('class="preloader"')
+        start = html.rindex("<div", 0, i)
+        depth, j = 0, start
+        while True:
+            m = re.compile(r"<(/?)div\b").search(html, j)
+            if not m:
+                return html
+            depth += -1 if m.group(1) else 1
+            j = html.index(">", m.end()) + 1
+            if depth == 0:
+                break
+        _PRELOADER = html[start:j]
+        return html
+    if not _PRELOADER:
+        return html
+    m = re.search(r"<body\b[^>]*>", html)
+    return html[:m.end()] + _PRELOADER + html[m.end():] if m else html
+
+
+def hide_hover_twins(html: str) -> str:
+    """Checklist row 19 — button labels read twice by screen readers.
+
+    Every pill button holds its label twice: the visible copy and a second one
+    that slides up on hover. Most already carried aria-hidden, but one
+    component per page did not, so "Learn More Learn More" reached assistive
+    tech and the accessible name of the control was doubled.
+    """
+    return re.sub(
+        r'<(\w+)((?:(?!aria-hidden)[^>])*?second_text(?:(?!aria-hidden)[^>])*?)>',
+        r'<\1\2 aria-hidden="true">', html)
+
+
+def drop_wall_quote(html: str) -> str:
+    """Checklist row 16 — Faisal Al-Qahtani's quote printed twice on About.
+
+    It was never two testimonials: BRANDS_QUOTE is TESTIMONIALS[2], so the
+    black brands wall reprinted, word for word, a quote the slider further down
+    the same page already carried. The client asked to keep the testimonials
+    section exactly as it is, so the wall is the copy that goes — the logo grid
+    and the ticker are what that section is for, and the quote sat behind them
+    at low contrast anyway.
+
+    Removed by walking the div nesting rather than with a lazy regex: the block
+    contains a nested author div, and `<div...>.*?</div>` would cut it in half
+    and leave the closing tags behind.
+    """
+    key = 'class="brands_testimony_area"'
+    while key in html:
+        i = html.index(key)
+        start = html.rindex("<div", 0, i)
+        depth, j = 0, start
+        while True:
+            m = re.compile(r"<(/?)div\b").search(html, j)
+            if not m:
+                return html           # unbalanced: leave the page untouched
+            depth += -1 if m.group(1) else 1
+            j = html.index(">", m.end()) + 1
+            if depth == 0:
+                break
+        html = html[:start] + html[j:]
+    return html
+
+
 def finalize(html: str, route: str = "") -> str:
     """Last passes on every written page, including the two built on the service shell."""
-    return seo(copy_fixes(landmarks(lean_images(mobile_media(html)))), route)
+    return seo(preloader_everywhere(hide_hover_twins(drop_wall_quote(
+        copy_fixes(landmarks(lean_images(mobile_media(html))))))), route)
 
 
 # --------------------------------------------- client comments, 16 Sep 2026
@@ -2299,10 +2380,62 @@ def instagram_only(html: str) -> str:
     TikTok and Facebook only ever pointed at the bare domains the reference
     shipped with. The hero row, the menu row and the footer lose both.
     """
-    return re.sub(
+    html = re.sub(
         r'<a\b(?=[^>]*hero_social_icon_link)'
         r'(?=[^>]*href="https://(?:www\.)?(?:tiktok|facebook)\.com)[^>]*>[\s\S]*?</a>',
         "", html)
+    return add_vimeo(html)
+
+
+# Checklist row 25 (17 Sep 2026). The reviewer asked for LinkedIn, Facebook,
+# TikTok and Vimeo; the client kept the round-one decision to drop Facebook and
+# TikTok and added Vimeo alone, because it is the only other account that
+# exists — the whole portfolio is hosted there and every film card already
+# points into it.
+VIMEO_PROFILE = "https://vimeo.com/hellovoice"
+
+# Vimeo's own mark as a bare path on the same 0 0 24 24 grid as the Instagram
+# glyph beside it. Only the path is swapped into the cloned anchor, so the icon
+# inherits that row's own <svg> box — the footer draws at 22px and the hero at
+# 24px, and a hardcoded box left Vimeo a size out in one of them.
+VIMEO_PATH = (
+    '<path d="M23.98 6.72c-.11 2.34-1.74 5.55-4.9 9.62'
+    '-3.26 4.25-6.02 6.38-8.28 6.38-1.4 0-2.58-1.29-3.55-3.88l-1.93-7.1c-.72-2.59-1.49-3.88'
+    '-2.31-3.88-.18 0-.81.38-1.87 1.13L0 7.53c1.19-1.05 2.37-2.1 3.53-3.15 1.6-1.38 2.8-2.11'
+    '3.6-2.18 1.89-.18 3.06 1.11 3.5 3.88.47 2.99.8 4.85.98 5.58.54 2.47 1.14 3.7 1.79 3.7'
+    '.51 0 1.27-.8 2.29-2.4 1.02-1.6 1.56-2.82 1.64-3.66.15-1.4-.4-2.11-1.64-2.11-.59 0-1.19.14'
+    '-1.81.4 1.2-3.93 3.49-5.84 6.87-5.73 2.5.07 3.68 1.7 3.55 4.86z"/>')
+
+
+def add_vimeo(html: str) -> str:
+    """Put Vimeo beside Instagram in every social row on the page.
+
+    Cloned from the Instagram link that is already there rather than written
+    from scratch, so the new icon inherits whatever classes that row uses —
+    the hero row, the menu row and the footer each style theirs differently,
+    and hard-coding one set would break the other two.
+    """
+    # Any anchor pointing at the Instagram profile, whatever row it sits in:
+    # the hero and menu use hero_social_icon_link, the footer uses
+    # footer_social_link, and matching on the class missed the footer.
+    out, at = [], 0
+    for m in re.finditer(
+            r'<a\b[^>]*href="[^"]*instagram\.com[^"]*"[^>]*>[\s\S]*?</a>', html):
+        link = m.group(0)
+        twin = re.sub(r'href="[^"]*"', 'href="' + VIMEO_PROFILE + '"', link, count=1)
+        twin = re.sub(r'aria-label="[^"]*"', 'aria-label="HelloVoice on Vimeo"', twin, count=1)
+        # The footer row prints the network's name beside its icon, so the
+        # clone carried a Vimeo mark labelled "Instagram" until this line.
+        twin = re.sub(r'>(\s*)Instagram(\s*)<', r'>\1Vimeo\2<', twin)
+        # swap the glyph inside the row's own <svg>, so its width, height and
+        # viewBox carry over untouched
+        twin = re.sub(r'(<svg[^>]*>)[\s\S]*?(</svg>)',
+                      lambda m: m.group(1) + VIMEO_PATH + m.group(2), twin, count=1)
+        out.append(html[at:m.end()])
+        out.append(twin)
+        at = m.end()
+    out.append(html[at:])
+    return "".join(out)
 
 
 def footer_services_0916(html: str) -> str:

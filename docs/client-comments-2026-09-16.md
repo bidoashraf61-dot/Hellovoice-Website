@@ -104,18 +104,18 @@ was missed.
 | 10 | Site | Generate `sitemap.xml` + `robots.txt` (submission is Hisham's) | Done |
 | 11 | All pages | Unique title + meta description per page. 8 pages share one description, 6 have none, and both it and og:description still carry the template's "$200M+ since 2006" | Done |
 | 12 | All pages | **og:image tag is malformed** — renders as `<meta /assets/helv/og-image.jpg" property="og:image"/>`; `content="` was eaten by the regex at `build/clone.py:343`. No link preview anywhere | Done |
-| 19 | All pages | `aria-hidden` on the duplicate hover labels (Learn More / Watch Now / Send Message) | To do |
-| 20 | All pages | Animated HelloVoice logo during any load — never a blank screen | To do |
+| 19 | All pages | `aria-hidden` on the duplicate hover labels (Learn More / Watch Now / Send Message) | Done |
+| 20 | All pages | Animated HelloVoice logo during any load — never a blank screen | Done |
 | 21 | Home | Lazy-load below-fold media, poster-first video, defer GSAP. ~31 MB of referenced assets today | To do |
 | 29 | Footer | © 2026 — already correct | Done |
 | 30/31 | Contact | Wire both forms to **FormSubmit** → info@hellovoice.co.uk. One-time activation email must be clicked by someone with access to that inbox | To do |
 | 32–34 | All pages | Full automated sweep: every link, every Vimeo ID, the catalogue link, then WebKit + Chrome at phone/tablet/desktop | To do |
 | — | Site | **Delete the four test pages** shipped publicly: `/char-test/`, `/eye-test/`, `/scroll-test/`, `/spline-test/` (not on the client's list) | Done |
 | — | Home | Tag says "EIGHT SERVICES", section shows three → "THREE SERVICES" | Done |
-| 16b | Home, About | Remove the repeated Faisal Al-Qahtani quote (section otherwise unchanged) | To do |
+| 16b | Home, About | Remove the repeated Faisal Al-Qahtani quote (section otherwise unchanged) | Done |
 | 17 | Contact, Projects | "LET'S ROAR INTO THE WILD TOGETHER" → "LET'S MAKE SOMETHING WORTH WATCHING."; "OUR CREATIVE ROAR DEFINES OUR LEGACY." → "THE WORK SPEAKS FOR ITSELF." | Done |
-| 13 | Influencers | Sort posts strongest → weakest by engagement; keep them all | To do |
-| 25 | All pages | Footer/menu/hero social set = Instagram **+ Vimeo** (vimeo.com/hellovoice — confirm URL). TikTok and Facebook stay out | To do |
+| 13 | Influencers | Sort posts strongest → weakest by engagement; keep them all | Done |
+| 25 | All pages | Footer/menu/hero social set = Instagram **+ Vimeo** (vimeo.com/hellovoice — confirm URL). TikTok and Facebook stay out | Done |
 | 35 | All pages | Phone is `+966 11 463 4518` everywhere. The old site's mobile is stale | Confirmed |
 
 ### Declined by the client
@@ -151,3 +151,29 @@ was missed.
 | Home hero | The Vimeo film answers **401 on any non-whitelisted domain**. `hellovoice.co.uk` must be added to that video's embed privacy settings on Vimeo or the hero renders blank on launch. Not visible locally because it fails the same way there. |
 | Film titles | Eight further titles carried the same class of defect the client listed (hyphen/space/case): Medugate-, FGM-, Dermactive -, Orchidia -, "Solo fresh", "On Boarding", "Cycle meeting", "NewEast x Isuzu". Corrected under the standing rule that one comment applies everywhere. |
 | Row 8 | The misspelled anchor `#awarness-videos` **does not exist** in the current build. The misspelling survives only in four image filenames, which are never visible text and never a link target. No action taken. |
+
+### Loader, rebuilt (row 20)
+
+The brand's animated mark already existed but ran only on Home, and only on a
+visitor's first page of the session — every other load was the blank screen.
+
+| | Before | After |
+|---|---|---|
+| Where it shows | Home only | Every page |
+| When | First visit of the session | Every load |
+| Mark file | 121 frames, 5.08s, 693 KB | 31 frames, 1.02s, **206 KB** |
+| Home, first visit | ~7.5s intro | 2.1s desktop / 1.4s phone |
+| Any other load | nothing (blank) | 1.4s, mark completes before it lifts |
+
+Two false starts worth recording. Re-timing the original by rewriting its WebP
+frame durations to 8ms made it play **slower**, not faster: Chrome clamps
+durations below ~10ms and substitutes 100ms, so 121 frames became 12s. And an
+early-lift shortcut that jumped to the lift as soon as `load` fired swept the
+panel away over a two-letter mark on a warm cache. The file is now genuinely
+re-encoded (every 4th frame, fully composited via Pillow since the frames are
+differential and cannot simply be dropped), and the hold is fixed rather than
+opportunistic.
+
+Because the panel's removal now depends on JavaScript, `clone.css` carries a
+keyframe failsafe scoped to `html:not(.js-ready)` — motion.js sets that class
+the moment it runs, so the two never animate the panel at once.
