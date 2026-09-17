@@ -342,8 +342,13 @@ def brand_name(html: str) -> str:
     html = html.replace(" - Webflow HTML website template", "")
     html = re.sub(r'(<meta[^>]*(?:og:image|twitter:image)[^>]*content=")[^"]*(")',
                   r'\1' + HELV + r'/og-image.jpg\2', html)
-    html = re.sub(r'(content=")[^"]*(694830f92d32cafbb0ba9b4d_open-graph-image\.jpg")',
-                  HELV + '/og-image.jpg"', html)
+    # The replacement used to drop \1, so the attribute name went with it and
+    # the tag rendered as `<meta /assets/helv/og-image.jpg" property="og:image"/>`
+    # — no link preview on WhatsApp or LinkedIn anywhere on the site. The first
+    # pass above misses these because the reference writes `content` BEFORE the
+    # property, so this is the pass that actually rewrites the social card.
+    html = re.sub(r'(content=")[^"]*694830f92d32cafbb0ba9b4d_open-graph-image\.jpg(")',
+                  r'\1' + HELV + r'/og-image.jpg\2', html)
     html = html.replace("/assets/ref/694830f92d32cafbb0ba9b4d_open-graph-image.jpg",
                         HELV + "/og-image.jpg")
     return html
@@ -2168,9 +2173,120 @@ def purge_main_css() -> tuple:
     return len(css), len(purged), dropped
 
 
-def finalize(html: str) -> str:
+# Visible-copy corrections applied to every page (client checklist, 17 Sep
+# 2026 — rows 7 and 17, plus the services tag). These live here rather than in
+# content/_slots-current.json because that file is a capture: editing it would
+# be overwritten the next time the reference is re-captured, and the same
+# string appears on several pages. Keys are matched against rendered text, so
+# each is written exactly as it appears between the tags.
+COPY_FIXES = [
+    # 7 — the apostrophe. The button label is duplicated for the hover
+    # animation, so both copies are corrected by the same replacement.
+    (">Lets Connect<", ">Let\u2019s Connect<"),
+    # 17 — the client asked for a calmer register on the two headlines that
+    # sit in front of pharma buyers. Same length and shape, so neither
+    # heading's line breaks or tag placement move.
+    ("LET&#x27;S ROAR INTO THE WILD TOGETHER.",
+     "LET&#x27;S MAKE SOMETHING WORTH WATCHING."),
+    ("OUR CREATIVE ROAR DEFINES OUR LEGACY.",
+     "THE WORK SPEAKS FOR ITSELF."),
+    # Home shows three services since the round-four change; the tag still
+    # claimed eight.
+    (">EIGHT SERVICES<", ">THREE SERVICES<"),
+]
+
+
+def copy_fixes(html: str) -> str:
+    for a, b in COPY_FIXES:
+        html = html.replace(a, b)
+    return html
+
+
+# ------------------------------------------------------------------ SEO
+# Checklist rows 11 and 12 (17 Sep 2026). Every page carried the reference
+# template's own description — "Helping clients raise $200M+ since 2006" — and
+# six pages carried none at all, so search results and shared links described
+# somebody else's business.
+#
+# Social scrapers do not resolve relative URLs, so og:image and canonical are
+# written absolute against ORIGIN. Change ORIGIN here if the site lands on a
+# different hostname.
+ORIGIN = "https://hellovoice.co.uk"
+
+SEO = {
+    "": ("HelloVoice — Film, Animation and Immersive Work for Healthcare",
+         "A 360 media production house in Riyadh making film, animation and "
+         "immersive work for healthcare, pharma and global brands."),
+    "about-us": ("About HelloVoice — A Riyadh Production House",
+         "Who we are and how we work: a Riyadh studio making film, animation "
+         "and immersive work for healthcare, pharma and global brands."),
+    "projects": ("Our Work — Films for Healthcare, Pharma and Global Brands",
+         "Fifty films across commercial, corporate, awareness, AI and event "
+         "work — for Abbott, M\u00f6lnlycke, NewEast, L\u2019Or\u00e9al, Sanofi and more."),
+    "contact-us": ("Contact HelloVoice — Riyadh, Saudi Arabia",
+         "Tell us about the project. We reply within one working day, under "
+         "NDA if you need it."),
+    "service": ("Services — Film, Influencer Campaigns and Technology",
+         "Film and animation, influencer campaigns and technology activations, "
+         "built for healthcare and pharma brands across Saudi Arabia."),
+    "service/influencer-campaigns": (
+         "Influencer Campaigns — Vetted Creators in KSA, UAE and Egypt",
+         "A private roster of vetted creators across Saudi Arabia, the UAE and "
+         "Egypt. Build a shortlist and get one quote for the set."),
+    "service/technology-activations": (
+         "Technology Activations — Immersive and Interactive Work",
+         "Interactive screens, immersive rooms and real-time installations for "
+         "launches, congresses and brand experiences in Saudi Arabia."),
+    None: ("Page not found — HelloVoice",
+         "That page does not exist. Find the work, the services and the way to "
+         "reach us from here."),
+}
+
+
+def seo(html: str, route) -> str:
+    hit = SEO.get(route)
+    if not hit:
+        return html
+    title, desc = hit
+    url = ORIGIN + ("/" if route in ("", None) else "/" + route + "/")
+    img = ORIGIN + HELV + "/og-image.jpg"
+    t, d = HC.esc(title), HC.esc(desc)
+
+    html = re.sub(r"<title>.*?</title>", "<title>" + t + "</title>", html,
+                  count=1, flags=re.S)
+
+    # The reference is inconsistent about these tags: `content` comes before
+    # the naming attribute, and the same tag appears as `name=` on one page and
+    # `property=` on another (the 404 carried twitter:description as a
+    # property). So every spelling is removed first and one clean tag written —
+    # rewriting the first match in place left the duplicate behind.
+    def put(attr, name, value):
+        nonlocal html
+        html = re.sub(
+            r'<meta[^>]*\b(?:name|property)="' + re.escape(name) + r'"[^>]*/?>',
+            "", html)
+        html = html.replace(
+            "</head>",
+            '<meta content="' + value + '" ' + attr + '="' + name + '"/></head>', 1)
+
+    put("name", "description", d)
+    put("property", "og:title", t)
+    put("property", "og:description", d)
+    put("property", "og:image", img)
+    put("property", "og:url", url)
+    put("name", "twitter:title", t)
+    put("name", "twitter:description", d)
+    put("name", "twitter:image", img)
+
+    if 'rel="canonical"' not in html:
+        html = html.replace("</head>", '<link rel="canonical" href="' + url +
+                            '"/></head>', 1)
+    return html
+
+
+def finalize(html: str, route: str = "") -> str:
     """Last passes on every written page, including the two built on the service shell."""
-    return landmarks(lean_images(mobile_media(html)))
+    return seo(copy_fixes(landmarks(lean_images(mobile_media(html)))), route)
 
 
 # --------------------------------------------- client comments, 16 Sep 2026
@@ -2577,7 +2693,10 @@ def main():
     # script. Without it here the sweep deletes the client-facing roster on
     # every site build and the link 404s — which happened twice before anyone
     # noticed, because the page only disappears once you rebuild.
-    KEEP = {"char-test", "eye-test", "spline-test", "scroll-test", "catalogue"}
+    # The four cursor/3D experiments used to sit here too, which is how they
+    # came to be published: protected from the sweep, indexed by Google, and
+    # visible to anyone who guessed the URL. Only the catalogue belongs.
+    KEEP = {"catalogue"}
     stale = set(SITE.glob("*.html")) | set(SITE.glob("**/index.html"))
     for p in stale:
         if "assets" not in p.parts and not (KEEP & set(p.parts)):
@@ -2618,7 +2737,7 @@ def main():
         else:
             dest = SITE / route / "index.html"
         dest.parent.mkdir(parents=True, exist_ok=True)
-        html = finalize(html)
+        html = finalize(html, route)
         dest.write_text(html, encoding="utf-8")
         written.append((str(dest.relative_to(SITE)), len(html)))
 
@@ -2636,7 +2755,7 @@ def main():
         html = mark_hero_tone(html)
         dest = SITE / "service" / "influencer-campaigns" / "index.html"
         dest.parent.mkdir(parents=True, exist_ok=True)
-        html = finalize(html)
+        html = finalize(html, "service/influencer-campaigns")
         dest.write_text(html, encoding="utf-8")
         written.append((str(dest.relative_to(SITE)), len(html)))
 
@@ -2646,7 +2765,7 @@ def main():
         html = mark_hero_tone(html)
         dest = SITE / "service" / "technology-activations" / "index.html"
         dest.parent.mkdir(parents=True, exist_ok=True)
-        html = finalize(html)
+        html = finalize(html, "service/technology-activations")
         dest.write_text(html, encoding="utf-8")
         written.append((str(dest.relative_to(SITE)), len(html)))
 
@@ -2656,9 +2775,40 @@ def main():
         html = transform("project-detail", src.read_text(encoding="utf-8"))
         dest = SITE / "projects" / src.stem / "index.html"
         dest.parent.mkdir(parents=True, exist_ok=True)
-        html = finalize(html)
+        html = finalize(html, None)
         dest.write_text(html, encoding="utf-8")
         written.append((str(dest.relative_to(SITE)), len(html)))
+
+    # ---- sitemap.xml and robots.txt (checklist row 10, 17 Sep 2026)
+    # Written from SEO rather than from a second hand-kept list, so a page
+    # cannot be in one and missing from the other. The 404 is excluded because
+    # it is not a destination, and the catalogue is excluded deliberately: it
+    # is code-gated and its URLs should not be in an index at all.
+    import datetime
+    today = datetime.date.today().isoformat()
+    urls = []
+    for route in SEO:
+        if route is None:
+            continue
+        loc = ORIGIN + ("/" if route == "" else "/" + route + "/")
+        # Home first and weighted highest; the rest follow at equal priority.
+        urls.append(
+            "  <url><loc>" + loc + "</loc><lastmod>" + today + "</lastmod>"
+            "<priority>" + ("1.0" if route == "" else "0.8") + "</priority></url>")
+    (SITE / "sitemap.xml").write_text(
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        + "\n".join(urls) + "\n</urlset>\n", encoding="utf-8")
+
+    (SITE / "robots.txt").write_text(
+        "User-agent: *\n"
+        "Allow: /\n"
+        "\n"
+        "# The creator catalogue is invite-only; its pages are not for an index.\n"
+        "Disallow: /catalogue/\n"
+        "\n"
+        "Sitemap: " + ORIGIN + "/sitemap.xml\n", encoding="utf-8")
+    print(f"seo     sitemap.xml ({len(urls)} urls) + robots.txt")
 
     # Purge last: it reads every page just written. The pages carry main.css's
     # stamp from before the purge, so it is swapped for the new one after.

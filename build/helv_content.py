@@ -15,6 +15,55 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 PROJECTS = json.loads((ROOT / "content" / "projects.json").read_text(encoding="utf-8"))
 
+# Spelling corrections applied to the captured film titles (client checklist
+# rows 1-6, 17 Sep 2026). Client names and common words only, never a change of
+# meaning. The table is ordered: longer keys first where one contains another,
+# because these are plain replacements.
+#
+# Applied here, at load, rather than at each render — the titles feed cards,
+# section headings, alt text, lightbox captions and the filter tags, and a fix
+# applied in one of those places but not the others is how "Molyncke" and
+# "Molnlycke" came to sit on the same page. `slug` is a stored field, so
+# correcting a title never moves an image or breaks the AI-video matching.
+TITLE_FIXES = [
+    ("Medical_Skintellectual", "Medical \u2013 Skintellectual"),
+    ("Suliman Al Habib patient", "Sulaiman Al Habib \u2013 Patient"),
+    ("Qasser El saraya", "Qasser Al-Saraya"),
+    ("LA Roche- Posay", "La Roche-Posay"),
+    ("Molyncke", "M\u00f6lnlycke"), ("Molynlcke", "M\u00f6lnlycke"),
+    ("Molnlycke", "M\u00f6lnlycke"),
+    ("Spc-", "SPC \u2013"),
+    ("Awarness", "Awareness"), ("Kwait", "Kuwait"), ("kwait", "Kuwait"),
+    ("Zoiets", "Zoetis"),
+    ("L'Oreal", "L\u2019Or\u00e9al"), ("Neweast", "NewEast"),
+    ("CGi", "CGI"), ("Grand opening", "Grand Opening"),
+    # Not on the client's list, but the same class of defect: the rule is that
+    # a correction applies everywhere the pattern appears, and these would
+    # otherwise come back as a second round of the same comment.
+    ("Medugate- ", "Medugate \u2014 "), ("FGM- ", "FGM \u2014 "),
+    ("Dermactive - ", "Dermactive \u2014 "), ("Orchidia - ", "Orchidia \u2014 "),
+    ("Ad - ", "Ad \u2014 "), ("Portal - ", "Portal \u2014 "),
+    ("Solo fresh", "Solo Fresh"), ("On Boarding", "Onboarding"),
+    ("Cycle meeting", "Cycle Meeting"),
+    ("Anamorphic illusion", "Anamorphic Illusion"),
+    # "X" between two client names is the house pattern (Abbott X Kuwait,
+    # QV X Elnahdi, Sudair X KSMC); one film used a lowercase x.
+    ("NewEast x Isuzu", "NewEast X Isuzu"),
+]
+
+
+def clean_title(t: str) -> str:
+    # A stray Arabic kasra sits before the A of "Abbott" in the capture. It is
+    # invisible in most editors, which is why it survived this long.
+    t = t.replace("\u0650", "").strip()
+    for a, b in TITLE_FIXES:
+        t = t.replace(a, b)
+    return t[:1].upper() + t[1:]
+
+
+for _p in PROJECTS:
+    _p["title"] = clean_title(_p["title"])
+
 # ----------------------------------------------------------------- captured
 
 SITE = {

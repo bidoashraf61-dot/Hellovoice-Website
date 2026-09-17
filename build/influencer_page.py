@@ -332,8 +332,49 @@ def catalogue_section() -> str:
         '</div>'
         f'<ol class="ig_cat_benefits">{items}</ol>'
         '<div class="ig_cat_actions">' + catalogue_button("is-primary") +
-        '<p class="ig_cat_note">No code yet? <a href="/contact-us/">Ask us for access</a>.</p>'
-        '</div></div></div></section>')
+        '<p class="ig_cat_note">No code yet? '
+        '<a href="#request-access">Request access</a>.</p>'
+        '</div>'
+        + request_access_form() +
+        '</div></div></section>')
+
+
+# The gate on the catalogue is invite-only and was a dead end: a visitor with
+# no code read "Enter the access code you were given" and had nowhere to go.
+# Codes stay issued by hand from the dashboard — labelled, expiring, revocable
+# — but a real prospect can now raise their hand instead of bouncing. The
+# fields are the ones the team needs in order to decide whether to issue one,
+# which is why company and brief are asked for and not just an email address.
+REQUEST_FIELDS = [
+    ("req_name", "text", "Your name", True),
+    ("req_company", "text", "Company or brand", True),
+    ("req_email", "email", "Work email", True),
+    ("req_phone", "tel", "Phone (optional)", False),
+]
+
+
+def request_access_form() -> str:
+    fields = "".join(
+        f'<label class="ig_req_field"><span class="u-sr-only">{esc(ph)}</span>'
+        f'<input class="ig_req_input" type="{ty}" name="{nm}" '
+        f'placeholder="{esc(ph)}"{" required" if req else ""}/></label>'
+        for nm, ty, ph, req in REQUEST_FIELDS)
+    return (
+        '<div class="ig_req" id="request-access">'
+        '<div class="ig_req_head">'
+        '<h3 class="ig_req_heading">Request access</h3>'
+        '<p class="ig_req_lede">Tell us who you are and what you are planning. '
+        'We send a code that is yours alone \u2014 it expires, and we can revoke '
+        'it at any time.</p>'
+        '</div>'
+        '<form class="ig_req_form" data-kind="Catalogue access" '
+        'data-subject="Catalogue access request">'
+        f'{fields}'
+        '<label class="ig_req_field is-wide"><span class="u-sr-only">Campaign brief</span>'
+        '<textarea class="ig_req_input" name="req_brief" rows="3" '
+        'placeholder="What are you planning? Brand, market, rough timing."></textarea></label>'
+        '<button class="ig_req_send" type="submit">Request a code</button>'
+        '</form></div>')
 
 
 def build(html: str) -> str:

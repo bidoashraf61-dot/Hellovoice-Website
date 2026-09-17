@@ -93,27 +93,27 @@ was missed.
 
 | # | Where | Change | Status |
 |---|---|---|---|
-| 1 | Home, Projects | "Kwait" → "Kuwait"; strip the stray Arabic kasra before the A | To do |
-| 2 | Projects | "Molyncke" / "Molynlcke" → "Molnlycke" everywhere | To do |
-| 3 | Projects | "Qasser El saraya" / "Qasser Al Saraya" → one spelling | To do |
-| 4 | Projects | "Medical_Skintellectual" → "Medical – Skintellectual Solutions" | To do |
-| 5 | Projects | "Spc- Seroflo Inhaler" → "SPC – Seroflo Inhaler Whiteboard Awareness" | To do |
-| 6 | Projects | "Suliman Al Habib patient" → "Sulaiman Al Habib – Patient Awareness Video" | To do |
-| 7 | All pages | "Lets Connect" → "Let's Connect" | To do |
+| 1 | Home, Projects | "Kwait" → "Kuwait"; strip the stray Arabic kasra before the A | Done |
+| 2 | Projects | "Molyncke" / "Molynlcke" → "Molnlycke" everywhere | Done |
+| 3 | Projects | "Qasser El saraya" / "Qasser Al Saraya" → one spelling | Done |
+| 4 | Projects | "Medical_Skintellectual" → "Medical – Skintellectual Solutions" | Done |
+| 5 | Projects | "Spc- Seroflo Inhaler" → "SPC – Seroflo Inhaler Whiteboard Awareness" | Done |
+| 6 | Projects | "Suliman Al Habib patient" → "Sulaiman Al Habib – Patient Awareness Video" | Done |
+| 7 | All pages | "Lets Connect" → "Let's Connect" | Done |
 | 8 | Home | Anchor `#awarness-videos` → `#awareness-videos` | To do |
-| 10 | Site | Generate `sitemap.xml` + `robots.txt` (submission is Hisham's) | To do |
-| 11 | All pages | Unique title + meta description per page. 8 pages share one description, 6 have none, and both it and og:description still carry the template's "$200M+ since 2006" | To do |
-| 12 | All pages | **og:image tag is malformed** — renders as `<meta /assets/helv/og-image.jpg" property="og:image"/>`; `content="` was eaten by the regex at `build/clone.py:343`. No link preview anywhere | To do |
+| 10 | Site | Generate `sitemap.xml` + `robots.txt` (submission is Hisham's) | Done |
+| 11 | All pages | Unique title + meta description per page. 8 pages share one description, 6 have none, and both it and og:description still carry the template's "$200M+ since 2006" | Done |
+| 12 | All pages | **og:image tag is malformed** — renders as `<meta /assets/helv/og-image.jpg" property="og:image"/>`; `content="` was eaten by the regex at `build/clone.py:343`. No link preview anywhere | Done |
 | 19 | All pages | `aria-hidden` on the duplicate hover labels (Learn More / Watch Now / Send Message) | To do |
 | 20 | All pages | Animated HelloVoice logo during any load — never a blank screen | To do |
 | 21 | Home | Lazy-load below-fold media, poster-first video, defer GSAP. ~31 MB of referenced assets today | To do |
 | 29 | Footer | © 2026 — already correct | Done |
 | 30/31 | Contact | Wire both forms to **FormSubmit** → info@hellovoice.co.uk. One-time activation email must be clicked by someone with access to that inbox | To do |
 | 32–34 | All pages | Full automated sweep: every link, every Vimeo ID, the catalogue link, then WebKit + Chrome at phone/tablet/desktop | To do |
-| — | Site | **Delete the four test pages** shipped publicly: `/char-test/`, `/eye-test/`, `/scroll-test/`, `/spline-test/` (not on the client's list) | To do |
-| — | Home | Tag says "EIGHT SERVICES", section shows three → "THREE SERVICES" | To do |
+| — | Site | **Delete the four test pages** shipped publicly: `/char-test/`, `/eye-test/`, `/scroll-test/`, `/spline-test/` (not on the client's list) | Done |
+| — | Home | Tag says "EIGHT SERVICES", section shows three → "THREE SERVICES" | Done |
 | 16b | Home, About | Remove the repeated Faisal Al-Qahtani quote (section otherwise unchanged) | To do |
-| 17 | Contact, Projects | "LET'S ROAR INTO THE WILD TOGETHER" → "LET'S MAKE SOMETHING WORTH WATCHING."; "OUR CREATIVE ROAR DEFINES OUR LEGACY." → "THE WORK SPEAKS FOR ITSELF." | To do |
+| 17 | Contact, Projects | "LET'S ROAR INTO THE WILD TOGETHER" → "LET'S MAKE SOMETHING WORTH WATCHING."; "OUR CREATIVE ROAR DEFINES OUR LEGACY." → "THE WORK SPEAKS FOR ITSELF." | Done |
 | 13 | Influencers | Sort posts strongest → weakest by engagement; keep them all | To do |
 | 25 | All pages | Footer/menu/hero social set = Instagram **+ Vimeo** (vimeo.com/hellovoice — confirm URL). TikTok and Facebook stay out | To do |
 | 35 | All pages | Phone is `+966 11 463 4518` everywhere. The old site's mobile is stale | Confirmed |
@@ -143,3 +143,11 @@ was missed.
 |---|---|
 | 10 | Submit the sitemap to Google Search Console |
 | 36 | 301 `portfolio.hellovoice.co.uk` → the new site |
+
+### Found while building round eight
+
+| Where | Finding |
+|---|---|
+| Home hero | The Vimeo film answers **401 on any non-whitelisted domain**. `hellovoice.co.uk` must be added to that video's embed privacy settings on Vimeo or the hero renders blank on launch. Not visible locally because it fails the same way there. |
+| Film titles | Eight further titles carried the same class of defect the client listed (hyphen/space/case): Medugate-, FGM-, Dermactive -, Orchidia -, "Solo fresh", "On Boarding", "Cycle meeting", "NewEast x Isuzu". Corrected under the standing rule that one comment applies everywhere. |
+| Row 8 | The misspelled anchor `#awarness-videos` **does not exist** in the current build. The misspelling survives only in four image filenames, which are never visible text and never a link target. No action taken. |

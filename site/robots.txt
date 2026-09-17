@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# The creator catalogue is invite-only; its pages are not for an index.
+Disallow: /catalogue/
+
+Sitemap: https://hellovoice.co.uk/sitemap.xml

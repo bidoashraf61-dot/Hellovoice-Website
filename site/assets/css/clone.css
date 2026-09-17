@@ -5903,3 +5903,38 @@ body:has(.about_track) .about_section .about_header_area { margin-bottom: clamp(
 @media screen and (max-width: 991px) {
   .about_section .about_header_area { gap: 28px; }
 }
+
+/* ---- Request access (Influencers) ------------------------------ 18 Sep 2026
+   The catalogue gate is invite-only, so the page has to offer a way in for
+   someone who arrives without a code. Sits inside the catalogue section, on
+   the same dark ground, so it reads as part of the same offer rather than a
+   second contact form bolted on. */
+.ig_req{margin-top:clamp(28px,3.4vw,52px);padding-top:clamp(26px,3vw,44px);
+  border-top:1px solid rgba(255,255,255,.16)}
+.ig_req_heading{font-family:var(--_typography---font-family--heading-font,Bebasneue,Arial,sans-serif);font-size:clamp(26px,2.6vw,38px);
+  line-height:1;letter-spacing:.01em;margin:0 0 8px}
+.ig_req_lede{max-width:58ch;margin:0 0 clamp(18px,2vw,26px);opacity:.78;
+  font-size:clamp(14px,1.05vw,16px);line-height:1.55}
+.ig_req_form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;align-items:start}
+.ig_req_field{display:block;min-width:0}
+.ig_req_field.is-wide{grid-column:1/-1}
+.ig_req_input{width:100%;font:inherit;font-size:15px;color:inherit;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.22);
+  border-radius:10px;padding:14px 16px;transition:border-color .2s,background .2s}
+.ig_req_input::placeholder{color:currentColor;opacity:.72}
+.ig_req_input:focus-visible{outline:none;border-color:var(--lime,#eaffb1);
+  background:rgba(255,255,255,.1)}
+textarea.ig_req_input{resize:vertical;min-height:96px}
+.ig_req_send{grid-column:1/-1;justify-self:start;font-family:var(--_typography---font-family--heading-font,Bebasneue,Arial,sans-serif);
+  font-size:19px;letter-spacing:.04em;padding:14px 30px;border-radius:999px;
+  border:2px solid #000;background:var(--lime,#eaffb1);color:#121212;cursor:pointer;
+  min-height:48px}
+.ig_req_send[disabled]{opacity:.55;cursor:default}
+.ig_req .form_sent{grid-column:1/-1;margin:2px 0 0;font-size:14px;line-height:1.5}
+.ig_req .form_sent.is-ok{color:var(--lime,#eaffb1)}
+.ig_req .form_sent.is-warn{opacity:.85}
+@media screen and (max-width:767px){
+  .ig_req_form{grid-template-columns:1fr}
+  .ig_req_send{justify-self:stretch;text-align:center}
+}

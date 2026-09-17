@@ -1301,63 +1301,124 @@
   /* ------------------------------------------------------------------ forms
    * Every form on the site is addressed to info@hellovoice.co.uk.
    *
-   * A static site cannot send mail by itself — there is no server to post to.
-   * Until an endpoint exists, submitting composes the message in the visitor's
-   * own mail client, correctly addressed and with every field already filled
-   * in. Nothing is silently dropped, and no third party sees the lead.
+   * A static site has no server of its own, so the send goes through
+   * FormSubmit — the same relay the creator catalogue already uses, so there
+   * is one service to keep alive rather than two. The address is never in a
+   * query string and no account holds the leads; FormSubmit forwards and
+   * forgets.
    *
-   * To switch to a real backend later: set FORM_ENDPOINT to the POST URL and
-   * this handler steps aside. The destination address lives in one place.
+   * Mail only starts flowing once somebody at info@hellovoice.co.uk clicks the
+   * one-time activation link FormSubmit emails on the first submission. Until
+   * then every POST comes back rejected — which is exactly why the mail-client
+   * fallback below is kept rather than deleted: a visitor never loses a
+   * message because an inbox has not been confirmed yet.
    */
   var FORM_TO = "info@hellovoice.co.uk";
-  var FORM_ENDPOINT = "";        /* set this to a POST url to use a backend */
+  var FORM_ENDPOINT = "https://formsubmit.co/ajax/" + FORM_TO;
+
+  /* Build "Label: value" lines out of whatever the form actually contains, so
+     a new field on a form shows up in the mail without touching this code. */
+  function formLines(form) {
+    var lines = [], named = "";
+    $$("input,select,textarea", form).forEach(function (f) {
+      if (!f.name || f.type === "submit" || f.type === "hidden") return;
+      var label = (f.getAttribute("placeholder") || f.name).trim();
+      var val = (f.value || "").trim();
+      if (val) lines.push(label + ": " + val);
+      if (/name/i.test(f.name) && val && !named) named = val;
+    });
+    return { lines: lines, named: named };
+  }
+
+  function formNote(form) {
+    var note = form.querySelector(".form_sent");
+    if (!note) {
+      note = document.createElement("p");
+      note.className = "form_sent";
+      note.setAttribute("role", "status");
+      form.appendChild(note);
+    }
+    return note;
+  }
 
   $$("form").forEach(function (form) {
-    if (FORM_ENDPOINT) {
-      form.setAttribute("action", FORM_ENDPOINT);
-      form.setAttribute("method", "post");
-      return;
-    }
     form.setAttribute("data-mailto", FORM_TO);
     form.addEventListener("submit", function (ev) {
       ev.preventDefault();
+
       /* Which tab the visitor filled in — "Say hello" or "Get a quote" — so the
-         subject says what the enquiry is before it is opened (client, 18 Sep 2026). */
-      var pane = form.closest("[data-w-tab]");
-      var kind = "";
-      if (pane) {
-        var link = document.querySelector('.contact_tabs_links[data-w-tab="' +
-                     pane.getAttribute("data-w-tab") + '"] .contact_tabs_link_text');
-        if (link) kind = link.textContent.trim().toLowerCase()
-          .replace(/^./, function (c) { return c.toUpperCase(); });
+         subject says what the enquiry is before it is opened (client, 18 Sep 2026).
+         A form can also name itself, which is how the catalogue access request
+         arrives as its own kind rather than as a generic website enquiry. */
+      var kind = form.getAttribute("data-kind") || "";
+      if (!kind) {
+        var pane = form.closest("[data-w-tab]");
+        if (pane) {
+          var link = document.querySelector('.contact_tabs_links[data-w-tab="' +
+                       pane.getAttribute("data-w-tab") + '"] .contact_tabs_link_text');
+          if (link) kind = link.textContent.trim().toLowerCase()
+            .replace(/^./, function (c) { return c.toUpperCase(); });
+        }
       }
-      var lines = [], subject = "Website enquiry" + (kind ? " (" + kind + ")" : "") + " — HelloVoice";
-      if (kind) lines.push("Enquiry type: " + kind);
+
+      var got = formLines(form);
+      if (!got.lines.length) return;
+
+      var head = form.getAttribute("data-subject") || "Website enquiry";
+      var subject = head + (kind ? " (" + kind + ")" : "") +
+                    " — " + (got.named || "HelloVoice");
+      var body = (kind ? "Enquiry type: " + kind + "\n" : "") + got.lines.join("\n");
+
+      var note = formNote(form);
+      var btn = form.querySelector('[type="submit"],button');
+      if (btn) btn.disabled = true;
+      note.className = "form_sent";
+      note.textContent = "Sending…";
+
+      /* The mail client, as it worked before an endpoint existed. Reached only
+         when the relay refuses — an unactivated inbox, an offline visitor — so
+         nothing is ever silently dropped. */
+      function fallback() {
+        window.location.href = "mailto:" + FORM_TO
+          + "?subject=" + encodeURIComponent(subject)
+          + "&body=" + encodeURIComponent(body);
+        note.className = "form_sent is-warn";
+        note.innerHTML = "Your email app should now open with this message, addressed to " +
+          FORM_TO + ". If it didn’t, email <a href=\"mailto:" + FORM_TO + "\">" + FORM_TO +
+          "</a> or call <a href=\"tel:+966114634518\">+966 11 463 4518</a>.";
+        if (btn) btn.disabled = false;
+      }
+
+      var payload = { _subject: subject, _template: "table", _captcha: "false" };
+      if (kind) payload.enquiry_type = kind;
       $$("input,select,textarea", form).forEach(function (f) {
         if (!f.name || f.type === "submit" || f.type === "hidden") return;
-        var label = (f.getAttribute("placeholder") || f.name).trim();
         var val = (f.value || "").trim();
-        if (val) lines.push(label + ": " + val);
-        if (/name/i.test(f.name) && val) subject = "Website enquiry" + (kind ? " (" + kind + ")" : "") + " — " + val;
+        if (val) payload[f.name] = val;
       });
-      if (!lines.length) return;
-      var href = "mailto:" + FORM_TO
-        + "?subject=" + encodeURIComponent(subject)
-        + "&body=" + encodeURIComponent(lines.join("\n"));
-      window.location.href = href;
-      /* Say what actually happened. This used to be followed by a second handler
-         that hid the form and showed Webflow's success block — which a visitor
-         with no mail app set up saw although nothing had been sent. */
-      var note = form.querySelector(".form_sent");
-      if (!note) {
-        note = document.createElement("p");
-        note.className = "form_sent";
-        note.setAttribute("role", "status");
-        form.appendChild(note);
-      }
-      note.innerHTML = "Your email app should now open with this message, addressed to " + FORM_TO +
-        ". If it didn’t, email <a href=\"mailto:" + FORM_TO + "\">" + FORM_TO +
-        "</a> or call <a href=\"tel:+966114634518\">+966 11 463 4518</a>.";
+      payload.page = location.pathname;
+      payload.submitted_at = new Date().toISOString();
+
+      fetch(FORM_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        /* FormSubmit identifies a form BY its referrer and rejects a submission
+           that arrives without one. Send the origin — and only the origin. */
+        referrerPolicy: "strict-origin",
+        body: JSON.stringify(payload)
+      }).then(function (r) {
+        return r.json().catch(function () { return null; }).then(function (b) {
+          /* A rejected submission still answers 200 with {"success":"false"},
+             so the status code alone is not enough to call it sent. */
+          if (!r.ok || (b && String(b.success) === "false")) throw new Error("rejected");
+          return b;
+        });
+      }).then(function () {
+        note.className = "form_sent is-ok";
+        note.textContent = "Thank you — that has been sent. We reply within one working day.";
+        form.reset();
+        if (btn) btn.disabled = false;
+      }).catch(fallback);
     });
   });
 
