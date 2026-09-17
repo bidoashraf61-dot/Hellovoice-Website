@@ -5898,3 +5898,8 @@ html.intro-seen .preloader { display: none !important; }
 .about_section .about_header_area { margin-bottom: 0; }
 .about-us .about_section .about_header_area,
 body:has(.about_track) .about_section .about_header_area { margin-bottom: clamp(48px, 6vw, 110px); }
+/* Air between the statement and the crew photograph beside it. */
+.about_section .about_header_area { gap: clamp(32px, 5vw, 88px); }
+@media screen and (max-width: 991px) {
+  .about_section .about_header_area { gap: 28px; }
+}
