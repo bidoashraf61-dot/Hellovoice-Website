@@ -80,3 +80,5 @@ Rules from the client:
 | 37 | Home + About · Trusted by Leaders | The "400+ top brands" tag crosses the heading's top edge instead of covering it | Done |
 | 38 | "Brief, build, and deliver" | Moved from Home to About only | Done |
 | 39 | "Clients feedback" | Moved from Home to About only | Done |
+| 40 | Home · black brands wall + quote | Removed from Home; About keeps its own | Done |
+| 41 | Home · "Inside (the) HelloVoice" | The 150px margin that used to clear the values track removed — that was the white gap under "Learn more" (section 821 → 671px) | Done |

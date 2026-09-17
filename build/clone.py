@@ -2338,6 +2338,19 @@ def film_feature(where: str = "") -> str:
         '</div></div></div></section>')
 
 
+def drop_brands_wall(html: str) -> str:
+    """Remove the black client wall and its testimonial from the home page."""
+    m = re.search(r'<div[^>]*\bclass="brands_section"', html)
+    if not m:
+        return html
+    depth = 0
+    for t in re.finditer(r"<(/?)div\b[^>]*>", html[m.start():]):
+        depth += -1 if t.group(1) else 1
+        if depth == 0:
+            return html[:m.start()] + html[m.start() + t.end():]
+    return html
+
+
 def take_section(html: str, cls: str):
     """Cut one section out of a page and hand it back with the page.
 
@@ -2511,6 +2524,9 @@ def transform(name: str, html: str, drop_hero: bool = True) -> str:
         global _HOME_STEPS, _HOME_TESTIMONIALS
         html, _HOME_STEPS = take_section(html, "step_section")
         html, _HOME_TESTIMONIALS = take_section(html, "testimonial_section")
+        # The black brands wall with its quote belongs to About as well; About
+        # builds its own, so the home copy is simply dropped.
+        html = drop_brands_wall(html)
     if name == "about-us":
         html = about_values(html, _HOME_VALUES_SRC or _HOME_HTML)   # all six values
         html = remove_awards(html)

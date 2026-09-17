@@ -5892,3 +5892,9 @@ html.intro-seen .preloader { display: none !important; }
 .leader_section_badge { margin-bottom: -12px !important; }
 @media screen and (max-width: 991px) { .leader_section_badge { margin-bottom: -9px !important; } }
 @media screen and (max-width: 767px) { .leader_section_badge { margin-bottom: -7px !important; } }
+/* The header area carried a 150px bottom margin to clear the values track that
+   used to follow it on the home page. The track lives on About now, so that
+   margin was simply empty page under the button. */
+.about_section .about_header_area { margin-bottom: 0; }
+.about-us .about_section .about_header_area,
+body:has(.about_track) .about_section .about_header_area { margin-bottom: clamp(48px, 6vw, 110px); }
