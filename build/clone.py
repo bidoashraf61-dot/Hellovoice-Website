@@ -2285,30 +2285,41 @@ FILM = {
 
 
 def film_feature(where: str = "") -> str:
-    """The film, on its own poster: the cover as a faded ground, the festival
-    lockup in the corner, and both cuts running as silent loops beside the copy.
+    """The film, presented as a film: poster first, then the billing.
 
-    "Watch the film" goes to the entry on Higgsfield — that is where the whole
-    11 minutes lives, with its breakdown. The two loops here are a sped-up cut
-    of the film (21s) and the vertical reel, both muted and looping.
+    Structure, top to bottom: the festival lockup, the film's own poster at a
+    size you can read it at, the title and synopsis under it, and the two cuts
+    running silently side by side. The ground is that same poster, blurred and
+    darkened — ambience rather than a second copy of the title behind the type,
+    which is what made the first version read as doubled.
     """
     return (
         f'<section class="film_feature{where}" id="the-four-coats" '
         'aria-labelledby="four-coats-title">'
         '<div class="film_feature_bg" aria-hidden="true"></div>'
-        '<div class="film_feature_scrim" aria-hidden="true"></div>'
+        '<div class="padding_global"><div class="container">'
+        '<div class="film_feature_inner">'
+        '<div class="film_feature_head">'
         '<img class="film_feature_lockup" src="/assets/film/festival-lockup.png" '
         'width="1230" height="256" alt="Higgsfield Global Film Festival" '
         'loading="lazy" decoding="async"/>'
-        '<div class="padding_global"><div class="container">'
-        '<div class="film_feature_grid">'
-        '<div class="film_feature_copy">'
         '<p class="film_feature_kicker">'
         '<img src="/assets/film/higgsfield-mark.webp" width="128" height="128" '
-        'alt="" loading="lazy" decoding="async"/>'
-        'Higgsfield Global Film Festival · our entry</p>'
+        'alt="" loading="lazy" decoding="async"/>Our entry · 2026</p>'
+        '</div>'
+        '<figure class="film_feature_poster">'
+        '<img src="/assets/film/four-coats-cover-1600.webp" '
+        'srcset="/assets/film/four-coats-cover-800.webp 800w, '
+        '/assets/film/four-coats-cover-1600.webp 1600w" '
+        'sizes="(max-width: 991px) 92vw, 1040px" width="1000" height="421" '
+        f'alt="{HC.esc(FILM["title"])} — poster" loading="lazy" decoding="async"/>'
+        '</figure>'
+        '<div class="film_feature_body">'
+        '<div class="film_feature_billing">'
         f'<h2 class="film_feature_title" id="four-coats-title">{HC.esc(FILM["title"])}</h2>'
         f'<p class="film_feature_tagline">{HC.esc(FILM["tagline"])}</p>'
+        '</div>'
+        '<div class="film_feature_detail">'
         f'<p class="film_feature_synopsis">{HC.esc(FILM["synopsis"])}</p>'
         '<ul class="film_feature_meta">'
         '<li>AI short film</li>'
@@ -2322,18 +2333,18 @@ def film_feature(where: str = "") -> str:
         '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">'
         '<path d="M8 5v14l11-7z"/></svg></span>Watch the film</a>'
         '<span class="film_feature_note">Plays on Higgsfield</span>'
-        '</div></div>'
+        '</div></div></div>'
         '<div class="film_feature_art">'
         '<div class="film_feature_clip is-wide">'
         '<video class="film_feature_video" muted loop playsinline preload="none" '
         'poster="/assets/film/four-coats-cover-1600.webp" aria-hidden="true" tabindex="-1">'
         '<source src="/assets/film/four-coats-loop.mp4" type="video/mp4"/>'
-        '</video></div>'
+        '</video><figcaption class="film_feature_cap">From the film</figcaption></div>'
         '<div class="film_feature_clip is-tall">'
         '<video class="film_feature_video" muted loop playsinline preload="none" '
         'poster="/assets/film/four-coats-reel-poster.webp" aria-hidden="true" tabindex="-1">'
         '<source src="/assets/film/four-coats-reel.mp4" type="video/mp4"/>'
-        '</video></div>'
+        '</video><figcaption class="film_feature_cap">Every asset, every prompt</figcaption></div>'
         '</div></div></div></div></section>')
 
 

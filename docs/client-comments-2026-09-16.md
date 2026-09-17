@@ -60,3 +60,13 @@ Rules from the client:
 | 27 | The Four Coats | Festival lockup (their own laurels, transparent PNG) in the top-left corner | Done |
 | 28 | The Four Coats | Cover is the faded background under the type; both cuts loop beside it — the wide film cut and the vertical reel from the Higgsfield folder | Done |
 | 29 | The Four Coats | "Watch the film" opens the entry on Higgsfield; the local 3-min copy is gone | Done — runtime corrected to 11 min from the film's page |
+
+## Round six — 18 Sep 2026
+
+| # | Where | Change | Status |
+|---|---|---|---|
+| 30 | The Four Coats | Restructured: festival lockup, the poster at full size, billing under it, the two cuts as a strip; the ground is the poster blurred, so its title no longer ghosts behind ours | Done |
+| 31 | Home + Services · service cards | "See the work" is a filled black pill, so it reads as a button | Done |
+| 32 | All pages · full-screen menu | Smaller sticker, sitting under the wordmark; calmer stack | Done |
+| 33 | Work · "Our Work" | Title left-aligned so its tag crosses it like every other heading | Done |
+| 34 | Contact · form | Subject and first line now name the tab: "Website enquiry (Say hello) / (Get a quote) — name" | Done |

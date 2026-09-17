@@ -5641,81 +5641,86 @@ html.intro-seen .preloader { display: none !important; }
 .testimonial_section .section_header { margin-top: 48px; }
 @media screen and (max-width: 767px) { .testimonial_section .section_header { margin-top: 30px; } }
 
-/* ===================================== the short film · 17 Sep 2026
+/* ===================================== the short film · 18 Sep 2026
    "The Four Coats", HelloVoice's entry in the Higgsfield Global Film Festival.
-   The film's own cover is the ground, faded back under the type; the festival
-   lockup sits in the top-left corner; the wide cut and the vertical reel run
-   as silent loops beside the copy. "Watch the film" goes to the entry on
-   Higgsfield, where the whole 11 minutes lives. */
+   Presented as a film: the festival lockup, the poster at a readable size, the
+   billing under it, then the two cuts running silently. The ground is that same
+   poster blurred and darkened — ambience, not a second copy of the title behind
+   the type, which is what made the first version read as doubled. */
 .film_feature {
   position: relative;
-  background: #000;
+  background: #050505;
   color: var(--white);
   overflow: clip;
-  padding-block: clamp(84px, 10vw, 150px);
+  padding-block: clamp(64px, 8vw, 120px);
   isolation: isolate;
 }
 .film_feature_bg {
-  position: absolute; inset: 0; z-index: 0;
+  position: absolute; inset: -8%;
+  z-index: 0;
   background: url("/assets/film/four-coats-cover-1600.webp") center / cover no-repeat;
-  opacity: .28;
-  filter: saturate(.85);
+  filter: blur(46px) saturate(1.1) brightness(.5);
+  opacity: .55;
 }
-.film_feature_scrim {
+.film_feature::after {
+  content: "";
   position: absolute; inset: 0; z-index: 1; pointer-events: none;
-  background:
-    linear-gradient(to right, rgba(0,0,0,.92) 0%, rgba(0,0,0,.72) 48%, rgba(0,0,0,.5) 100%),
-    linear-gradient(to top, rgba(0,0,0,.92), rgba(0,0,0,.25) 45%, rgba(0,0,0,.75));
-}
-.film_feature_lockup {
-  position: absolute;
-  top: clamp(20px, 3vw, 40px);
-  left: clamp(20px, 5%, 80px);
-  z-index: 3;
-  width: clamp(190px, 22vw, 320px);
-  height: auto;
+  background: radial-gradient(120% 90% at 50% 15%, rgba(5,5,5,.25), rgba(5,5,5,.88) 72%);
 }
 .film_feature .padding_global { position: relative; z-index: 2; }
-.film_feature_grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
-  gap: clamp(32px, 5vw, 72px);
-  align-items: center;
-  padding-top: clamp(56px, 7vw, 96px);   /* clear of the lockup in the corner */
-}
+.film_feature_inner { display: flex; flex-direction: column; gap: clamp(26px, 3.2vw, 44px); }
+
+.film_feature_head { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.film_feature_lockup { width: clamp(230px, 24vw, 380px); height: auto; }
 .film_feature_kicker {
-  display: inline-flex; align-items: center; gap: 10px;
-  margin: 0 0 18px;
-  font-size: .8125rem; letter-spacing: .14em; text-transform: uppercase;
-  color: rgba(255,255,255,.82);
+  display: inline-flex; align-items: center; gap: 10px; margin: 0;
+  font-size: .8125rem; letter-spacing: .16em; text-transform: uppercase;
+  color: rgba(255,255,255,.7);
 }
-.film_feature_kicker img { width: 26px; height: 26px; border-radius: 7px; }
+.film_feature_kicker img { width: 24px; height: 24px; border-radius: 7px; }
+
+/* The poster, at a size it can be read at. */
+.film_feature_poster {
+  margin: 0;
+  width: min(100%, 1040px);
+  align-self: center;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.16);
+  box-shadow: 0 40px 120px rgba(0,0,0,.75);
+}
+.film_feature_poster img { width: 100%; height: auto; display: block; }
+
+.film_feature_body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 64px);
+  align-items: start;
+  width: min(100%, 1040px);
+  align-self: center;
+}
 .film_feature_title {
   margin: 0;
   color: var(--white);
-  font-size: clamp(3rem, 8vw, 7.5rem);
-  line-height: .86;
-  letter-spacing: .01em;
+  font-size: clamp(2.5rem, 5.4vw, 4.75rem);
+  line-height: .88;
   text-transform: uppercase;
 }
 .film_feature_tagline {
-  margin: 14px 0 0;
-  font-size: clamp(1rem, 1.5vw, 1.25rem);
-  letter-spacing: .12em;
+  margin: 12px 0 0;
+  font-size: clamp(.9rem, 1.2vw, 1.05rem);
+  letter-spacing: .14em;
   text-transform: uppercase;
   color: var(--lime);
 }
-.film_feature_synopsis {
-  margin: 20px 0 0; max-width: 46ch;
-  font-size: 1.0625rem; line-height: 1.6; color: rgba(255,255,255,.85);
-}
+.film_feature_synopsis { margin: 0; font-size: 1.0625rem; line-height: 1.6; color: rgba(255,255,255,.86); }
 .film_feature_meta {
-  display: flex; flex-wrap: wrap; gap: 10px 28px;
-  margin: 24px 0 0; padding: 0; list-style: none;
-  font-size: .8125rem; letter-spacing: .1em; text-transform: uppercase;
-  color: rgba(255,255,255,.64);
+  display: flex; flex-wrap: wrap; gap: 8px 24px;
+  margin: 18px 0 0; padding: 0; list-style: none;
+  font-size: .75rem; letter-spacing: .12em; text-transform: uppercase;
+  color: rgba(255,255,255,.6);
 }
-.film_feature_actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; margin-top: clamp(28px, 3vw, 40px); }
+.film_feature_actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 20px; margin-top: 26px; }
 .film_feature_play {
   display: inline-flex; align-items: center; gap: 12px;
   min-height: 56px; padding: 14px 28px;
@@ -5723,43 +5728,109 @@ html.intro-seen .preloader { display: none !important; }
   background: var(--lime); color: #121212; text-decoration: none;
   font-family: var(--_typography---font-family--heading-font);
   font-size: 1.25rem; letter-spacing: .02em;
-  transition: transform .2s ease, background-color .2s ease;
+  transition: transform .2s ease;
 }
 .film_feature_play_glyph { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: #121212; color: var(--lime); }
 .film_feature_play:active { transform: scale(.97); }
 .film_feature_play:focus-visible { outline: 2px solid var(--vivid-orange); outline-offset: 3px; }
-.film_feature_note { font-size: .8125rem; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.55); }
+.film_feature_note { font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.55); }
 
-/* The two cuts: the wide one leads, the vertical reel sits beside it. */
 .film_feature_art {
   display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
-  gap: clamp(14px, 1.6vw, 22px);
-  align-items: stretch;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+  gap: clamp(14px, 1.6vw, 20px);
+  width: min(100%, 1040px);
+  align-self: center;
 }
 .film_feature_clip {
   position: relative; overflow: hidden;
-  border-radius: 18px; border: 1px solid rgba(255,255,255,.16);
+  border-radius: 16px; border: 1px solid rgba(255,255,255,.14);
   background: #000;
-  box-shadow: 0 30px 80px rgba(0,0,0,.55);
 }
-.film_feature_clip.is-wide { aspect-ratio: 16 / 9; align-self: center; }
+.film_feature_clip.is-wide { aspect-ratio: 16 / 9; }
 .film_feature_clip.is-tall { aspect-ratio: 9 / 16; }
 .film_feature_video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.film_feature_cap {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 26px 14px 10px;
+  font-size: .6875rem; letter-spacing: .14em; text-transform: uppercase;
+  color: rgba(255,255,255,.82);
+  background: linear-gradient(to top, rgba(0,0,0,.8), rgba(0,0,0,0));
+}
 @media screen and (max-width: 991px) {
-  .film_feature_grid { grid-template-columns: 1fr; gap: 30px; padding-top: clamp(64px, 16vw, 110px); }
-  .film_feature_art { order: -1; }
+  .film_feature_body { grid-template-columns: 1fr; gap: 20px; }
+  .film_feature_art { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); }
 }
 @media screen and (max-width: 767px) {
-  .film_feature { padding-block: 64px; }
-  .film_feature_lockup { width: min(58vw, 230px); left: 5%; }
-  .film_feature_title { font-size: clamp(2.5rem, 13vw, 4rem); }
-  .film_feature_synopsis { font-size: 1rem; }
+  .film_feature { padding-block: 56px; }
+  .film_feature_head { justify-content: center; }
+  .film_feature_lockup { width: min(66vw, 260px); }
+  .film_feature_title { font-size: clamp(2.25rem, 11vw, 3.25rem); }
   .film_feature_play { width: 100%; justify-content: center; }
-  .film_feature_bg { opacity: .22; }
+  .film_feature_art { grid-template-columns: 1fr; }
+  .film_feature_clip.is-tall { max-width: 74%; margin-inline: auto; }
 }
 @media (prefers-reduced-motion: reduce) {
   .film_feature_video { display: none; }
   .film_feature_clip.is-wide { background: url("/assets/film/four-coats-cover-1600.webp") center/cover; }
   .film_feature_clip.is-tall { background: url("/assets/film/four-coats-reel-poster.webp") center/cover; }
+}
+
+/* The service cards' link reads as a button now: a filled pill, not a hairline
+   outline lost on the beige (client, 18 Sep 2026). */
+.service_item_link {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 12px 26px !important;
+  border: 2px solid #000 !important;
+  border-radius: 999px !important;
+  background: var(--black-secondary, #121212) !important;
+  color: var(--white) !important;
+  font-family: var(--_typography---font-family--heading-font);
+  font-size: 1.125rem;
+  letter-spacing: .02em;
+  text-decoration: none;
+  transition: background-color .2s ease, color .2s ease, transform .2s ease;
+}
+.service_item_link svg { transition: transform .2s ease; }
+@media (hover: hover) {
+  .service_item_link:hover { background: var(--lime) !important; color: #121212 !important; }
+  .service_item_link:hover svg { transform: translateX(4px); }
+}
+.service_item_link:active { transform: scale(.98); }
+.service_item_link:focus-visible { outline: 2px solid var(--vivid-orange); outline-offset: 3px; }
+
+/* The full-screen menu: a smaller sticker and a calmer stack, so the links are
+   the loudest thing in it (client, 18 Sep 2026). */
+.canvas_menu .floating_text.is-canvas {
+  font-size: 15px !important;
+  padding: 7px 14px !important;
+  top: 34px !important;
+}
+.canvas_logo { font-size: clamp(2rem, 6.4vw, 7rem) !important; opacity: .22 !important; }
+.canvas_logo_wrapper { margin-bottom: var(--_spacing---spacing-primitives--24px) !important; }
+.canvas_menu .heading-style-h4.is-menu { font-size: clamp(1.75rem, 4.6vw, 3.25rem) !important; }
+.canvas_menu_link { padding-top: var(--_spacing---spacing-primitives--20px) !important; }
+@media screen and (max-width: 767px) {
+  .canvas_menu .floating_text.is-canvas { font-size: 12px !important; padding: 6px 11px !important; top: 26px !important; }
+  .canvas_menu .heading-style-h4.is-menu { font-size: clamp(1.5rem, 7vw, 2.25rem) !important; }
+}
+/* The menu's sticker sits under the wordmark rather than across the links. */
+.canvas_logo_wrapper { flex-direction: column; gap: 10px; }
+.canvas_menu .floating_text.is-canvas {
+  position: relative !important;
+  inset: auto !important;
+  top: auto !important;
+  transform: rotate(-4deg) !important;
+  margin: 0 !important;
+}
+/* "Our Work": the title sits left like every other section title, so its tag
+   crosses the first letters rather than floating beside them. */
+.section_header.is_project { text-align: left; }
+.section_header.is_project h2 { text-align: left; margin-left: 0; }
+.section_header.is_project .floating_text.is-work { left: 3rem !important; top: 48% !important; }
+@media screen and (max-width: 767px) {
+  .section_header.is_project .floating_text.is-work { left: 1rem !important; top: 44% !important; }
 }

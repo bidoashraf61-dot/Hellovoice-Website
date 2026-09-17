@@ -1321,13 +1321,24 @@
     form.setAttribute("data-mailto", FORM_TO);
     form.addEventListener("submit", function (ev) {
       ev.preventDefault();
-      var lines = [], subject = "Website enquiry — HelloVoice";
+      /* Which tab the visitor filled in — "Say hello" or "Get a quote" — so the
+         subject says what the enquiry is before it is opened (client, 18 Sep 2026). */
+      var pane = form.closest("[data-w-tab]");
+      var kind = "";
+      if (pane) {
+        var link = document.querySelector('.contact_tabs_links[data-w-tab="' +
+                     pane.getAttribute("data-w-tab") + '"] .contact_tabs_link_text');
+        if (link) kind = link.textContent.trim().toLowerCase()
+          .replace(/^./, function (c) { return c.toUpperCase(); });
+      }
+      var lines = [], subject = "Website enquiry" + (kind ? " (" + kind + ")" : "") + " — HelloVoice";
+      if (kind) lines.push("Enquiry type: " + kind);
       $$("input,select,textarea", form).forEach(function (f) {
         if (!f.name || f.type === "submit" || f.type === "hidden") return;
         var label = (f.getAttribute("placeholder") || f.name).trim();
         var val = (f.value || "").trim();
         if (val) lines.push(label + ": " + val);
-        if (/name/i.test(f.name) && val) subject = "Website enquiry — " + val;
+        if (/name/i.test(f.name) && val) subject = "Website enquiry" + (kind ? " (" + kind + ")" : "") + " — " + val;
       });
       if (!lines.length) return;
       var href = "mailto:" + FORM_TO
