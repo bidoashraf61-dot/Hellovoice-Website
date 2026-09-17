@@ -5674,10 +5674,12 @@ html.intro-seen .preloader { display: none !important; }
    printed title so nothing on it competes with the heading. */
 .film_feature_inner {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, .58fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, .66fr);
   grid-template-areas:
     "head head"
-    "body reel";
+    "body reel"
+    "cta  reel";
+  align-items: start;
   align-items: center;
   gap: clamp(16px, 1.8vw, 26px) clamp(26px, 3.4vw, 52px);
   width: min(100%, 1180px);
@@ -5690,7 +5692,17 @@ html.intro-seen .preloader { display: none !important; }
   font-size: .75rem; letter-spacing: .16em; text-transform: uppercase;
   color: rgba(255,255,255,.7);
 }
-.film_feature_kicker img { width: 22px; height: 22px; border-radius: 6px; }
+.film_feature_kicker img { width: 34px; height: 34px; border-radius: 9px; }
+.film_feature_brand {
+  font-family: var(--_typography---font-family---body-font, var(--_typography---font-family--body-font));
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -.01em;
+  text-transform: none;
+  color: var(--white);
+}
+.film_feature_kicker_note { color: rgba(255,255,255,.62); }
+.film_feature_kicker_note::before { content: "·"; margin: 0 8px; }
 
 /* The reel: the tall one, at the size a phone film deserves. */
 .film_feature_reel {
@@ -5702,7 +5714,7 @@ html.intro-seen .preloader { display: none !important; }
 .film_feature_reel {
   grid-area: reel;
   aspect-ratio: 9 / 16;
-  height: clamp(300px, 31vw, 460px);
+  height: clamp(360px, 38vw, 560px);
   width: auto;
   justify-self: center;
 }
@@ -5715,7 +5727,8 @@ html.intro-seen .preloader { display: none !important; }
   background: linear-gradient(to top, rgba(0,0,0,.85), rgba(0,0,0,0));
 }
 
-.film_feature_body { grid-area: body; align-self: center; }
+.film_feature_body { grid-area: body; align-self: end; }
+.film_feature_actions { grid-area: cta; align-self: start; }
 .film_feature_title {
   margin: 0;
   color: var(--white);
@@ -5736,7 +5749,7 @@ html.intro-seen .preloader { display: none !important; }
   font-size: .6875rem; letter-spacing: .12em; text-transform: uppercase;
   color: rgba(255,255,255,.62);
 }
-.film_feature_actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; margin-top: 18px; }
+.film_feature_actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; margin-top: 4px; }
 .film_feature_play {
   display: inline-flex; align-items: center; gap: 11px;
   min-height: 54px; padding: 13px 26px;
@@ -5754,15 +5767,16 @@ html.intro-seen .preloader { display: none !important; }
 @media screen and (max-width: 991px) {
   .film_feature_inner {
     grid-template-columns: 1fr;
-    grid-template-areas: "head" "body" "reel";
+    grid-template-areas: "head" "body" "reel" "cta";
   }
-  .film_feature_reel { height: auto; width: min(56%, 300px); margin-inline: auto; }
+  .film_feature_reel { height: auto; width: min(68%, 360px); margin-inline: auto; }
+  .film_feature_actions { justify-content: center; }
 }
 @media screen and (max-width: 767px) {
   .film_feature { padding-block: 36px 40px; }
   .film_feature_head { justify-content: center; }
   .film_feature_lockup { width: min(76vw, 300px); }
-  .film_feature_reel { width: min(62%, 250px); }
+  .film_feature_reel { width: min(74%, 300px); }
   .film_feature_title { font-size: clamp(2.25rem, 11vw, 3rem); }
   .film_feature_play { width: 100%; justify-content: center; }
 }
@@ -5828,4 +5842,9 @@ html.intro-seen .preloader { display: none !important; }
 .section_header.is_project .floating_text.is-work { left: 3rem !important; top: 48% !important; }
 @media screen and (max-width: 767px) {
   .section_header.is_project .floating_text.is-work { left: 1rem !important; top: 44% !important; }
+}
+/* The menu's sticker was hidden on phones by the template's blanket rule for
+   floating text; the client wants it there (18 Sep 2026). */
+@media screen and (max-width: 767px) {
+  .canvas_menu .floating_text.is-canvas { display: inline-block !important; }
 }

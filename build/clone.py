@@ -2304,7 +2304,9 @@ def film_feature(where: str = "") -> str:
         'loading="lazy" decoding="async"/>'
         '<p class="film_feature_kicker">'
         '<img src="/assets/film/higgsfield-mark.webp" width="128" height="128" '
-        'alt="" loading="lazy" decoding="async"/>Our entry · 2026</p>'
+        'alt="Higgsfield" loading="lazy" decoding="async"/>'
+        '<span class="film_feature_brand">Higgsfield</span>'
+        '<span class="film_feature_kicker_note">Our entry · 2026</span></p>'
         '</div>'
         '<figure class="film_feature_reel">'
         '<video class="film_feature_video" muted loop playsinline preload="none" '
@@ -2322,6 +2324,7 @@ def film_feature(where: str = "") -> str:
         f'<li>{HC.esc(FILM["runtime"])}</li>'
         '<li>Written, directed and produced by HelloVoice</li>'
         '</ul>'
+        '</div>'
         '<div class="film_feature_actions">'
         f'<a class="film_feature_play" href="{FILM["url"]}" target="_blank" '
         'rel="noopener noreferrer">'
@@ -2329,7 +2332,7 @@ def film_feature(where: str = "") -> str:
         '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">'
         '<path d="M8 5v14l11-7z"/></svg></span>Watch the film</a>'
         '<span class="film_feature_note">Plays on Higgsfield</span>'
-        '</div></div>'
+        '</div>'
         '</div></div></div></section>')
 
 
