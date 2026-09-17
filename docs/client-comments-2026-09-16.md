@@ -70,3 +70,13 @@ Rules from the client:
 | 32 | All pages · full-screen menu | Smaller sticker, sitting under the wordmark; calmer stack | Done |
 | 33 | Work · "Our Work" | Title left-aligned so its tag crosses it like every other heading | Done |
 | 34 | Contact · form | Subject and first line now name the tab: "Website enquiry (Say hello) / (Get a quote) — name" | Done |
+
+## Round seven — 18 Sep 2026
+
+| # | Where | Change | Status |
+|---|---|---|---|
+| 35 | Home · "Inside (the) HelloVoice" | 150px bands cut to ~78px — the empty ground under "Learn more" | Done |
+| 36 | Home + Services · service cards | Films take half the card (648×365, was 441×248); card padding 60 → 35px | Done |
+| 37 | Home + About · Trusted by Leaders | The "400+ top brands" tag crosses the heading's top edge instead of covering it | Done |
+| 38 | "Brief, build, and deliver" | Moved from Home to About only | Done |
+| 39 | "Clients feedback" | Moved from Home to About only | Done |

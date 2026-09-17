@@ -894,6 +894,8 @@ def home_order(html: str) -> str:
 # happens first, and about_values no-ops rather than guesses if it is empty.
 _HOME_HTML = ""
 _HOME_VALUES_SRC = ""   # the home values before Ethics is dropped (About keeps six)
+_HOME_STEPS = ""        # "Brief, build, and deliver" — moved to About (18 Sep 2026)
+_HOME_TESTIMONIALS = "" # "Clients feedback" — moved to About (18 Sep 2026)
 
 
 def about_values(html: str, home_html: str) -> str:
@@ -2336,6 +2338,29 @@ def film_feature(where: str = "") -> str:
         '</div></div></div></section>')
 
 
+def take_section(html: str, cls: str):
+    """Cut one section out of a page and hand it back with the page.
+
+    Used to move a whole section from Home to About (client, 18 Sep 2026)
+    rather than build a second copy that could drift from the first.
+    """
+    m = re.search(r'<section[^>]*\bclass="' + cls + r'"', html)
+    if not m:
+        return html, ""
+    depth = 0
+    for t in re.finditer(r"<(/?)section\b[^>]*>", html[m.start():]):
+        depth += -1 if t.group(1) else 1
+        if depth == 0:
+            end = m.start() + t.end()
+            return html[:m.start()] + html[end:], html[m.start():end]
+    return html, ""
+
+
+def put_before(html: str, needle: str, block: str) -> str:
+    i = html.find(needle)
+    return html if (i < 0 or not block) else html[:i] + block + html[i:]
+
+
 def film_on_home(html: str) -> str:
     """The short film takes Featured Works' place on the home page (17 Sep 2026).
 
@@ -2481,6 +2506,11 @@ def transform(name: str, html: str, drop_hero: bool = True) -> str:
         html = drop_values_track(html)   # the values live on About only
         html = home_order(html)      # hero, clients, film, values, services, work
         html = film_on_home(html)    # the short film stands where Featured Works did
+        # These two live on About now, not on the home page. Cut here and kept
+        # aside so About shows the same markup rather than a second copy.
+        global _HOME_STEPS, _HOME_TESTIMONIALS
+        html, _HOME_STEPS = take_section(html, "step_section")
+        html, _HOME_TESTIMONIALS = take_section(html, "testimonial_section")
     if name == "about-us":
         html = about_values(html, _HOME_VALUES_SRC or _HOME_HTML)   # all six values
         html = remove_awards(html)
@@ -2490,6 +2520,9 @@ def transform(name: str, html: str, drop_hero: bool = True) -> str:
         html = about_media(html)      # the two picture slots become film
         html = about_clients(html)    # the home page's client band, shared
         html = rating_cluster(html)
+        # the two sections the home page handed over
+        html = put_before(html, '<section class="client_banner_section"', _HOME_STEPS)
+        html = put_before(html, '<section class="cta_section"', _HOME_TESTIMONIALS)
     if name == "404":
         html = error_page_heading(html)
     if name == "contact-us":

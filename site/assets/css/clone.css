@@ -5862,3 +5862,33 @@ html.intro-seen .preloader { display: none !important; }
 @media screen and (max-width: 767px) {
   .canvas_menu .floating_text.is-canvas { display: inline-block !important; }
 }
+
+/* ---- 18 Sep 2026 · space, taken back ----
+   With the values track gone from the home page, "Inside (the) HelloVoice"
+   was left standing in 150px of padding top and bottom with nothing under its
+   button. Both bands come in, and the service cards give their films the
+   larger half of the card. */
+.about_section { padding-block: clamp(48px, 5.4vw, 88px) !important; }
+.about_section .about_header_area { align-items: flex-start; }
+.service_section { padding-top: clamp(48px, 5.4vw, 88px) !important; }
+
+/* Bigger films on the service cards: the loop takes 46% of the card rather
+   than a 460px cap, and the card's floor comes down to suit. */
+.service_item_media { flex: 0 0 clamp(300px, 46%, 620px) !important; }
+.service_section .service_item { min-height: 420px; }
+@media screen and (max-width: 900px) {
+  .service_item_media { flex: none !important; }
+}
+@media screen and (max-width: 767px) {
+  .service_section { padding-top: 40px !important; }
+  .about_section { padding-block: 36px 40px !important; }
+}
+/* The cards carried 60px of padding above and below a 458px stack; 36 is
+   enough and takes ~150px out of the section across the three. */
+.service_section .service_item { padding-block: clamp(24px, 2.4vw, 36px) !important; }
+.service_item_media { flex-basis: clamp(320px, 50%, 660px) !important; }
+/* The "400+ top brands" tag crosses the heading's top edge rather than sitting
+   across its face — it was covering most of the cap height (client, 18 Sep). */
+.leader_section_badge { margin-bottom: -12px !important; }
+@media screen and (max-width: 991px) { .leader_section_badge { margin-bottom: -9px !important; } }
+@media screen and (max-width: 767px) { .leader_section_badge { margin-bottom: -7px !important; } }
