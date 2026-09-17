@@ -2285,12 +2285,12 @@ FILM = {
 
 
 def film_feature(where: str = "") -> str:
-    """Split screen: the vertical reel at full height on one side, the billing on
-    the other, and the wide cut as a band beneath them.
+    """Split screen: the vertical reel on one side, the billing on the other.
 
-    The client's structure, 18 Sep 2026. The poster is used only as the ground —
-    blurred, and cropped past its printed title so nothing on it competes with
-    the heading beside it.
+    The client's structure, 18 Sep 2026 — the wide cut of the film is gone and
+    the reel carries the section alone. The poster is the ground only: blurred,
+    and cropped past its printed title so nothing on it competes with the
+    heading beside it.
     """
     return (
         f'<section class="film_feature{where}" id="the-four-coats" '
@@ -2330,13 +2330,6 @@ def film_feature(where: str = "") -> str:
         '<path d="M8 5v14l11-7z"/></svg></span>Watch the film</a>'
         '<span class="film_feature_note">Plays on Higgsfield</span>'
         '</div></div>'
-        '<figure class="film_feature_band">'
-        '<video class="film_feature_video" muted loop playsinline preload="none" '
-        'poster="/assets/film/four-coats-art-1600.webp" aria-hidden="true" tabindex="-1">'
-        '<source src="/assets/film/four-coats-loop.mp4" type="video/mp4"/>'
-        '</video>'
-        '<figcaption class="film_feature_cap">From the film</figcaption>'
-        '</figure>'
         '</div></div></div></section>')
 
 
