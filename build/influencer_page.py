@@ -269,6 +269,8 @@ PULLED = {
     "DbA_ZjID1VC",   # SVR, four-panel grid
     "Da2qmYYiqpt",   # SVR, dresser
     "DZCQ2HasrF4",   # Other campaigns, TV segment
+    "DU_PFdwkoDC",   # SVR, "dry skin while fasting" card — 20 likes, 0 comments
+    "DW2_xMyjDHe",   # Other campaigns, @beautydemoisellle serum flat-lay
 }
 
 

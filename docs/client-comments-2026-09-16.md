@@ -82,3 +82,64 @@ Rules from the client:
 | 39 | "Clients feedback" | Moved from Home to About only | Done |
 | 40 | Home · black brands wall + quote | Removed from Home; About keeps its own | Done |
 | 41 | Home · "Inside (the) HelloVoice" | The 150px margin that used to clear the values track removed — that was the white gap under "Learn more" (section 821 → 671px) | Done |
+
+## Round eight — pre-launch checklist, 18 Sep 2026
+
+Source: `HelloVoice_Website_Fix_Checklist.xlsx` (36 rows, checked 17 Sep). Every row
+decided with the client on 18 Sep. "Declined" means we chose not to act, not that it
+was missed.
+
+### Build — no further input needed
+
+| # | Where | Change | Status |
+|---|---|---|---|
+| 1 | Home, Projects | "Kwait" → "Kuwait"; strip the stray Arabic kasra before the A | To do |
+| 2 | Projects | "Molyncke" / "Molynlcke" → "Molnlycke" everywhere | To do |
+| 3 | Projects | "Qasser El saraya" / "Qasser Al Saraya" → one spelling | To do |
+| 4 | Projects | "Medical_Skintellectual" → "Medical – Skintellectual Solutions" | To do |
+| 5 | Projects | "Spc- Seroflo Inhaler" → "SPC – Seroflo Inhaler Whiteboard Awareness" | To do |
+| 6 | Projects | "Suliman Al Habib patient" → "Sulaiman Al Habib – Patient Awareness Video" | To do |
+| 7 | All pages | "Lets Connect" → "Let's Connect" | To do |
+| 8 | Home | Anchor `#awarness-videos` → `#awareness-videos` | To do |
+| 10 | Site | Generate `sitemap.xml` + `robots.txt` (submission is Hisham's) | To do |
+| 11 | All pages | Unique title + meta description per page. 8 pages share one description, 6 have none, and both it and og:description still carry the template's "$200M+ since 2006" | To do |
+| 12 | All pages | **og:image tag is malformed** — renders as `<meta /assets/helv/og-image.jpg" property="og:image"/>`; `content="` was eaten by the regex at `build/clone.py:343`. No link preview anywhere | To do |
+| 19 | All pages | `aria-hidden` on the duplicate hover labels (Learn More / Watch Now / Send Message) | To do |
+| 20 | All pages | Animated HelloVoice logo during any load — never a blank screen | To do |
+| 21 | Home | Lazy-load below-fold media, poster-first video, defer GSAP. ~31 MB of referenced assets today | To do |
+| 29 | Footer | © 2026 — already correct | Done |
+| 30/31 | Contact | Wire both forms to **FormSubmit** → info@hellovoice.co.uk. One-time activation email must be clicked by someone with access to that inbox | To do |
+| 32–34 | All pages | Full automated sweep: every link, every Vimeo ID, the catalogue link, then WebKit + Chrome at phone/tablet/desktop | To do |
+| — | Site | **Delete the four test pages** shipped publicly: `/char-test/`, `/eye-test/`, `/scroll-test/`, `/spline-test/` (not on the client's list) | To do |
+| — | Home | Tag says "EIGHT SERVICES", section shows three → "THREE SERVICES" | To do |
+| 16b | Home, About | Remove the repeated Faisal Al-Qahtani quote (section otherwise unchanged) | To do |
+| 17 | Contact, Projects | "LET'S ROAR INTO THE WILD TOGETHER" → "LET'S MAKE SOMETHING WORTH WATCHING."; "OUR CREATIVE ROAR DEFINES OUR LEGACY." → "THE WORK SPEAKS FOR ITSELF." | To do |
+| 13 | Influencers | Sort posts strongest → weakest by engagement; keep them all | To do |
+| 25 | All pages | Footer/menu/hero social set = Instagram **+ Vimeo** (vimeo.com/hellovoice — confirm URL). TikTok and Facebook stay out | To do |
+| 35 | All pages | Phone is `+966 11 463 4518` everywhere. The old site's mobile is stale | Confirmed |
+
+### Declined by the client
+
+| # | Row | Decision |
+|---|---|---|
+| 9 | Privacy Policy page (PDPL) | **Not building it.** Nothing links to one today, so there is no dead link — the checker tried the URL directly. The PDPL exposure stays open knowingly. |
+| 14 | "Other campaigns" bucket on Influencers | Leave as is. |
+| 15 | `@beautydemoisellle` handle | Leave as is (part of 14). |
+| 16 | Testimonials without company names | Keep the section. Only the duplicate quote goes. |
+| 22 | Floating WhatsApp button | Parked — no mobile number to use, since 35 is landline-only. |
+| 23/24 | Office address, map, working hours | Skip both. |
+| 26/27 | Case study, Company Profile PDF | Neither before launch. |
+| 28 | Arabic RTL version | Not needed. |
+
+### Stale or already fixed — no work
+
+| # | Row | Finding |
+|---|---|---|
+| 18 | "4 featured works open Vimeo, taking visitors off the site" | Half stale. Home's Featured Works became The Four Coats in round four, and the film cards already open in an on-page lightbox — the `vimeo.com` href is only the no-JS fallback. The real remnant is the Kwait typo (#1). |
+
+### Hisham / server side
+
+| # | Row |
+|---|---|
+| 10 | Submit the sitemap to Google Search Console |
+| 36 | 301 `portfolio.hellovoice.co.uk` → the new site |
