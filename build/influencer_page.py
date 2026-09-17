@@ -281,7 +281,9 @@ def _pulled(post):
 # Client comment #14 (16 Sep 2026): a section that sells the catalogue, and the
 # same button in several places on the page. WRITTEN — the benefit lines are
 # drawn from what /catalogue/ actually does; they need client sign-off.
-CATALOGUE_URL = "/catalogue/"
+# The catalogue runs on its own host with its own API (deploy/README.md); a
+# static copy of the site cannot unlock it, so every button goes there.
+CATALOGUE_URL = "https://influencer-catalogue.hellovoice.co.uk/"
 CATALOGUE_BENEFITS = [
     ("Browse the roster", "Creators sorted by tier — nano to macro — and by "
                           "category: beauty, skincare, hair care, fragrance, "
@@ -319,7 +321,7 @@ def catalogue_section() -> str:
         '<p class="ig_cat_lede">Our private roster of vetted creators, ready to '
         'filter, shortlist and quote — open it with the access code we sent you.</p>'
         '</div>'
-        '<a class="ig_cat_cover" href="/catalogue/" tabindex="-1" aria-hidden="true">'
+        f'<a class="ig_cat_cover" href="{CATALOGUE_URL}" tabindex="-1" aria-hidden="true">'
         '<img src="/assets/catalogue-cover/catalogue-cover-1600.webp" '
         'srcset="/assets/catalogue-cover/catalogue-cover-800.webp 800w, '
         '/assets/catalogue-cover/catalogue-cover-1600.webp 1600w" '
