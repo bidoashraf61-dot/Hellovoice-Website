@@ -490,7 +490,7 @@ def film_section() -> str:
         '<section class="film_section" aria-label="HelloVoice showreel">'
         '<div class="about_video_wrap is-local">'
         '<video class="film_video" autoplay muted loop playsinline '
-        'preload="none" poster="/assets/video/film-reel-poster.jpg" '
+        'preload="none" poster="/assets/video/film-reel-poster.webp" '
         'aria-hidden="true">'
         '<source src="/assets/video/film-reel.mp4" type="video/mp4"/>'
         '</video>'
@@ -566,7 +566,7 @@ def about_media(html: str) -> str:
             html = (html[:m.start()]
                     + '<div class="life_images is-film">'
                       '<video class="life_video" autoplay muted loop playsinline '
-                      'preload="none" poster="/assets/video/bts-reel-poster.jpg" '
+                      'preload="none" poster="/assets/video/bts-reel-poster.webp" '
                       'aria-hidden="true">'
                       '<source src="/assets/video/bts-reel.mp4" type="video/mp4"/>'
                       '</video></div>'
@@ -1277,7 +1277,13 @@ def apply_hero_exception(html: str) -> str:
         # so nothing is cropped on either.
         f'<iframe class="hero_film hero_vimeo" data-hero-vimeo '
         f'src="https://player.vimeo.com/video/{HERO_VIMEO}?background=1&amp;autoplay=1'
-        f'&amp;loop=1&amp;muted=1&amp;dnt=1&amp;quality=1080p" '
+        # 18 Sep 2026: the client asked for the hero to run at its best
+        # resolution. `quality=2k` asks the player for the 2K rendition and
+        # Vimeo falls back to the highest one that exists, so this is safe
+        # whatever the master was uploaded at — but it only buys anything if
+        # the master IS above 1080p. `quality_max` keeps the ceiling open for
+        # players that honour the newer parameter instead.
+        f'&amp;loop=1&amp;muted=1&amp;dnt=1&amp;quality=2k&amp;quality_max=2k" '
         'title="HelloVoice showreel" allow="autoplay; fullscreen; picture-in-picture" '
         'referrerpolicy="strict-origin-when-cross-origin" tabindex="-1" aria-hidden="true" '
         'frameborder="0"></iframe>'
@@ -1334,7 +1340,7 @@ def showreel_video(html: str) -> str:
         + '<div class="showreel_video_wrapper">'
         '<div class="showreel_video is-local">'
         '<video class="showreel_video_el" autoplay muted loop playsinline '
-        'preload="none" poster="/assets/video/bts-reel-poster.jpg" '
+        'preload="none" poster="/assets/video/bts-reel-poster.webp" '
         'aria-hidden="true">'
         '<source src="/assets/video/bts-reel.mp4" type="video/mp4"/>'
         '</video>'

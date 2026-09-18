@@ -106,10 +106,10 @@ was missed.
 | 12 | All pages | **og:image tag is malformed** — renders as `<meta /assets/helv/og-image.jpg" property="og:image"/>`; `content="` was eaten by the regex at `build/clone.py:343`. No link preview anywhere | Done |
 | 19 | All pages | `aria-hidden` on the duplicate hover labels (Learn More / Watch Now / Send Message) | Done |
 | 20 | All pages | Animated HelloVoice logo during any load — never a blank screen | Done |
-| 21 | Home | Lazy-load below-fold media, poster-first video, defer GSAP. ~31 MB of referenced assets today | To do |
+| 21 | Home | Lazy-load below-fold media, poster-first video, defer GSAP. ~31 MB of referenced assets today | Done |
 | 29 | Footer | © 2026 — already correct | Done |
 | 30/31 | Contact | Wire both forms to **FormSubmit** → info@hellovoice.co.uk. One-time activation email must be clicked by someone with access to that inbox | To do |
-| 32–34 | All pages | Full automated sweep: every link, every Vimeo ID, the catalogue link, then WebKit + Chrome at phone/tablet/desktop | To do |
+| 32–34 | All pages | Full automated sweep: every link, every Vimeo ID, the catalogue link, then WebKit + Chrome at phone/tablet/desktop | Done |
 | — | Site | **Delete the four test pages** shipped publicly: `/char-test/`, `/eye-test/`, `/scroll-test/`, `/spline-test/` (not on the client's list) | Done |
 | — | Home | Tag says "EIGHT SERVICES", section shows three → "THREE SERVICES" | Done |
 | 16b | Home, About | Remove the repeated Faisal Al-Qahtani quote (section otherwise unchanged) | Done |
@@ -177,3 +177,44 @@ opportunistic.
 Because the panel's removal now depends on JavaScript, `clone.css` carries a
 keyframe failsafe scoped to `html:not(.js-ready)` — motion.js sets that class
 the moment it runs, so the two never animate the panel at once.
+
+### Weight (row 21) and the pre-launch sweep (rows 32-34)
+
+**Weight.** Everything the build controls is now **1.2 MB** on the home page.
+The posters moved to WebP (film-reel 179 -> 110 KB, bts-reel 108 -> 57 KB, the
+three service loops 84 -> 69 KB) and the loader's mark dropped 487 KB.
+
+What remains is one asset: `film-reel.mp4`, the client's own 38-second 1080p
+showreel, at **11.4 MB desktop / 3.8 MB phone**. It is not blocking — it is
+`preload="none"` and below the fold — but it is 90% of the page's bytes.
+
+It was left at full quality deliberately. A re-encode at CRF 27 came out
+*larger* than the original (13.8 MB), which says the source is already
+efficiently compressed; getting it smaller means visibly lower quality or a
+shorter cut, and the film is full-bleed so it renders at the viewport's own
+width with no room to hide a downscale. Both are editorial calls for the
+client, especially alongside their instruction the same day to run the hero at
+its best resolution.
+
+**Sweep.** All 7 internal links 200. All 134 external links 200. All 49 Vimeo
+films open and shape correctly in the lightbox, including the vertical SVR cut
+at 9:16. 32 page/breakpoint/engine checks clean across Chrome and WebKit (the
+iOS Safari engine) at desktop and phone: no JS errors, no horizontal overflow,
+the panel always clears. Menu opens, closes and navigates under touch. The
+contact form renders its five fields with a working submit. Zero tap targets
+below 44px.
+
+**A false alarm worth recording.** Seven films answered 404 from Vimeo's oEmbed
+API and 403 from `player.vimeo.com` over curl — Gilead/Kite, Sudair Founding
+Day, Pharmalys, Saja, Molnlycke ORS, ElSewedy and SVR Sun Secure. They are
+fine. They are unlisted, which blocks the oEmbed API but not embedding, and all
+seven play in the lightbox in a real browser. Command-line reachability is not
+a valid test of a Vimeo embed; only the browser is.
+
+### Hero at 2K (client, 18 Sep 2026)
+
+The hero embed asked for `quality=1080p`; it now asks for `quality=2k` with
+`quality_max=2k`. Vimeo falls back to the highest rendition that exists, so
+this is safe whatever the master was uploaded at — but it only gains anything
+if the master is above 1080p. The player config is domain-gated, so the
+available renditions cannot be read from here; confirm in the Vimeo dashboard.

@@ -687,7 +687,7 @@ def services(html):
             b = b.replace('<div class="service_item_content">',
                 '<div class="service_item_media">'
                 f'<video class="service_loop" autoplay muted loop playsinline '
-                f'preload="none" poster="/assets/loops/{loop}.jpg" aria-hidden="true">'
+                f'preload="none" poster="/assets/loops/{loop}.webp" aria-hidden="true">'
                 f'<source src="/assets/loops/{loop}.mp4" type="video/mp4"/>'
                 '</video></div>'
                 '<div class="service_item_content">', 1)
