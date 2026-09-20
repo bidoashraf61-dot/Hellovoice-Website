@@ -694,8 +694,18 @@ def services(html):
 
         # and a way through to the work itself, on its own line under the tags
         if href:
+            # The label is printed twice inside a clipping wrapper, which is
+            # exactly how every other button on the site is built - "Learn
+            # More" and the CTA both do it. Hovering rolls the pair up by one
+            # line so the second copy takes the first's place. Written into the
+            # markup here rather than injected by script so the button reads
+            # correctly with no JS and the roll is a pure enhancement.
+            # The second copy is aria-hidden, or the label is announced twice.
             link = (f'<a class="service_item_link" href="{href}">'
-                    '<span>See the work</span>'
+                    '<span class="button_text_wrapper service_item_link_label">'
+                    '<span class="button_text">See the work</span>'
+                    '<span class="button_text second_text" aria-hidden="true">'
+                    'See the work</span></span>'
                     '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" '
                     'stroke="currentColor" stroke-width="2" aria-hidden="true">'
                     '<path d="M5 12h14M13 6l6 6-6 6"/></svg></a>')

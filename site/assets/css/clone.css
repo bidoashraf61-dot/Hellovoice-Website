@@ -6093,3 +6093,40 @@ textarea.ig_req_input{resize:vertical;min-height:96px}
 }
 .canvas_menu_wrapper { padding-block: clamp(8px, 1.2vw, 18px); }
 .canvas_logo_wrapper { margin-bottom: clamp(14px, 2vw, 30px); }
+
+/* ---- "See the work" rolls like the rest ---------------- 20 Sep 2026, client
+   The label is printed twice in a clipping wrapper, the same construction
+   "Learn More" and the CTA use, and motion.js rolls the pair on hover.
+
+   The wrapper inherits its block/overflow/absolute behaviour from the
+   reference's own rules, but not its metrics: this button is set in Bebas at a
+   larger size, so the line box came out 29px inside a 27px wrapper and the
+   caps were shaved by three pixels at the top. Pinning the same line-height on
+   the wrapper and both copies makes the wrapper exactly one line tall, which
+   is also what makes the 100% roll land cleanly. */
+.service_item_link .button_text_wrapper {
+  display: block;
+  overflow: hidden;
+  position: relative;
+  /* No height and no line-height here on purpose. The copies are set at 24px
+     by an existing .button_text rule while this wrapper inherits 18px, so
+     pinning the same line-height on both still produced two different pixel
+     heights - 31.2 against 23.4 - which both clipped the caps and made the
+     roll overshoot, because GSAP measures yPercent against each element's own
+     height. Leaving the wrapper to size itself from the in-flow copy keeps the
+     two identical by construction, whatever the font size becomes later. */
+}
+.service_item_link .button_text {
+  display: block;
+  white-space: nowrap;
+  /* The reference colours the incoming copy white, because on the primary
+     button the ground turns black underneath it as it arrives. This button's
+     ground goes lime -> orange instead, so a white second copy rolled in at
+     2.88:1 and read as a different label. Both copies take the same ink. */
+  color: #121212 !important;
+}
+.service_item_link .button_text.second_text {
+  position: absolute;
+  top: 100%;
+  left: 0;
+}

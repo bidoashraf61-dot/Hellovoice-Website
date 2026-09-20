@@ -1756,6 +1756,23 @@
     });
   });
 
+  /* "See the work" borrows the same roll (client, 20 Sep 2026). It is not a
+   * .button_primary — its ground is lime and stays lime-into-orange rather
+   * than going black — so it cannot simply join that loop, which would repaint
+   * it. What it wants is the motion, not the colour change: labelSwap alone,
+   * plus the arrow nudge the rest of the site's buttons use. */
+  $$(".service_item_link").forEach(function (btn) {
+    var label = labelSwap(btn);
+    var arrow = $("svg", btn);
+    hover(btn, function () {
+      label.over();
+      if (arrow) gsap.to(arrow, { x: 4, duration: 0.35, ease: e("outQuad") });
+    }, function () {
+      label.out();
+      if (arrow) gsap.to(arrow, { x: 0, duration: 0.35, ease: e("outQuad") });
+    });
+  });
+
   /* The CTA button keeps its pale-lime ground — nothing in IX2 darkens it, and
    * both copies of its label are black. Its hover is the label swap plus the
    * arrow rolling over inside its clipped black disc. */
