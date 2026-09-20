@@ -6002,18 +6002,26 @@ textarea.ig_req_input{resize:vertical;min-height:96px}
 }
 .service_section .service_item_media { background-color: rgba(255, 255, 255, .07); }
 
-/* "See the work" was a filled black pill so it would not be lost on the beige.
-   On the dark ground black is the thing that disappears, so the fill inverts —
-   same shape, same weight, same lime hover as everywhere else on the site. */
+/* "See the work" is the site's primary action colour (client, 20 Sep 2026).
+   It was white, which made it byte-identical to the tag pills stacked directly
+   above it - same fill, same text colour, same shape - so the action read as
+   one more tag.
+
+   Lime alone does not fix that: measured against white it is only 1.08 apart
+   in lightness, because it differs in hue rather than value. What separates it
+   is the 2px black border, which is exactly what makes "Let's Contact" read as
+   an object rather than a label. So this is that button, verbatim: #eaffb1
+   behind a black rule, #121212 type. */
 .service_section .service_item_link {
-  background: #fff !important;
+  background: var(--lime, #eaffb1) !important;
   color: #121212 !important;
-  border-color: #fff !important;
+  border: 2px solid #000 !important;
 }
-/* Hover is the "Let's Contact" button exactly: #eaffb1 behind a 2px BLACK
-   border, not a lime border. The border is what makes that button read as a
-   button on this site, and matching the fill while dropping the border would
-   have made this one a near-miss of the thing it is copying. */
+/* "Let's Contact" does not change colour on hover - measured, it holds #eaffb1
+   and its black border in both states and answers with motion instead. This
+   button now does the same: the fill and border hold, the arrow slides, and
+   :active takes the small scale. Re-tinting on hover would have made the copy
+   behave unlike the thing it is copying. */
 @media (hover: hover) {
   .service_section .service_item_link:hover {
     background: var(--lime, #eaffb1) !important;
