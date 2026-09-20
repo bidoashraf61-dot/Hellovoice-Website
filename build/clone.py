@@ -2342,6 +2342,27 @@ def hide_hover_twins(html: str) -> str:
         r'<\1\2 aria-hidden="true">', html)
 
 
+def leaders_between(html: str) -> str:
+    """Trusted by Leaders moves up, between What we make and the short film
+    (client, 20 Sep 2026).
+
+    Once What we make went dark it ran straight into the film section, which is
+    near-black — two dark grounds back to back with nothing between them, so
+    they read as one very long slab. Trusted by Leaders is a light section, so
+    moving it into that seam breaks the run and gives each dark section an edge
+    of its own.
+
+    The section is cut and re-inserted rather than duplicated, so there is only
+    ever one of it and its contents cannot drift.
+    """
+    if 'class="film_feature is-home"' not in html:
+        return html                      # not the home page
+    html, block_html = take_section(html, "leader_section")
+    if not block_html:
+        return html
+    return put_before(html, '<section class="film_feature is-home"', block_html)
+
+
 def menu_lockup(html: str) -> str:
     """The side menu leads with the logo, not the word (client, 20 Sep 2026).
 
@@ -2398,8 +2419,8 @@ def drop_wall_quote(html: str) -> str:
 
 def finalize(html: str, route: str = "") -> str:
     """Last passes on every written page, including the two built on the service shell."""
-    return seo(preloader_everywhere(hide_hover_twins(menu_lockup(drop_wall_quote(
-        copy_fixes(landmarks(lean_images(mobile_media(html)))))))), route)
+    return seo(preloader_everywhere(hide_hover_twins(menu_lockup(leaders_between(
+        drop_wall_quote(copy_fixes(landmarks(lean_images(mobile_media(html))))))))), route)
 
 
 # --------------------------------------------- client comments, 16 Sep 2026

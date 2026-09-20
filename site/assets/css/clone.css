@@ -5988,11 +5988,17 @@ textarea.ig_req_input{resize:vertical;min-height:96px}
    and because they are siblings in normal flow the later card paints over the
    earlier one — so the overlap resolves without reaching for z-index.
    Same colour as the section, so nothing is visible at rest except the top
-   rule that divides one service from the next. */
+   rule that divides one service from the next.
+
+   This is also what makes the reference's sticky stack work: the cards are
+   position:sticky at the same offset with rising z-index, so each one rides up
+   over the last. Transparent, you saw straight through the covering card to
+   the one beneath. Opaque, it covers cleanly — the pile reads as intended.
+   NB: do not add `position: relative` here. It overrides the sticky and the
+   whole stack silently becomes a plain scroll. */
 .service_section .service_item {
   background-color: #1C1C1C !important;
   border-top-color: rgba(255, 255, 255, .22) !important;
-  position: relative;
 }
 .service_section .service_item_media { background-color: rgba(255, 255, 255, .07); }
 
@@ -6035,3 +6041,44 @@ textarea.ig_req_input{resize:vertical;min-height:96px}
 @media screen and (max-width: 767px) {
   .canvas_logo_img { height: 40px; }
 }
+
+
+/* ---- "What we make", second pass ---------------------- 20 Sep 2026, client
+   Five corrections, all measured rather than eyeballed. */
+
+/* (a) The hover was reading olive, not the lime of "Let's Contact". The colour
+   was never wrong — an older rule also set opacity:.7 on hover, and #eaffb1 at
+   70% over this dark ground lands almost exactly on that olive. The fill was
+   correct in the computed style all along, which is why checking
+   backgroundColor alone did not catch it. */
+.service_section .service_item_link:hover { opacity: 1 !important; }
+
+/* (b) Air around the section. It met the band above and the film section below
+   almost flush, so the dark ground read as a bar rather than a section. */
+.service_section {
+  padding-top: clamp(72px, 7.5vw, 132px) !important;
+  padding-bottom: clamp(72px, 7.5vw, 132px) !important;
+}
+
+/* (c) The button sat tight under the last row of service tags, so it read as
+   another tag rather than the action. Dropping it clear separates the two. */
+.service_section .service_item_link { margin-top: clamp(26px, 2.6vw, 40px) !important; }
+
+/* (d) The menu was condensed: four links, 46px each, with zero gap between
+   them, so the dividers ran together into a block. Giving each row its own
+   breathing space lets the rules read as separators. */
+/* !important because an earlier rule pins padding-top with it; without the
+   same weight the rows grew at the bottom only and stayed tight on phones. */
+.canvas_menu_link {
+  padding-top: clamp(20px, 1.6vw, 24px) !important;
+  padding-bottom: clamp(20px, 1.6vw, 24px) !important;
+}
+/* A min-height of 3rem was swallowing the padding on phones: 14px + the cap
+   line + 14px came to exactly 48px, so the rows measured identical before and
+   after. The floor is raised so the phone gets the same breathing room the
+   desktop does. */
+@media screen and (max-width: 767px) {
+  .canvas_menu_link { min-height: 4rem !important; }
+}
+.canvas_menu_wrapper { padding-block: clamp(8px, 1.2vw, 18px); }
+.canvas_logo_wrapper { margin-bottom: clamp(14px, 2vw, 30px); }
