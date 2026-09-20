@@ -2354,9 +2354,16 @@ def grey_border_lines(html: str) -> str:
     #1C1C1C is the same grey as What we make and the logo cards, so the rule
     belongs to the same family rather than introducing a fourth dark value.
     """
-    return html.replace(
-        'STYLE="background-color:#e9dcd2" class="border_line',
-        'STYLE="background-color:#1C1C1C" class="border_line')
+    # 20 Sep: the client does not want the stepped device at all - just the
+    # one line that marks where the section ends. The block is five divs of
+    # descending height (12, 9, 6, 4, 3px); four of them go and the first is
+    # slimmed to a hairline.
+    return re.sub(
+        r'(<div[^>]*class="border">)'
+        r'(?:\s*<div[^>]*background-color:#e9dcd2[^>]*class="border_line[^"]*"[^>]*>\s*</div>){2,}'
+        r'\s*(</div>)',
+        r'\1<div STYLE="background-color:#1C1C1C;height:2px" class="border_line"></div>\2',
+        html)
 
 
 def leaders_between(html: str) -> str:
