@@ -5953,3 +5953,85 @@ textarea.ig_req_input{resize:vertical;min-height:96px}
   .ig_req_form{grid-template-columns:1fr}
   .ig_req_send{justify-self:stretch;text-align:center}
 }
+
+/* ===== "What we make" on a dark ground ================== 20 Sep 2026, client
+   The beige (#E9DCD2) becomes a dark grey. Everything that sat on it was drawn
+   for a light ground, so the whole section inverts together — type, rules, the
+   media well and the button — rather than the background alone.
+
+   #1C1C1C, darkened from #2A2A2A at the client's request (20 Sep). It is held
+   against its neighbour rather than chosen in isolation: this section runs
+   straight into the film section's #050505 with no white band between them, so
+   the value cannot go much lower without the two merging into one 3,000px
+   slab. At #1C1C1C the step between them still reads as a deliberate edge.
+
+   The tag pills stay white: on the beige they were quiet, and on the dark they
+   become the section's brightest element, which is the right emphasis for the
+   thing that lists what each service includes. */
+.service_section { background-color: #1C1C1C !important; }
+.service_section,
+.service_section .padding_global,
+.service_section .container { color: rgba(255, 255, 255, .82); }
+
+.service_section .service_section_title,
+.service_section .service_section_title .gsap_split_word,
+.service_section .service_section_title .gsap_split_letter,
+.service_section .service_section_title .gsap_split_letter-mask,
+.service_section .service_item_title,
+.service_section .service_item_tags_subtitle { color: #fff; }
+
+/* Each service carries its own opaque ground in the section's colour, rather
+   than letting the section show through (client, 20 Sep). The three cards are
+   revealed on scroll and their travel overlaps: with transparent cards, one
+   service's tag pills and button were drawn over the next service's heading
+   mid-animation. An opaque ground makes each card mask whatever is behind it,
+   and because they are siblings in normal flow the later card paints over the
+   earlier one — so the overlap resolves without reaching for z-index.
+   Same colour as the section, so nothing is visible at rest except the top
+   rule that divides one service from the next. */
+.service_section .service_item {
+  background-color: #1C1C1C !important;
+  border-top-color: rgba(255, 255, 255, .22) !important;
+  position: relative;
+}
+.service_section .service_item_media { background-color: rgba(255, 255, 255, .07); }
+
+/* "See the work" was a filled black pill so it would not be lost on the beige.
+   On the dark ground black is the thing that disappears, so the fill inverts —
+   same shape, same weight, same lime hover as everywhere else on the site. */
+.service_section .service_item_link {
+  background: #fff !important;
+  color: #121212 !important;
+  border-color: #fff !important;
+}
+/* Hover is the "Let's Contact" button exactly: #eaffb1 behind a 2px BLACK
+   border, not a lime border. The border is what makes that button read as a
+   button on this site, and matching the fill while dropping the border would
+   have made this one a near-miss of the thing it is copying. */
+@media (hover: hover) {
+  .service_section .service_item_link:hover {
+    background: var(--lime, #eaffb1) !important;
+    color: #121212 !important;
+    border-color: #000 !important;
+  }
+}
+
+/* ---- The side menu's lockup ---------------------------- 20 Sep 2026, client
+   The menu used to open on a type-set "HELLOVOICE" at 22% opacity — decoration
+   rather than a mark — with the tagline on a coloured sticker beneath it. The
+   client asked for the logo itself and for the sticker to go.
+
+   Sized by height, not width, and matching the 56/40px the site already uses
+   for a wordmark on a dark ground elsewhere. Without this the image would draw
+   at its intrinsic 760x166, which filled the whole menu on desktop and ran
+   edge to edge on a phone. */
+.canvas_logo_img {
+  display: block;
+  height: 56px;
+  width: auto;
+  max-width: min(72vw, 420px);
+  opacity: 1;
+}
+@media screen and (max-width: 767px) {
+  .canvas_logo_img { height: 40px; }
+}

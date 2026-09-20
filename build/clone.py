@@ -2219,31 +2219,33 @@ def copy_fixes(html: str) -> str:
 # different hostname.
 ORIGIN = "https://hellovoice.co.uk"
 
+BRAND = "Hello Voice Media Production"
+
 SEO = {
-    "": ("HelloVoice — Film, Animation and Immersive Work for Healthcare",
+    "": (BRAND + " — Film, Animation and Immersive Work",
          "A 360 media production house in Riyadh making film, animation and "
          "immersive work for healthcare, pharma and global brands."),
-    "about-us": ("About HelloVoice — A Riyadh Production House",
+    "about-us": ("About — " + BRAND,
          "Who we are and how we work: a Riyadh studio making film, animation "
          "and immersive work for healthcare, pharma and global brands."),
-    "projects": ("Our Work — Films for Healthcare, Pharma and Global Brands",
+    "projects": ("Our Work — " + BRAND,
          "Fifty films across commercial, corporate, awareness, AI and event "
          "work — for Abbott, M\u00f6lnlycke, NewEast, L\u2019Or\u00e9al, Sanofi and more."),
-    "contact-us": ("Contact HelloVoice — Riyadh, Saudi Arabia",
+    "contact-us": ("Contact — " + BRAND,
          "Tell us about the project. We reply within one working day, under "
          "NDA if you need it."),
-    "service": ("Services — Film, Influencer Campaigns and Technology",
+    "service": ("Services — " + BRAND,
          "Film and animation, influencer campaigns and technology activations, "
          "built for healthcare and pharma brands across Saudi Arabia."),
     "service/influencer-campaigns": (
-         "Influencer Campaigns — Vetted Creators in KSA, UAE and Egypt",
+         "Influencer Campaigns — " + BRAND,
          "A private roster of vetted creators across Saudi Arabia, the UAE and "
          "Egypt. Build a shortlist and get one quote for the set."),
     "service/technology-activations": (
-         "Technology Activations — Immersive and Interactive Work",
+         "Technology Activations — " + BRAND,
          "Interactive screens, immersive rooms and real-time installations for "
          "launches, congresses and brand experiences in Saudi Arabia."),
-    None: ("Page not found — HelloVoice",
+    None: ("Page not found — " + BRAND,
          "That page does not exist. Find the work, the services and the way to "
          "reach us from here."),
 }
@@ -2280,6 +2282,7 @@ def seo(html: str, route) -> str:
     put("property", "og:description", d)
     put("property", "og:image", img)
     put("property", "og:url", url)
+    put("property", "og:site_name", BRAND)
     put("name", "twitter:title", t)
     put("name", "twitter:description", d)
     put("name", "twitter:image", img)
@@ -2339,6 +2342,29 @@ def hide_hover_twins(html: str) -> str:
         r'<\1\2 aria-hidden="true">', html)
 
 
+def menu_lockup(html: str) -> str:
+    """The side menu leads with the logo, not the word (client, 20 Sep 2026).
+
+    It carried a type-set "HELLOVOICE" and, under it, the tagline as a coloured
+    sticker. Both go: the real lockup replaces the type, and the sticker is
+    removed rather than restyled — the menu already states where you are, and
+    the strapline repeats what the hero says two scrolls later.
+
+    The knockout file is the one the header already uses over dark grounds, so
+    the menu and the header now show the same mark rather than two versions of
+    it.
+    """
+    html = html.replace(
+        '<p class="canvas_logo">HELLOVOICE</p>',
+        '<img class="canvas_logo_img" src="/assets/helv/logo-knockout.webp" '
+        'srcset="/assets/helv/logo-knockout@2x.webp 2x" '
+        'alt="Hello Voice Media Production" width="760" height="166" '
+        'decoding="async"/>')
+    html = re.sub(
+        r'<div class="floating_text is-canvas">[^<]*</div>', "", html)
+    return html
+
+
 def drop_wall_quote(html: str) -> str:
     """Checklist row 16 — Faisal Al-Qahtani's quote printed twice on About.
 
@@ -2372,8 +2398,8 @@ def drop_wall_quote(html: str) -> str:
 
 def finalize(html: str, route: str = "") -> str:
     """Last passes on every written page, including the two built on the service shell."""
-    return seo(preloader_everywhere(hide_hover_twins(drop_wall_quote(
-        copy_fixes(landmarks(lean_images(mobile_media(html))))))), route)
+    return seo(preloader_everywhere(hide_hover_twins(menu_lockup(drop_wall_quote(
+        copy_fixes(landmarks(lean_images(mobile_media(html)))))))), route)
 
 
 # --------------------------------------------- client comments, 16 Sep 2026
@@ -2404,6 +2430,10 @@ VIMEO_PROFILE = "https://vimeo.com/hellovoice"
 # glyph beside it. Only the path is swapped into the cloned anchor, so the icon
 # inherits that row's own <svg> box — the footer draws at 22px and the hero at
 # 24px, and a hardcoded box left Vimeo a size out in one of them.
+# The path spans x 0-23.98 and y 1.86-22.72, so the box is set to its own
+# extents with the vertical slack shared evenly rather than left at 0 0 24 24,
+# where the mark sat 0.6 units high in its own frame.
+VIMEO_VIEWBOX = "0 1.3 24 22"
 VIMEO_PATH = (
     '<path d="M23.98 6.72c-.11 2.34-1.74 5.55-4.9 9.62'
     '-3.26 4.25-6.02 6.38-8.28 6.38-1.4 0-2.58-1.29-3.55-3.88l-1.93-7.1c-.72-2.59-1.49-3.88'
@@ -2433,10 +2463,19 @@ def add_vimeo(html: str) -> str:
         # The footer row prints the network's name beside its icon, so the
         # clone carried a Vimeo mark labelled "Instagram" until this line.
         twin = re.sub(r'>(\s*)Instagram(\s*)<', r'>\1Vimeo\2<', twin)
-        # swap the glyph inside the row's own <svg>, so its width, height and
-        # viewBox carry over untouched
-        twin = re.sub(r'(<svg[^>]*>)[\s\S]*?(</svg>)',
-                      lambda m: m.group(1) + VIMEO_PATH + m.group(2), twin, count=1)
+        # Swap the glyph inside the row's own <svg> so its width, height and
+        # classes carry over — but NOT its viewBox. The hero row draws Instagram
+        # on a 20-unit grid and the footer on a 24-unit one, while this path is
+        # drawn on 24: inheriting a 20-unit viewBox clipped roughly four units
+        # off the mark, which is the cropped Vimeo logo the client reported on
+        # 20 Sep. The viewBox travels with the path it describes.
+        def _swap(m):
+            tag = re.sub(r'viewBox="[^"]*"', 'viewBox="%s"' % VIMEO_VIEWBOX, m.group(1))
+            if "viewBox" not in tag:
+                tag = tag[:4] + ' viewBox="%s"' % VIMEO_VIEWBOX + tag[4:]
+            return tag + VIMEO_PATH + m.group(2)
+
+        twin = re.sub(r'(<svg[^>]*>)[\s\S]*?(</svg>)', _swap, twin, count=1)
         out.append(html[at:m.end()])
         out.append(twin)
         at = m.end()
