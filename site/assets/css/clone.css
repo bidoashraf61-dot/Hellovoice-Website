@@ -6017,14 +6017,17 @@ textarea.ig_req_input{resize:vertical;min-height:96px}
   color: #121212 !important;
   border: 2px solid #000 !important;
 }
-/* "Let's Contact" does not change colour on hover - measured, it holds #eaffb1
-   and its black border in both states and answers with motion instead. This
-   button now does the same: the fill and border hold, the arrow slides, and
-   :active takes the small scale. Re-tinting on hover would have made the copy
-   behave unlike the thing it is copying. */
+/* Hover moves lime -> brand orange (client, 20 Sep 2026). "Let's Contact"
+   holds its colour and answers with motion alone, which read as unresponsive
+   here, so this button takes a real colour change instead.
+
+   Orange rather than a tint of the lime: it is the same #ff691e the Leaders
+   gradient and the logo cards now use, so the hover belongs to the palette
+   already on screen. The type stays #121212 (6.5:1 on orange) and the black
+   border holds through both states, so only the fill moves. */
 @media (hover: hover) {
   .service_section .service_item_link:hover {
-    background: var(--lime, #eaffb1) !important;
+    background: var(--vivid-orange, #ff691e) !important;
     color: #121212 !important;
     border-color: #000 !important;
   }
