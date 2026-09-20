@@ -2864,10 +2864,15 @@ def transform(name: str, html: str, drop_hero: bool = True) -> str:
         global _HOME_STEPS, _HOME_TESTIMONIALS
         html, _HOME_STEPS = take_section(html, "step_section")
         html, _HOME_TESTIMONIALS = take_section(html, "testimonial_section")
-        # The black brands wall with its quote belongs to About as well; About
-        # builds its own, so the home copy is simply dropped.
+        # The black brands wall goes from the home page. It is dropped from
+        # About too (client, 20 Sep 2026), so nothing is being moved here -
+        # both copies simply go.
         html = drop_brands_wall(html)
     if name == "about-us":
+        # 20 Sep 2026: the black client wall leaves About as well. It was the
+        # last page carrying it - the logos it showed are already in the
+        # Trusted by Leaders ring and the marquee, so nothing is lost with it.
+        html = drop_brands_wall(html)
         html = about_values(html, _HOME_VALUES_SRC or _HOME_HTML)   # all six values
         html = remove_awards(html)
         html = remove_why_choose(html)
