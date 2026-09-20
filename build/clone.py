@@ -2342,6 +2342,23 @@ def hide_hover_twins(html: str) -> str:
         r'<\1\2 aria-hidden="true">', html)
 
 
+def grey_border_lines(html: str) -> str:
+    """The stepped divider under the film section goes dark grey (20 Sep 2026).
+
+    The page carries three of these five-line dividers, told apart only by an
+    inline colour: #121212 inside the preloader, #000 above the footer, and
+    #e9dcd2 below the film section. Only the linen one is the leftover beige,
+    so the replacement is keyed to that value rather than to the class, which
+    all three share.
+
+    #1C1C1C is the same grey as What we make and the logo cards, so the rule
+    belongs to the same family rather than introducing a fourth dark value.
+    """
+    return html.replace(
+        'STYLE="background-color:#e9dcd2" class="border_line',
+        'STYLE="background-color:#1C1C1C" class="border_line')
+
+
 def leaders_between(html: str) -> str:
     """Trusted by Leaders moves up, between What we make and the short film
     (client, 20 Sep 2026).
@@ -2420,7 +2437,8 @@ def drop_wall_quote(html: str) -> str:
 def finalize(html: str, route: str = "") -> str:
     """Last passes on every written page, including the two built on the service shell."""
     return seo(preloader_everywhere(hide_hover_twins(menu_lockup(leaders_between(
-        drop_wall_quote(copy_fixes(landmarks(lean_images(mobile_media(html))))))))), route)
+        grey_border_lines(drop_wall_quote(copy_fixes(landmarks(
+            lean_images(mobile_media(html)))))))))), route)
 
 
 # --------------------------------------------- client comments, 16 Sep 2026
