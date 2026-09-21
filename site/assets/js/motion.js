@@ -2441,13 +2441,36 @@
       if (films.length < 2) return;
       var play = still.querySelector("[data-tech-play]");
       var count = still.querySelector("[data-tech-count]");
+      /* Each film's own picture and shape, in step with the films (client,
+         21 Sep 2026). Before this the arrows changed which film would play but
+         left film 1's picture in place, so every slide looked the same and the
+         image rarely matched the film behind it. */
+      var pics = (still.getAttribute("data-tech-posters") || "").split("|");
+      var ratios = (still.getAttribute("data-tech-ratios") || "").split("|");
+      var img = still.querySelector(".tech_poster");
+      /* decode the rest up front, so a click swaps to a ready image rather
+         than flashing an empty frame while it downloads */
+      pics.forEach(function (src) { if (src) { var pre = new Image(); pre.src = src; } });
       var i = 0;
 
       function show(next) {
         i = (next + films.length) % films.length;
         still.setAttribute("data-tech-index", String(i));
-        if (play) play.setAttribute("data-ig-embed", films[i]);
+        if (play) {
+          play.setAttribute("data-ig-embed", films[i]);
+          /* the lightbox sizes itself from this, so a vertical film has to
+             say so or it opens letterboxed in a landscape frame */
+          if (ratios[i]) play.setAttribute("data-ratio", ratios[i]);
+        }
         if (count) count.textContent = (i + 1) + " / " + films.length;
+        if (img && pics[i] && img.getAttribute("src") !== pics[i]) {
+          var to = pics[i];
+          if (reduced) { img.src = to; return; }
+          gsap.to(img, { opacity: 0, duration: 0.16, ease: "power1.in", onComplete: function () {
+            img.src = to;
+            gsap.to(img, { opacity: 1, duration: 0.24, ease: "power1.out" });
+          } });
+        }
       }
 
       var prev = still.querySelector("[data-tech-prev]");

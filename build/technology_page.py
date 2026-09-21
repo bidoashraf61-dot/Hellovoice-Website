@@ -99,6 +99,9 @@ def _card(app):
     stem = pathlib.Path(poster).stem if poster else None
     films = [f for f in (app.get("films") or []) if f.get("id")]
 
+    first = next((f for f in films if f.get("poster")), None)
+    if first and films and films[0] is first:
+        stem = pathlib.Path(first["poster"]).stem
     if stem:
         visual = (f'<img class="tech_poster" src="/assets/tech/{esc(stem)}.webp" '
                   f'alt="" loading="lazy" decoding="async" width="720" height="405"/>')
@@ -129,8 +132,18 @@ def _card(app):
                 '<svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" '
                 'aria-hidden="true"><path d="M9 5l7 7-7 7z"/></svg></button>'
                 '</div>')
+        # One picture and one ratio per film, in the same order as the films,
+        # so the slider can swap the image and the lightbox shape along with
+        # the film it is about to play (client, 21 Sep 2026). A film with no
+        # picture of its own falls back to the card's, so the slot never blanks.
+        def _pic(f):
+            ps = f.get("poster") or poster
+            return f"/assets/tech/{pathlib.Path(ps).stem}.webp" if ps else ""
+        pics = "|".join(_pic(f) for f in films)
+        ratios = "|".join(f.get("ratio") or "16:9" for f in films)
         still = (
             f'<div class="tech_still has-film" data-tech-films="{esc(srcs)}" '
+            f'data-tech-posters="{esc(pics)}" data-tech-ratios="{esc(ratios)}" '
             f'data-tech-index="0">{visual}'
             # data-ig-embed is what the existing lightbox reads, and it is
             # collected once at init — so the first film has to be on the

@@ -16,18 +16,9 @@
           "Live generation",
           "Shareable"
         ],
-        "poster": "art-wall.webp",
-        "status": "awaiting-upload",
-        "films": [
-          {
-            "label": "Who Art You",
-            "host": "local",
-            "id": "art-wall",
-            "hash": null,
-            "embed": "/assets/tech/art-wall.mp4",
-            "ratio": "9:16"
-          }
-        ]
+        "poster": null,
+        "status": "no-material",
+        "films": []
       },
       {
         "code": "HV-INT-02",
@@ -40,18 +31,9 @@
           "LED screen",
           "Leaderboard"
         ],
-        "poster": "game-wall.webp",
-        "status": "awaiting-upload",
-        "films": [
-          {
-            "label": "Tic Tac Toe Goal",
-            "host": "local",
-            "id": "game-wall",
-            "hash": null,
-            "embed": "/assets/tech/game-wall.mp4",
-            "ratio": "9:16"
-          }
-        ]
+        "poster": null,
+        "status": "no-material",
+        "films": []
       },
       {
         "code": "HV-INT-03",
@@ -64,18 +46,9 @@
           "Touchless",
           "Ambient"
         ],
-        "poster": "motion-reactive-wall.webp",
-        "status": "awaiting-upload",
-        "films": [
-          {
-            "label": "Flower Wall",
-            "host": "local",
-            "id": "motion-reactive-wall",
-            "hash": null,
-            "embed": "/assets/tech/motion-reactive-wall.mp4",
-            "ratio": "9:16"
-          }
-        ]
+        "poster": null,
+        "status": "no-material",
+        "films": []
       },
       {
         "code": "HV-INT-04",
@@ -112,15 +85,15 @@
           "Audio",
           "All ages"
         ],
-        "poster": "music-wall.webp",
-        "status": "awaiting-upload",
+        "poster": "posters/music-wall-v.jpg",
+        "status": "live",
         "films": [
           {
-            "label": "Music Wall",
-            "host": "local",
-            "id": "music-wall",
+            "label": "Touch The Tone",
+            "host": "vimeo",
+            "id": "1217649812",
             "hash": null,
-            "embed": "/assets/tech/music-wall.mp4",
+            "embed": "https://player.vimeo.com/video/1217649812",
             "ratio": "16:9"
           }
         ]
@@ -136,17 +109,9 @@
           "Walkthrough",
           "Motion driven"
         ],
-        "poster": "posters/tunnel.jpg",
-        "status": "live",
-        "films": [
-          {
-            "label": "Music Tunnel",
-            "host": "vimeo",
-            "id": "1217651676",
-            "hash": null,
-            "embed": "https://player.vimeo.com/video/1217651676"
-          }
-        ]
+        "poster": null,
+        "status": "no-material",
+        "films": []
       },
       {
         "code": "HV-INT-07",
@@ -159,18 +124,9 @@
           "Multi-language",
           "Data out"
         ],
-        "poster": "touch-catalogue.webp",
-        "status": "awaiting-upload",
-        "films": [
-          {
-            "label": "Catalogue Display",
-            "host": "local",
-            "id": "touch-catalogue",
-            "hash": null,
-            "embed": "/assets/tech/touch-catalogue.mp4",
-            "ratio": "16:9"
-          }
-        ]
+        "poster": null,
+        "status": "no-material",
+        "films": []
       },
       {
         "code": "HV-INT-08",
@@ -183,29 +139,26 @@
           "Tangible control",
           "No instructions"
         ],
-        "poster": "posters/smart-cube.jpg",
+        "poster": "posters/smart-cube-v.jpg",
         "status": "live",
         "films": [
           {
-            "label": "Film 01",
+            "label": "Smart Cube Showreel",
             "host": "vimeo",
-            "id": "1146927623",
-            "hash": null,
-            "embed": "https://player.vimeo.com/video/1146927623"
+            "id": "1140746277",
+            "hash": "dffb96df8e",
+            "embed": "https://player.vimeo.com/video/1140746277?h=dffb96df8e",
+            "ratio": "16:9",
+            "poster": "posters/smart-cube-v.jpg"
           },
           {
-            "label": "Film 02",
+            "label": "Smart Cube for Eylea",
             "host": "vimeo",
             "id": "1184612647",
             "hash": "27d6bfd696",
-            "embed": "https://player.vimeo.com/video/1184612647?h=27d6bfd696"
-          },
-          {
-            "label": "Film 03",
-            "host": "vimeo",
-            "id": null,
-            "hash": null,
-            "embed": null
+            "embed": "https://player.vimeo.com/video/1184612647?h=27d6bfd696",
+            "ratio": "9:16",
+            "poster": "posters/f-1184612647.jpg"
           }
         ]
       },
@@ -258,14 +211,16 @@
             "host": "vimeo",
             "id": "1217650577",
             "hash": null,
-            "embed": "https://player.vimeo.com/video/1217650577"
+            "embed": "https://player.vimeo.com/video/1217650577",
+            "poster": "posters/motion-gesture.jpg"
           },
           {
             "label": "Film 02",
             "host": "vimeo",
             "id": "1217650906",
             "hash": null,
-            "embed": "https://player.vimeo.com/video/1217650906"
+            "embed": "https://player.vimeo.com/video/1217650906",
+            "poster": "posters/f-1217650906.jpg"
           }
         ]
       },
@@ -320,28 +275,36 @@
             "host": "vimeo",
             "id": "1217631831",
             "hash": null,
-            "embed": "https://player.vimeo.com/video/1217631831"
+            "embed": "https://player.vimeo.com/video/1217631831",
+            "poster": "posters/holobox.jpg",
+            "ratio": "9:16"
           },
           {
             "label": "Film 02",
             "host": "vimeo",
             "id": "1217631828",
             "hash": null,
-            "embed": "https://player.vimeo.com/video/1217631828"
+            "embed": "https://player.vimeo.com/video/1217631828",
+            "poster": "posters/f-1217631828.jpg",
+            "ratio": "9:16"
           },
           {
             "label": "Film 03",
             "host": "vimeo",
             "id": "1217631830",
             "hash": null,
-            "embed": "https://player.vimeo.com/video/1217631830"
+            "embed": "https://player.vimeo.com/video/1217631830",
+            "poster": "posters/f-1217631830.jpg",
+            "ratio": "9:16"
           },
           {
             "label": "Film 04",
             "host": "vimeo",
             "id": "1217631829",
             "hash": null,
-            "embed": "https://player.vimeo.com/video/1217631829"
+            "embed": "https://player.vimeo.com/video/1217631829",
+            "poster": "posters/f-1217631829.jpg",
+            "ratio": "9:16"
           }
         ]
       },
@@ -446,15 +409,15 @@
           "No glasses",
           "Depth"
         ],
-        "poster": "naked-eye.webp",
-        "status": "awaiting-upload",
+        "poster": "posters/naked-eye-v.jpg",
+        "status": "live",
         "films": [
           {
             "label": "3D Naked Eye",
-            "host": "local",
-            "id": "naked-eye",
-            "hash": null,
-            "embed": "/assets/tech/naked-eye.mp4",
+            "host": "vimeo",
+            "id": "1217657394",
+            "hash": "69c36e84fd",
+            "embed": "https://player.vimeo.com/video/1217657394?h=69c36e84fd",
             "ratio": "16:9"
           }
         ]
@@ -470,7 +433,7 @@
           "Built for filming",
           "Corner LED"
         ],
-        "poster": "posters/anamorphic.jpg",
+        "poster": "posters/f-1217649496.jpg",
         "status": "live",
         "films": [
           {
@@ -485,21 +448,24 @@
             "host": "vimeo",
             "id": "1217649496",
             "hash": null,
-            "embed": "https://player.vimeo.com/video/1217649496"
+            "embed": "https://player.vimeo.com/video/1217649496",
+            "poster": "posters/f-1217649496.jpg"
           },
           {
             "label": "Film 03",
             "host": "vimeo",
             "id": "1137468181",
             "hash": "33cf76b38d",
-            "embed": "https://player.vimeo.com/video/1137468181?h=33cf76b38d"
+            "embed": "https://player.vimeo.com/video/1137468181?h=33cf76b38d",
+            "poster": "posters/f-1137468181.jpg"
           },
           {
             "label": "Showreel",
             "host": "vimeo",
             "id": "1046771415",
             "hash": null,
-            "embed": "https://player.vimeo.com/video/1046771415"
+            "embed": "https://player.vimeo.com/video/1046771415",
+            "poster": "posters/f-1046771415.jpg"
           }
         ]
       },
@@ -514,15 +480,16 @@
           "Buildings & objects",
           "Cue driven"
         ],
-        "poster": "posters/projection-mapping.jpg",
+        "poster": "posters/projection-mapping-v.jpg",
         "status": "live",
         "films": [
           {
-            "label": "Film 01",
+            "label": "3D Projection Mapping",
             "host": "vimeo",
             "id": "1217655378",
             "hash": null,
-            "embed": "https://player.vimeo.com/video/1217655378"
+            "embed": "https://player.vimeo.com/video/1217655378",
+            "ratio": "16:9"
           }
         ]
       },
@@ -537,18 +504,9 @@
           "Architectural",
           "Night"
         ],
-        "poster": "laser-mapping.webp",
-        "status": "awaiting-upload",
-        "films": [
-          {
-            "label": "Laser Mapping",
-            "host": "local",
-            "id": "laser-mapping",
-            "hash": null,
-            "embed": "/assets/tech/laser-mapping.mp4",
-            "ratio": "16:9"
-          }
-        ]
+        "poster": null,
+        "status": "no-material",
+        "films": []
       },
       {
         "code": "HV-MMC-05",
@@ -561,15 +519,15 @@
           "Cue synced",
           "Event scale"
         ],
-        "poster": "stage-show.webp",
-        "status": "awaiting-upload",
+        "poster": "posters/stage-show-v.jpg",
+        "status": "live",
         "films": [
           {
             "label": "Pharaonic Show",
-            "host": "local",
-            "id": "stage-show",
-            "hash": null,
-            "embed": "/assets/tech/stage-show.mp4",
+            "host": "vimeo",
+            "id": "1217662046",
+            "hash": "8991353033",
+            "embed": "https://player.vimeo.com/video/1217662046?h=8991353033",
             "ratio": "16:9"
           }
         ]
