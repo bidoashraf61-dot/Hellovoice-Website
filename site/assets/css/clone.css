@@ -6130,3 +6130,75 @@ textarea.ig_req_input{resize:vertical;min-height:96px}
   top: 100%;
   left: 0;
 }
+
+/* ---- Loader covers the whole screen, on every phone ---- 21 Sep 2026, client
+   On an iPhone the page showed through a band along the bottom while the logo
+   played. The panel was height:100vh, and iOS Safari draws the page underneath
+   its floating toolbar - past the edge the browser reports as the viewport -
+   so the panel stopped short of the glass and the site peeked out below it.
+
+   The panel now runs 30vh past the bottom of the screen, so there is always
+   solid white behind the toolbar whatever state it is in. The same 30vh is
+   given back as bottom padding, so the flex-centred logo still sits in the
+   middle of the screen you can see rather than of the taller box. lvh first
+   where supported (the viewport with the toolbar retracted, i.e. the largest
+   the visible area ever gets), vh as the fallback.
+
+   It still lifts as one block: the lift is yPercent:-120 of the panel's own
+   height, so a taller panel simply travels further and clears the screen. */
+.preloader {
+  height: calc(100vh + 30vh) !important;
+  height: calc(100lvh + 30vh) !important;
+  bottom: auto !important;
+  padding-bottom: 30vh;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+/* ---- The Four Coats, centred on phones ---------------- 21 Sep 2026, client
+   On a phone the section stacks into one column, and everything in it was
+   already centred - the festival lockup, the Higgsfield kicker, the reel, the
+   credits and the button - except the title, tagline and synopsis, which kept
+   the desktop's left alignment. Three left-aligned blocks inside an otherwise
+   centred column read as a mistake. Phones only, at the client's instruction;
+   the desktop split-screen keeps its left-aligned text column. */
+@media screen and (max-width: 767px) {
+  .film_feature_body { text-align: center; }
+  .film_feature_body > * { margin-left: auto; margin-right: auto; }
+  .film_feature_actions { justify-content: center; text-align: center; }
+}
+
+/* ---- Heading tags graze their heading on phones -------- 21 Sep 2026, client
+   The tags were covering 34-67% of their headings on a phone, hiding the words
+   they label. motion.js now pivots them on the bottom-left corner at this
+   width (see the note there); this sets the same pivot for the resting state
+   and places that corner a few pixels into the heading's top edge.
+
+   The box is 35px tall at this size, so top:-28px puts the anchored corner 7px
+   below the heading's top: about 15% of a 46px heading and 8% of an 83px one.
+   The tilt then rises away from the words instead of into them.
+
+   "Our Work" on the projects page carried its own override that pinned its tag
+   27px down, straight through the middle of the title; it is folded in here
+   with enough weight to win. */
+@media screen and (max-width: 767px) {
+  .floating_text.floating_text:not(.is-about):not(.is-canvas),
+  [data-floating-badge].floating_text,
+  .section_header .floating_text,
+  .tech_bank_head .floating_text,
+  .testimonial_section .floating_text,
+  .section_header.is_project .floating_text.is-work {
+    top: -28px !important;
+    bottom: auto !important;
+    transform-origin: 0% 100% !important;
+  }
+}
+
+/* The "400+ top brands" badge is not a .floating_text - it sits in flow above
+   "Trusted by" and is pulled down onto it with a negative margin, so the rule
+   above does not reach it. On a phone that margin put it 12px into the word
+   and hid the crossbar of the T, which then read close to "IRUSTED". Eased to
+   a touch, so the badge still crosses the heading's top edge. */
+@media screen and (max-width: 767px) {
+  .leader_section_badge { margin-bottom: -4px !important; }
+}

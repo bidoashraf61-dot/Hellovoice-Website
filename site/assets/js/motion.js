@@ -386,10 +386,15 @@
       var W = list.clientWidth;
       if (!W) return;
 
-      /* Vimeo runs two, and so does a phone now: one film a row made the Work
-         list 22-38 screens long (audit P2-18). A phone gets a tighter gutter —
-         24px out of a 319px column pair is a lot of empty ground. */
-      var n = W < 280 ? 1 : 2;
+      /* One film a row on a phone (client, 21 Sep 2026). Two a row made each
+         thumbnail about 170px wide - too small to read the poster, which is the
+         whole point of a portfolio. This reverses an earlier audit (P2-18) that
+         went to two a row because one made the page very long; the client has
+         weighed that and chosen legible films over a shorter scroll. Tablets
+         and up keep two - 600px is well below the narrowest tablet list and
+         well above the widest phone one. A wider gutter would be wasted with a
+         single column, so the gap only matters from two up. */
+      var n = W < 600 ? 1 : 2;
       var gap = W < 700 ? 12 : (parseFloat(cs.columnGap || cs.gap) || 24);
       var colW = Math.floor((W - gap * (n - 1)) / n);
       var heights = new Array(n).fill(0);
@@ -578,13 +583,22 @@
     /* Rotating in from the other side of vertical is what sells it as a
        sticker being pressed on rather than a box fading up. GSAP reads the
        -15deg rest angle off the element and animates back to it. */
+    /* On a phone the sticker pivots on its bottom-left corner, not its centre
+       (client, 21 Sep 2026). At -15deg a centre pivot swings the left end down
+       by half the tag's width times sin 15 - and since the headings are small
+       on a phone, the longest tags ended up covering 55-67% of the words they
+       annotate. Pivoting on the corner keeps that corner exactly where the
+       stylesheet puts it and tilts the rest upward, so one offset lands every
+       tag on the heading's top edge whatever its length. Same angle, same
+       size: only what stays anchored changes. Desktop keeps the centre. */
+    var phone = window.matchMedia("(max-width: 767px)").matches;
     tl.from(el, {
       scale: 0.55,
       rotation: "+=22",
       opacity: 0,
       duration: 0.62,
       ease: e("outBack"),
-      transformOrigin: "50% 50%"
+      transformOrigin: phone ? "0% 100%" : "50% 50%"
     }, title ? 0.34 : 0);
 
     reveal_(el, tl);
