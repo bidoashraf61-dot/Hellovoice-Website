@@ -6202,3 +6202,29 @@ textarea.ig_req_input{resize:vertical;min-height:96px}
 @media screen and (max-width: 767px) {
   .leader_section_badge { margin-bottom: -4px !important; }
 }
+
+/* ---- Request-access fields: white type ---------------- 23 Sep 2026, client
+   What you typed came out black on a near-black field - invisible. The rule
+   above asked for `color: inherit`, which loses to the browser's own default
+   for form controls, so the fields fell back to black. Stated outright here,
+   with the caret to match.
+
+   Autofill is handled too: Chrome paints its own background and text colour on
+   an autofilled field and ignores `background-color`, so the background is
+   redrawn with an inset shadow and the text colour set with -webkit-text-fill-
+   color, which is the one property autofill respects. */
+.ig_req_input,
+.ig_req_input:focus {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff;
+  caret-color: #fff;
+}
+.ig_req_input::placeholder { color: #fff; opacity: .72; }
+.ig_req_input:-webkit-autofill,
+.ig_req_input:-webkit-autofill:hover,
+.ig_req_input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #fff;
+  caret-color: #fff;
+  -webkit-box-shadow: 0 0 0 1000px #262626 inset;
+  box-shadow: 0 0 0 1000px #262626 inset;
+}
