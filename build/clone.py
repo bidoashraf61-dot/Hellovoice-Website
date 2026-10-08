@@ -734,6 +734,43 @@ def nav_rework(html: str) -> str:
         _work, html, flags=re.S)
 
 
+def client_login_nav(html: str) -> str:
+    """"Client login" in the header and the fullscreen menu, after Contact.
+
+    Clients sign in to HELVY Connect (the catalogue's portal) on the catalogue
+    host. Each new link is a copy of that page's own Contact link — so it keeps
+    the page's variant classes (is-secondary / is-dark on the inner pages), the
+    doubled label the hover roll needs, and the menu row's construction — with
+    the href, the label and any "current page" marks changed. Same tab, like
+    every other nav link. Idempotent: a page that already has it is left alone.
+    """
+    url = IP.CLIENT_LOGIN_URL
+    if f'href="{url}" data-client-login' in html:
+        return html
+
+    def _copy(m):
+        a = m.group(0)
+        new = re.sub(r'\s+aria-current="page"', "", a)
+        new = new.replace(" w--current", "")
+        new = new.replace('href="/contact-us/"',
+                          f'href="{url}" data-client-login=""', 1)
+        new = re.sub(r'>(\s*)(Contact|contact)(\s*)<',
+                     lambda t: ">" + t.group(1)
+                     + ("Client login" if t.group(2)[0].isupper() else "client login")
+                     + t.group(3) + "<", new)
+        return a + new
+
+    html, n_nav = re.subn(
+        r'<a\b[^>]*href="/contact-us/"[^>]*class="[^"]*\bnav_link\b[^"]*"[^>]*>.*?</a>',
+        _copy, html, count=1, flags=re.S)
+    html, n_menu = re.subn(
+        r'<a\b[^>]*href="/contact-us/"[^>]*class="[^"]*\bcanvas_menu_link\b[^"]*"[^>]*>.*?</a>',
+        _copy, html, count=1, flags=re.S)
+    if not (n_nav and n_menu):
+        raise SystemExit(f"client_login_nav: header {n_nav}, menu {n_menu} Contact links")
+    return html
+
+
 # Only the accounts the client actually runs. Instagram is confirmed —
 # it is the account the influencer grid was captured from. The other two carry
 # the reference's bare domains and are flagged rather than shipped as if real.
@@ -2801,6 +2838,7 @@ def transform(name: str, html: str, drop_hero: bool = True) -> str:
     html = rewrite_links(html)
     html = strip_blog(html)
     html = nav_rework(html)
+    html = client_login_nav(html)
     html = menu_button_semantics(html)
     html = footer_socials(html)
     html = strip_dead_links(html)

@@ -288,6 +288,10 @@ def _pulled(post):
 # The catalogue runs on its own host with its own API (deploy/README.md); a
 # static copy of the site cannot unlock it, so every button goes there.
 CATALOGUE_URL = "https://influencer-catalogue.hellovoice.co.uk/"
+# Client accounts (HELVY Connect, the catalogue's email-OTP portal) sign in on
+# the same host. The header's "Client login" (clone.client_login_nav) and the
+# line under the catalogue button both point here.
+CLIENT_LOGIN_URL = CATALOGUE_URL
 CATALOGUE_BENEFITS = [
     ("Browse the roster", "Creators sorted by tier — nano to macro — and by "
                           "category: beauty, skincare, hair care, fragrance, "
@@ -336,6 +340,8 @@ def catalogue_section() -> str:
         '<div class="ig_cat_actions">' + catalogue_button("is-primary") +
         '<p class="ig_cat_note">No code yet? '
         '<a href="#request-access">Request access</a>.</p>'
+        '<p class="ig_cat_note">Already a client? '
+        f'<a href="{CLIENT_LOGIN_URL}">Client login</a> — HELVY Connect.</p>'
         '</div>'
         + request_access_form() +
         '</div></div></section>')
